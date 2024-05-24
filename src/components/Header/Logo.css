@@ -1,0 +1,14 @@
+.logo {
+  background-image: url("../../assets/logo.svg");
+}
+.logo {
+  height: 39px;
+  width: 93px; /* Adjust width as needed */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: -5px;
+}
+body.dark .logo {
+  background: url("../../assets/logo-white.svg");
+}

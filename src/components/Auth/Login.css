@@ -1,0 +1,103 @@
+.login-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 50px;
+  background-color: #fff;
+}
+.home-button {
+  margin-left: 50px;
+  margin-top: 50px;
+  width: 90px;
+  height: 40px;
+  position: absolute;
+  border-radius: 16px;
+  border: none;
+  background-color: #292727;
+  color: #f3f5f7;
+  cursor: pointer;
+}
+
+.login-form {
+  width: 40%;
+}
+
+.login-form h1 {
+  font-size: 48px;
+  font-family: "NeueMachina-light", sans-serif;
+  margin-bottom: 10px;
+}
+
+.login-form p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.social-login {
+  margin-top: 20px;
+}
+
+.social-login p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.google-button,
+.facebook-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.google-button {
+  background-color: #fff;
+  color: #000;
+}
+
+.facebook-button {
+  background-color: #fff;
+  color: #000;
+}
+
+.login-image {
+  width: 50%;
+}
+
+.login-image img {
+  width: 100%;
+  height: auto;
+}

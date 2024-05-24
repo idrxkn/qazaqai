@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "educationalMaterials": "Оқулықтар",
+    "testing": "Тестілеу",
+    "virtualTeacher": "Виртуалды мұғалім",
+    "forum": "Форум",
+    "aboutUsHelp": "Біз туралы/Көмек",
+    "login": "Кіру",
+    "signUp": "Тіркелу"
+  },
+  "mainPage": {
+    "revolutionize": "ЖАСАНДЫ",
+    "your": "ИНТЕЛЛЕКТ",
+    "learning": "АРҚЫЛЫ",
+    "with": "ОҚУЫҢДЫ",
+    "aiDriven": "ТОЛЫҚ",
+    "education": "ӨЗГЕРТ"
+  },
+  "register": {
+    "title": "Тіркелу",
+    "username": "Аты",
+    "password": "Құпия сөз",
+    "usernamePlaceholder": "Пайдаланушы атыңызды енгізіңіз",
+    "passwordPlaceholder": "Құпия сөзіңізді енгізіңіз",
+    "submit": "Келесі",
+    "loginWithOthers": "Басқалармен кіру",
+    "loginWithGoogle": "Google арқылы кіру",
+    "homeBtn": "Үйге"
+  },
+  "login": {
+    "title": "Қош келдіңіз",
+    "subtitle": "Сізді бізбен бірге көргенімізге қуаныштымыз",
+    "username": "Пайдаланушы аты",
+    "password": "Құпия сөз",
+    "usernamePlaceholder": "Пайдаланушы атыңызды енгізіңіз",
+    "passwordPlaceholder": "Құпия сөзіңізді енгізіңіз",
+    "submit": "Келесі",
+    "loginWithOthers": "Басқалармен кіру",
+    "loginWithGoogle": "Google арқылы кіру",
+    "loginWithFacebook": "Facebook арқылы кіру"
+  }
+}

@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap");
+
+.main-page {
+}
+
+.centered-text-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+.centered-text {
+  position: relative;
+  width: 771px;
+}
+.centered-text h1,
+.centered-text h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.rev {
+  font-size: 96px;
+  font-family: "NeueMachina-light";
+}
+body.lang-ru .rev {
+  font-size: 72px;
+}
+.yourlear-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.yourlear {
+  font-family: "NeueMachina-light";
+  font-size: 62px;
+}
+.with {
+  font-family: "Beau Rivage", cursive;
+  font-size: 48px;
+  position: absolute;
+  top: 150px;
+  left: 225px;
+}
+body.lang-ru .with {
+  font-family: "NeueMachina-light";
+}
+.ai {
+  font-size: 64px;
+  font-family: "NeueMachina-light";
+  position: absolute;
+  top: 220px;
+  left: 340px;
+}
+.edu {
+  font-size: 64px;
+  font-family: "NeueMachina-light";
+  position: absolute;
+
+  top: 300px;
+  left: 50px;
+}

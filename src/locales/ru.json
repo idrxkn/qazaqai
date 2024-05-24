@@ -1,0 +1,42 @@
+{
+  "nav": {
+    "educationalMaterials": "Учебные материалы",
+    "testing": "Тестирование",
+    "virtualTeacher": "Виртуальный учитель",
+    "forum": "Форум",
+    "aboutUsHelp": "О нас/Помощь",
+    "login": "Войти",
+    "signUp": "Регистрация"
+  },
+  "mainPage": {
+    "revolutionize": "РЕВОЛЮЦИОНИЗИРУЙ",
+    "your": "СВОЕ",
+    "learning": "ОБУЧЕНИЕ",
+    "with": "С ПОМОЩЬЮ",
+    "aiDriven": "ИСКУССТВЕННОГО",
+    "education": "ИНТЕЛЛЕКТА"
+  },
+  "register": {
+    "title": "Регистрация",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "usernamePlaceholder": "Введите ваше имя пользователя",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "submit": "Далее",
+    "loginWithOthers": "Другие способы",
+    "loginWithGoogle": "Войти через Google",
+    "homeBtn": "Домой"
+  },
+  "login": {
+    "title": "Добро пожаловать",
+    "subtitle": "Мы рады видеть вас снова с нами",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "usernamePlaceholder": "Введите ваше имя пользователя",
+    "passwordPlaceholder": "Введите ваш пароль",
+    "submit": "Далее",
+    "loginWithOthers": "Войти через другие",
+    "loginWithGoogle": "Войти через Google",
+    "loginWithFacebook": "Войти через Facebook"
+  }
+}

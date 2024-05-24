@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "educationalMaterials": "Educational materials",
+    "testing": "Testing",
+    "virtualTeacher": "Virtual teacher",
+    "forum": "Forum",
+    "aboutUsHelp": "About us/Help",
+    "login": "Login",
+    "signUp": "Sign up"
+  },
+  "mainPage": {
+    "revolutionize": "REVOLUTIONIZE",
+    "your": "YOUR",
+    "learning": "LEARNING",
+    "with": "WITH",
+    "aiDriven": "AI-DRIVEN",
+    "education": "EDUCATION"
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "password": "Password",
+    "usernamePlaceholder": "Enter your username",
+    "passwordPlaceholder": "Enter your password",
+    "submit": "Next",
+    "loginWithOthers": "Login with Others",
+    "homeBtn": "Home"
+  },
+  "login": {
+    "title": "Welcome",
+    "subtitle": "We are glad to see you back with us",
+    "username": "Username",
+    "password": "Password",
+    "usernamePlaceholder": "Enter your username",
+    "passwordPlaceholder": "Enter your password",
+    "submit": "Next",
+    "loginWithOthers": "Login with Others",
+    "loginWithGoogle": "Login with Google",
+    "loginWithFacebook": "Login with Facebook"
+  }
+}

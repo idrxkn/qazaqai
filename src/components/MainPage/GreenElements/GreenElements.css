@@ -1,0 +1,15 @@
+.green-element {
+  position: absolute;
+}
+
+.top-left {
+  left: -6px;
+  top: 340px;
+}
+
+.bottom-right {
+  right: 0;
+  top: 617.5px;
+  transform: scaleX(-1) !important;
+  -webkit-transform: scaleX(-1) !important;
+}
