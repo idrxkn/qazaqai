@@ -1,0 +1,106 @@
+.bottom-wrap {
+  margin-top: 150px;
+}
+.lang-imgs {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 150px;
+}
+.lang-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: center;
+  object-position: center;
+}
+.lang-text {
+  text-align: center;
+  font-family: "NeueMachina-light";
+  margin-top: 10px;
+}
+.lang-text.kaz {
+  font-family: "Monolog-light";
+}
+.lang-text.rus {
+}
+.bottom-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-title {
+  font-family: "NeueMachina-light";
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+body.lang-kz .bottom-title {
+  font-family: "Monolog-light";
+}
+
+.special-text {
+  font-size: 54px;
+  font-family: "NeueMachina-light";
+  text-align: center;
+  margin-bottom: 10px;
+}
+body.lang-kz .special-text {
+  font-family: "Monolog-light";
+}
+.nomads {
+  color: #8b4513;
+}
+.bottom-text {
+  font-size: 16px;
+  font-family: "Helvetica-light";
+  margin-bottom: 50px;
+}
+.interest-title {
+  font-family: "NeueMachina-light";
+  font-size: 54px;
+  margin-bottom: 100px;
+  text-align: center;
+  position: relative;
+}
+body.lang-kz .interest-title {
+  font-family: "Monolog-light";
+}
+.join-wrap {
+  position: relative;
+  top: -5px;
+}
+.join {
+  font-family: "Akira";
+  font-size: 32px;
+  background-color: #292727;
+  padding: 10px;
+  color: #e5f89a;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+body.lang-kz .join {
+  font-family: "Druk-medium";
+}
+body.lang-ru .join {
+  font-family: "Druk-medium";
+}
+
+.join:hover {
+  background-color: #e5f89a;
+
+  color: #292727;
+}
+
+.fast {
+  font-size: 62px;
+  margin-top: 30px;
+}
+.fa-paw {
+  font-size: 100px;
+  margin-top: 50px;
+  color: #292727;
+}

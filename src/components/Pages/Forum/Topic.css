@@ -1,0 +1,38 @@
+.topic-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.topic-container h3 {
+  font-family: "NeueMachina-light";
+  margin: 0;
+  font-size: 24px;
+}
+
+.topic-container p {
+  font-family: "Helvetica-light";
+  margin: 10px 0;
+}
+
+.new-message-form {
+  margin-top: 20px;
+}
+
+.new-message-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: calc(100% - 90px);
+  display: inline-block;
+  font-family: "Helvetica-light";
+}
+
+.messages-list {
+  margin-top: 20px;
+}
+.addmes {
+  margin-top: 20px;
+}

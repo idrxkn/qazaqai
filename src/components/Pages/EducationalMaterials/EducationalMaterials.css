@@ -1,0 +1,111 @@
+.materials-container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+.edu-title {
+  font-family: "NeueMachina-light";
+  margin-bottom: 50px;
+}
+
+.materials-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cardEdu {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  height: 250px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  z-index: 0;
+  overflow: hidden;
+}
+.cardEdu-content {
+  font-family: "Helvetica-light";
+  z-index: 100;
+}
+.overlay {
+  position: absolute;
+  background-color: #e5f89a;
+  width: 350px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.cardEdu-content {
+}
+
+.edu-buttons {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  margin-top: 15px;
+  font-family: "Helvetica-light";
+  z-index: 100;
+}
+.edu-buttons button {
+  font-family: "Helvetica-light";
+}
+.view {
+  padding: 5px 14px;
+  border-radius: 18px;
+  background-color: #292727;
+  color: #e5f89a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.view:hover {
+  background-color: #e5f89a;
+  border: 1px solid #292727;
+  color: #292727;
+}
+.download {
+  padding: 5px 14px;
+  border-radius: 18px;
+  background-color: #292727;
+  color: #e5f89a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.download:hover {
+  background-color: #e5f89a;
+  border: 1px solid #292727;
+  color: #292727;
+}
+.pdf-viewer-container {
+  margin-top: 20px;
+}
+.bottom-icons {
+  color: #292727;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 78px;
+}
+.fa-school {
+  position: absolute;
+  right: -20px;
+  font-size: 120px;
+  bottom: -10px;
+  color: #292727;
+  position: absolute;
+}
+.fa-star {
+  position: absolute;
+  left: -25px;
+  bottom: 50px;
+  font-size: 78px;
+}

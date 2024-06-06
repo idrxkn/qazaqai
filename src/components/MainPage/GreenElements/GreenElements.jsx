@@ -13,7 +13,7 @@ const greenElementVariants = {
       delay: custom * 0.2,
       duration: 0.8,
       type: "spring",
-      stiffness: 50,
+      stiffness: 10,
     },
   }),
 };

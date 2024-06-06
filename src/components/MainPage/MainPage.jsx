@@ -3,6 +3,14 @@ import "./MainPage.css";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import GreenElements from "./GreenElements/GreenElements";
+import SliderComponent from "./Slider/Slider";
+import EdMaterials from "./MainPageEls/EdMaterials";
+import TestingMP from "./MainPageEls/TestingMP";
+import ChatMP from "./MainPageEls/ChatMP";
+import ForumMP from "./MainPageEls/ForumMP";
+import AboutUsMP from "./MainPageEls/AboutUsMP";
+import Bottom from "./Bottom/Bottom";
+import Footer from "../Footer/Footer";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,7 +36,7 @@ const textVariants = {
   }),
 };
 
-const MainPage = () => {
+const MainPage = ({}) => {
   const { t, i18n } = useTranslation();
   const [isReady, setIsReady] = useState(false);
 
@@ -88,6 +96,14 @@ const MainPage = () => {
             </motion.h2>
           </div>
         </motion.div>
+        <SliderComponent />
+        <EdMaterials />
+        <TestingMP />
+        <ChatMP />
+        <ForumMP />
+        <AboutUsMP />
+        <Bottom />
+        <Footer />
       </div>
     )
   );

@@ -1,0 +1,125 @@
+.footer {
+  background-color: #292727;
+  color: #f3f5f7;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.footer-wrap {
+  max-width: 1140px;
+  position: relative;
+}
+
+.footer-content h1 {
+  margin-top: 100px;
+  font-family: "Akira";
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+body.lang-kz .footer-content h1 {
+  font-family: "Druk-medium";
+}
+body.lang-ru .footer-content h1 {
+  font-family: "Druk-medium";
+}
+
+.footer-content p {
+  font-family: "Helvetica-light";
+  margin-bottom: 30px;
+  font-size: 14px;
+  max-width: 659px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-buttons {
+  margin-bottom: 30px;
+}
+
+.footer-button {
+  background-color: #e5f89a;
+  border: none;
+  color: #292727;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 14px;
+  font-family: "Helvetica-light";
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 18px;
+}
+
+.footer-button:hover {
+  background-color: #292727;
+  color: #e5f89a;
+  border: 0.5px solid #e5f89a;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  border-top: 1px solid #555;
+  padding-top: 20px;
+}
+
+.footer-logo {
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-icon {
+  color: #f3f5f7;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #d2ff60;
+}
+
+.footer-bottom p {
+  font-family: "Helvetica-light";
+  font-size: 14px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.logo-el {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid #f3f5f7;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.logo-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  top: 375px;
+  cursor: pointer;
+}
+body.lang-ru .logo-list {
+  top: 420px;
+}
+.logo-list a {
+  color: #f3f5f7;
+}
+.logo-el:hover {
+  border: 0.5px solid #e5f89a;
+  color: #e5f89a;
+}

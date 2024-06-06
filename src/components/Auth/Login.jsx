@@ -1,15 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode"; // import dependency
+import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
 import rightImage from "../../assets/rightImage.png";
-import { Link } from "react-router-dom";
+
+const BASE_URL = "http://localhost:10000/";
 
 const Login = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const { setIsAuthenticated, setDecodedTokenRole, decodedTokenRole } =
+    useAuth();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${BASE_URL}api/auth/signin`, formData);
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+      setError(null);
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
+      setDecodedTokenRole(decodedToken.role);
+      console.log(decodedToken.role);
+      setIsAuthenticated(true);
+      navigate("/"); // Redirect to main page
+    } catch (err) {
+      setError(err.response?.data?.message || "An error occurred");
+    }
+  };
 
   return (
     <>
-      {" "}
       <Link to="/">
         <button className="home-button">{t("register.homeBtn")}</button>
       </Link>
@@ -17,14 +51,16 @@ const Login = () => {
         <div className="login-form">
           <h1>{t("login.title")}</h1>
           <p>{t("login.subtitle")}</p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label htmlFor="username">{t("login.username")}</label>
+              <label htmlFor="email">{t("login.login")}</label>
               <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder={t("login.usernamePlaceholder")}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder={t("login.loginPlaceholder")}
               />
             </div>
             <div className="input-group">
@@ -33,6 +69,8 @@ const Login = () => {
                 type="password"
                 id="password"
                 name="password"
+                value={formData.password}
+                onChange={handleChange}
                 placeholder={t("login.passwordPlaceholder")}
               />
             </div>
@@ -40,13 +78,11 @@ const Login = () => {
               {t("login.submit")}
             </button>
           </form>
+          {error && <p className="error-message">{error}</p>}
           <div className="social-login">
             <p>{t("login.loginWithOthers")}</p>
             <button className="google-button">
               {t("login.loginWithGoogle")}
-            </button>
-            <button className="facebook-button">
-              {t("login.loginWithFacebook")}
             </button>
           </div>
         </div>

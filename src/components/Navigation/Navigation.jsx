@@ -4,11 +4,14 @@ import "./Navigation.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import Dropdown from "../Dropdown/Dropdown";
 import { useTranslation } from "react-i18next";
-
 import { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 const Navigation = () => {
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
   const { t, i18n } = useTranslation();
+
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
@@ -30,6 +33,7 @@ const Navigation = () => {
     document.body.classList.remove("lang-en", "lang-kz", "lang-ru");
     document.body.classList.add(`lang-${language}`);
   }, [language, i18n]);
+
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
@@ -40,6 +44,9 @@ const Navigation = () => {
   };
   return (
     <nav className="navigation">
+      <Link to="/">
+        <div alt="Tüs In Logo" className="logo" />
+      </Link>
       <div className="nav-links">
         <NavLink to="/educational-materials" className="nav-item">
           {t("nav.educationalMaterials")}
@@ -57,14 +64,21 @@ const Navigation = () => {
           {t("nav.aboutUsHelp")}
         </NavLink>
       </div>
-      <div className="auth-buttons">
-        <NavLink to="login">
-          <button className="login-button">{t("nav.login")}</button>
-        </NavLink>
-        <NavLink to="signup">
-          <button className="signup-button">{t("nav.signUp")}</button>
-        </NavLink>
-      </div>
+      {isAuthenticated ? (
+        <Link to="/myprofile">
+          <button className="profile-button">My Profile</button>
+        </Link>
+      ) : (
+        <div className="auth-buttons">
+          <NavLink to="login">
+            <button className="login-button">{t("nav.login")}</button>
+          </NavLink>
+          <NavLink to="signup">
+            <button className="signup-button">{t("nav.signUp")}</button>
+          </NavLink>
+        </div>
+      )}
+
       <Dropdown
         options={["EN", "KZ", "RU"]}
         defaultOption={language.toUpperCase()}

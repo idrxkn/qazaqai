@@ -39,3 +39,27 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "Monolog-light";
+  src: url("./monologLight.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Champion";
+  src: url("./sign.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Druk";
+  src: url("./druk-bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Druk-medium";
+  src: url("./druk-medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}

@@ -20,6 +20,7 @@
 }
 
 .register-form {
+  margin-top: 80px;
   width: 40%;
 }
 
@@ -88,4 +89,22 @@
 .register-image img {
   width: 500.81px;
   height: 810px;
+}
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.isStudentCheckbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.isStudent {
+  font-family: "Helvetica-light";
+  margin-left: 5px;
+}
+.error-message {
+  font-family: "Helvetica-light";
+  color: #b43e3e;
 }

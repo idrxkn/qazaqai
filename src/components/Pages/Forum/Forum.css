@@ -1,0 +1,81 @@
+.forum-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 200px;
+}
+.forum-container h1 {
+  font-family: "NeueMachina-light";
+}
+.forum-container h2 {
+  font-family: "Helvetica-light";
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.new-topic-form,
+.new-message-form {
+  margin-bottom: 20px;
+}
+
+.new-topic-form input,
+.new-topic-form textarea,
+.new-message-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.new-topic-form textarea {
+  margin-bottom: 20px;
+}
+
+.new-topic-form button,
+.new-message-form button {
+  padding: 10px 20px;
+  background-color: #e5f89a;
+  color: #292727;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.new-topic-form button:hover,
+.new-message-form button:hover {
+  background-color: #292727;
+  color: #e5f89a;
+}
+
+.topics-list {
+  margin-top: 20px;
+}
+
+.topic-container {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.topic-container h3 {
+  margin: 0 0 10px;
+}
+
+.topic-container p {
+  margin: 0 0 15px;
+}
+
+.messages-list {
+  margin-top: 10px;
+}
+.please-signin {
+  font-family: "NeueMachina-light";
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+}

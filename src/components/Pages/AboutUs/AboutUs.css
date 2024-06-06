@@ -1,0 +1,43 @@
+.aboutus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: #f9f9f9;
+}
+
+.aboutus-content {
+  max-width: 1000px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.aboutus-header {
+  margin-bottom: 30px;
+}
+
+.aboutus-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.aboutus-image {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.aboutus-text {
+  flex: 1;
+  text-align: left;
+}
+
+.aboutus-text p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #333;
+}

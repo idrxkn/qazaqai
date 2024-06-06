@@ -1,0 +1,66 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  height: 550px;
+  background-color: #f0f2f5;
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+.profile-wrap {
+  width: 900px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.profile-header {
+  display: flex;
+  margin-bottom: 30px;
+}
+.profile-info {
+  font-family: "NeueMachina-light";
+  margin-top: 22px;
+}
+.profile-info h1 {
+  margin-bottom: 15px;
+}
+
+.profile-details {
+  font-size: 20px;
+  font-family: "NeueMachina-light";
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 30px;
+  background-color: #e5f89a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fa-graduation-cap {
+  font-size: 52px;
+}
+.logout {
+  position: absolute;
+  display: block;
+  border-radius: 9px;
+  border: none;
+  background-color: #b43e3e;
+  color: #fff;
+  margin: 0 auto;
+  width: 200px;
+  cursor: pointer;
+  height: 30px;
+  bottom: 30px;
+}
+.logout:hover {
+  opacity: 0.7;
+}

@@ -16,6 +16,41 @@
     "aiDriven": "AI-DRIVEN",
     "education": "EDUCATION"
   },
+  "mainPageEd": {
+    "title": "Comprehensive Educational Materials",
+    "text": "Explore a vast library of resources, including materials and books for UNT preparation, school textbooks from Algrebra of 5th grade, to History of Kazakhstan of 11th!",
+    "button": "Browse materials"
+  },
+  "mainPageTesting": {
+    "title": "Interactive Testing",
+    "text": "Access our extensive database of tests to evaluate and enhance your knowledge. Get instant feedback and track your progress.",
+    "button": "Start testing"
+  },
+  "mainPageChat": {
+    "title": "Meet Your Virtual Teacher",
+    "text": "Our AI-powered virtual teacher is here to answer all your educational queries. Whether it's a complex math problem or a historical fact, we've got you covered.",
+    "button": "Chat with the Virtual Teacher"
+  },
+  "mainPageForum": {
+    "title": "Join the Community Forum",
+    "text": "Connect with fellow students, share experiences, ask questions, and find answers. Be part of a vibrant learning community.",
+    "button": "Visit the Forum"
+  },
+  "mainPageAbout": {
+    "title": "Want to Know More About Us?",
+    "text": "Learn about our mission, vision, and the team behind Tüs In. Discover how we are transforming education in Kazakhstan with cutting-edge AI technology.",
+    "button": "Learn more"
+  },
+  "mainPageBottom": {
+    "weAre": "We are ",
+    "nomads": "Nomads!",
+    "forte": "Our Forte: a multilingual approach",
+    "available": "Available languages at the website so far:",
+    "intthen": "Interested? Then ",
+    "join": "join",
+    "us": "us!",
+    "fast": "FAST FAST!"
+  },
   "register": {
     "title": "Register",
     "username": "Username",
@@ -24,18 +59,43 @@
     "passwordPlaceholder": "Enter your password",
     "submit": "Next",
     "loginWithOthers": "Login with Others",
-    "homeBtn": "Home"
+    "homeBtn": "Home",
+    "referral": "Referral",
+    "referralPlaceholder": "Enter your referral",
+    "loginWithGoogle": "Login with Google",
+    "isStudent": "I am a student",
+    "loginPlaceholder": "Enter your login",
+    "login": "Login"
   },
   "login": {
     "title": "Welcome",
     "subtitle": "We are glad to see you back with us",
-    "username": "Username",
+    "login": "Login",
     "password": "Password",
-    "usernamePlaceholder": "Enter your username",
+    "loginPlaceholder": "Enter your login",
     "passwordPlaceholder": "Enter your password",
     "submit": "Next",
     "loginWithOthers": "Login with Others",
     "loginWithGoogle": "Login with Google",
     "loginWithFacebook": "Login with Facebook"
+  },
+  "slide1": {
+    "title": "AI Curriculum Customization",
+    "text": "Tailored learning experiences are at your fingertips with AI-driven educational tools. Every student can thrive, gaining personalized instruction tailored to their strengths and learning pace. There's much to gain and nothing to lose."
+  },
+  "slide2": {
+    "title": "Collaborative Learning ",
+    "text": "AI not only supports individual learning but also enhances group study dynamics. It facilitates more effective peer-to-peer interactions and collaborative projects, maximizing the educational benefits for all participants."
+  },
+  "slide3": {
+    "title": "Interactive Learning",
+    "text": "Engage with dynamic, AI-powered modules that transform traditional classroom settings into interactive learning environments. Enhance your understanding and retention of complex subjects with technology designed for educational success."
+  },
+  "footer": {
+    "title": "INNOVATIVE. ADAPTIVE. EMPOWERING.",
+    "text": "We're a forward-thinking team dedicated to revolutionizing education with AI. Our mission is to provide tailored, data-driven learning experiences that adapt to each student's unique needs. Join us on this journey to transformeducation and unlock your full potential.",
+    "insights": "Insights",
+    "contact": "Contact",
+    "rights": "© 2024 Tüs in. All Rights Reserved."
   }
 }

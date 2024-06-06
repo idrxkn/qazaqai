@@ -1,63 +1,68 @@
+// Chat.js
 import { useState, useEffect, useRef } from "react";
 import "./Chat.css";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../../../assets/logo.svg";
 import teacherIcon from "../../../assets/teachersx.png";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
-const API_KEY = "7a42acf8f3a374601d78b15f5dfce724";
-
-function Chat() {
-  const [input, setInput] = useState("");
+const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [inputData, setInputData] = useState({ question: "" });
   const messageEnd = useRef(null);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     messageEnd.current.scrollIntoView();
   }, [messages]);
 
   const handleSubmit = async () => {
-    if (input.trim() === "") return;
+    if (inputData.question.trim() === "") return;
 
-    const userMessage = { type: "user", text: input };
-    setMessages([...messages, userMessage]);
+    const userMessage = { type: "user", text: inputData.question };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
     setLoading(true);
 
+    const currentLanguage = i18n.language;
+    console.log("Current Language:", currentLanguage); // Debugging line
+    const apiUrl =
+      currentLanguage === "ru"
+        ? "http://127.0.0.1:8001/get-answer"
+        : "http://127.0.0.1:8000/ask";
+    console.log("API URL:", apiUrl); // Debugging line
+
     try {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=7a42acf8f3a374601d78b15f5dfce724&units=metric`
+      const response = await axios.post(
+        apiUrl,
+        { question: inputData.question },
+        { headers: { "Content-Type": "application/json" } }
       );
-      const weather = response.data.weather[0].description;
-      const temperature = response.data.main.temp;
-      const city = response.data.name;
+
       const botMessage = {
         type: "teacher bot",
-        text: `The weather in ${city} is ${weather} with a temperature of ${temperature}°C.`,
+        text: response.data.answer,
       };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
     } catch (error) {
       const botMessage = {
         type: "teacher bot",
-        text: `Could not retrieve weather for ${input}. Please try another city.`,
+        text: `Could not retrieve data for ${inputData.question}. Please try something new.`,
       };
       setMessages((prevMessages) => [...prevMessages, botMessage]);
-      console.log(error);
+      console.error("API Error:", error); // Debugging line
     } finally {
       setLoading(false);
     }
-    setInput("");
+    setInputData({ question: "" });
   };
+
   const handleEnter = async (e) => {
-    if (e.key == "Enter") await handleSubmit();
+    if (e.key === "Enter") await handleSubmit();
   };
+
   return (
     <>
       <div className="chatbot">
@@ -118,14 +123,16 @@ function Chat() {
             <div className="chat-input">
               <input
                 type="text"
-                name=""
-                id=""
-                placeholder="Hey, send message"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
+                name="question"
+                id="question"
+                placeholder="Hey, send a message"
+                value={inputData.question}
+                onChange={(e) =>
+                  setInputData({ ...inputData, question: e.target.value })
+                }
                 onKeyDown={handleEnter}
               />
-              <button className="chat-input-submit">
+              <button className="chat-input-submit" onClick={handleSubmit}>
                 <FontAwesomeIcon icon="fa-solid fa-arrow-up" />
               </button>
             </div>
@@ -137,7 +144,6 @@ function Chat() {
       </div>
     </>
   );
-}
+};
 
 export default Chat;
-library.add(fab, fas, far);

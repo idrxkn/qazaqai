@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap");
 
 .main-page {
+  color: #292727;
 }
 
 .centered-text-wrap {
@@ -14,6 +15,10 @@
   position: relative;
   width: 771px;
 }
+body.dark .centered-text {
+  color: #f3f5f7;
+}
+
 .centered-text h1,
 .centered-text h2 {
   margin: 0;
@@ -23,6 +28,10 @@
 .rev {
   font-size: 96px;
   font-family: "NeueMachina-light";
+}
+body.lang-kz .rev {
+  font-family: "Monolog-light";
+  margin-top: -20px;
 }
 body.lang-ru .rev {
   font-size: 72px;
@@ -36,6 +45,10 @@ body.lang-ru .rev {
   font-family: "NeueMachina-light";
   font-size: 62px;
 }
+body.lang-kz .yourlear {
+  font-family: "Monolog-light";
+  margin-top: -13px;
+}
 .with {
   font-family: "Beau Rivage", cursive;
   font-size: 48px;
@@ -43,9 +56,19 @@ body.lang-ru .rev {
   top: 150px;
   left: 225px;
 }
-body.lang-ru .with {
-  font-family: "NeueMachina-light";
+body.lang-kz .with {
+  font-family: "Champion";
+  top: 170px;
+  left: 300px;
+  font-size: 60px;
 }
+body.lang-ru .with {
+  font-family: "Champion";
+  font-size: 60px;
+  top: 140px;
+  left: 180px;
+}
+
 .ai {
   font-size: 64px;
   font-family: "NeueMachina-light";
@@ -53,11 +76,19 @@ body.lang-ru .with {
   top: 220px;
   left: 340px;
 }
+body.lang-kz .ai {
+  font-family: "Monolog-light";
+  top: 240px;
+  left: 400px;
+}
 .edu {
   font-size: 64px;
   font-family: "NeueMachina-light";
   position: absolute;
-
   top: 300px;
   left: 50px;
+}
+body.lang-kz .edu {
+  font-family: "Monolog-light";
+  left: 0;
 }

@@ -1,9 +1,20 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  max-width: 1140px;
-  padding-top: 40px;
   margin: 0 auto;
-  font-family: "Helvetica-light"; /* Example usage */
+  width: 100%;
+  font-family: "Helvetica-light";
+  transition: all 0.3s ease;
+  height: 100px;
+  z-index: 1000;
+}
+.header.scrolled {
+  position: fixed;
+  background-color: white;
+  height: 80px;
+  top: 0;
+}
+body.dark .header.scrolled {
+  background-color: #121212;
 }
