@@ -1,23 +1,29 @@
-// Chat.js
 import { useState, useEffect, useRef } from "react";
 import "./Chat.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../../../assets/logo.svg";
 import teacherIcon from "../../../assets/teachersx.png";
+import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import Header from "../../Header/Header";
 
 const Chat = () => {
+  const { isAuthenticated } = useAuth();
+
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [inputData, setInputData] = useState({ question: "" });
+  const [currentBotMessage, setCurrentBotMessage] = useState("");
   const messageEnd = useRef(null);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   useEffect(() => {
-    messageEnd.current.scrollIntoView();
-  }, [messages]);
+    if (messageEnd.current) {
+      messageEnd.current.scrollIntoView({ behavior: "auto" });
+    }
+  }, [messages, currentBotMessage]);
 
   const handleSubmit = async () => {
     if (inputData.question.trim() === "") return;
@@ -27,13 +33,12 @@ const Chat = () => {
     setLoading(true);
 
     const currentLanguage = i18n.language;
-    console.log("Current Language:", currentLanguage); // Debugging line
     const apiUrl =
-      currentLanguage === "ru"
-        ? "http://127.0.0.1:8001/get-answer"
-        : "http://127.0.0.1:8000/ask";
-    console.log("API URL:", apiUrl); // Debugging line
-
+      currentLanguage === "en"
+        ? "http://127.0.0.1:7001/query"
+        : currentLanguage === "ru"
+        ? "http://127.0.0.1:7002/query"
+        : "http://127.0.0.1:7000/query";
     try {
       const response = await axios.post(
         apiUrl,
@@ -41,28 +46,59 @@ const Chat = () => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      const botMessage = {
-        type: "teacher bot",
-        text: response.data.answer,
-      };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
+      typeWriterEffect(response.data.answer);
     } catch (error) {
-      const botMessage = {
-        type: "teacher bot",
-        text: `Could not retrieve data for ${inputData.question}. Please try something new.`,
-      };
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
-      console.error("API Error:", error); // Debugging line
+      typeWriterEffect(
+        currentLanguage === "en"
+          ? `Could not retrieve data for ${inputData.question}. Please try something new.`
+          : currentLanguage === "ru"
+          ? `Не удалось получить данные для ${inputData.question}. Пожалуйста, попробуйте что-нибудь другое.`
+          : `${inputData.question}} үшін деректер табылмады. Басқа нәрсені жазып көріңіз.`
+      );
+      console.error("API Error:", error);
     } finally {
       setLoading(false);
     }
     setInputData({ question: "" });
   };
 
+  const typeWriterEffect = (text) => {
+    let i = -1;
+    setCurrentBotMessage("");
+
+    const intervalId = setInterval(() => {
+      setCurrentBotMessage((prev) => prev + text.charAt(i));
+      i++;
+      if (i >= text.length) {
+        clearInterval(intervalId);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { type: "teacher bot", text },
+        ]);
+        setCurrentBotMessage("");
+      }
+    }, 30);
+  };
+
   const handleEnter = async (e) => {
     if (e.key === "Enter") await handleSubmit();
   };
 
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Header />
+        <p className="please-signin">
+          Please{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            sign in{" "}
+          </Link>{" "}
+          to access the Virtual Teacher chat.
+        </p>
+      </>
+    );
+  }
   return (
     <>
       <div className="chatbot">
@@ -76,7 +112,7 @@ const Chat = () => {
                 className="new-chat"
                 onClick={() => window.location.reload()}
               >
-                <FontAwesomeIcon icon="fa-solid fa-plus" /> New chat
+                <FontAwesomeIcon icon="fa-solid fa-plus" /> {t("chat.new")}
               </button>
             </div>
             <div className="upper-side-bottom">
@@ -91,7 +127,8 @@ const Chat = () => {
           <div className="bottom-side">
             <Link to="/">
               <button className="home-btn">
-                <FontAwesomeIcon icon="fa-solid fa-door-open" /> Home
+                <FontAwesomeIcon icon="fa-solid fa-door-open" />{" "}
+                {t("chat.home")}
               </button>
             </Link>
           </div>
@@ -109,6 +146,14 @@ const Chat = () => {
                 <p className="txt">{message.text}</p>
               </div>
             ))}
+            {currentBotMessage && (
+              <div className="chat teacher bot">
+                <div className="teacher-icon">
+                  <img src={teacherIcon} alt="" className="teacher-img" />
+                </div>
+                <p className="txt">{currentBotMessage}</p>
+              </div>
+            )}
             {loading && (
               <div className="chat teacher bot">
                 <div className="teacher-icon">
@@ -125,7 +170,7 @@ const Chat = () => {
                 type="text"
                 name="question"
                 id="question"
-                placeholder="Hey, send a message"
+                placeholder={t("chat.placeholder")}
                 value={inputData.question}
                 onChange={(e) =>
                   setInputData({ ...inputData, question: e.target.value })

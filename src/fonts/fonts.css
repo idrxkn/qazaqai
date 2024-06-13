@@ -40,6 +40,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Akira-black";
+  src: url("./akira/Akira-black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
   font-family: "Monolog-light";
   src: url("./monologLight.otf") format("opentype");
   font-weight: 300;

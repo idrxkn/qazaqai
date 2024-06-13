@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Topic from "./Topic";
 import "./Forum.css";
-import { useAuth } from "../../../context/AuthContext";
 import { fetchUserData } from "../../../api";
 import Footer from "../../Footer/Footer";
 
 const Forum = () => {
-  const { isAuthenticated } = useAuth();
   const [topics, setTopics] = useState([]);
   const [newTopicTitle, setNewTopicTitle] = useState("");
   const [newTopicContent, setNewTopicContent] = useState("");
@@ -37,10 +35,6 @@ const Forum = () => {
     setNewTopicTitle("");
     setNewTopicContent("");
   };
-
-  if (!isAuthenticated) {
-    return <p className="please-signin">Please sign in to access the forum.</p>;
-  }
 
   return (
     <>

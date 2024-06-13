@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Akira-black";
+  font-size: 42px;
+  line-height: 80px;
+  color: #292727;
+}
+body.dark .container {
+  color: #e5f89a;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+#text-container {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+}

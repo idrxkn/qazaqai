@@ -34,7 +34,21 @@ const SignUp = () => {
       setError(null);
       console.log("User successfully created");
     } catch (err) {
-      setError(err.response?.data?.message || "An error occurred");
+      const errorData = err.response?.data;
+      if (errorData) {
+        // Check if there's a general message
+        let errorMessage = errorData;
+        // Check if there are specific field errors
+        if (errorData.errors) {
+          const fieldErrors = Object.entries(errorData.errors)
+            .map(([field, messages]) => `${field}: ${messages.join(" ")}`)
+            .join(" ");
+          errorMessage = `${errorMessage} ${fieldErrors}`;
+        }
+        setError(errorMessage);
+      } else {
+        setError(errorData);
+      }
       setSuccess(false);
     }
   };
@@ -117,12 +131,6 @@ const SignUp = () => {
           {success && (
             <p className="success-message">{t("register.success")}</p>
           )}
-          <div className="social-login">
-            <p>{t("register.loginWithOthers")}</p>
-            <button className="google-button">
-              {t("register.loginWithGoogle")}
-            </button>
-          </div>
         </div>
         <div className="register-image">
           <img src={rightImage} alt="Decorative" />

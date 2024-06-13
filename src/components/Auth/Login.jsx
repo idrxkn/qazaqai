@@ -38,7 +38,21 @@ const Login = () => {
       setIsAuthenticated(true);
       navigate("/"); // Redirect to main page
     } catch (err) {
-      setError(err.response?.data?.message || "An error occurred");
+      const errorData = err.response?.data;
+      if (errorData) {
+        // Check if there's a general message
+        let errorMessage = errorData.message || "An error occurred";
+        // Check if there are specific field errors
+        if (errorData.errors) {
+          const fieldErrors = Object.entries(errorData.errors)
+            .map(([field, messages]) => `${field}: ${messages.join(" ")}`)
+            .join(" ");
+          errorMessage = `${errorMessage} ${fieldErrors}`;
+        }
+        setError(errorMessage);
+      } else {
+        setError("An error occurred");
+      }
     }
   };
 
@@ -79,12 +93,6 @@ const Login = () => {
             </button>
           </form>
           {error && <p className="error-message">{error}</p>}
-          <div className="social-login">
-            <p>{t("login.loginWithOthers")}</p>
-            <button className="google-button">
-              {t("login.loginWithGoogle")}
-            </button>
-          </div>
         </div>
         <div className="login-image">
           <img src={rightImage} alt="Decorative" />

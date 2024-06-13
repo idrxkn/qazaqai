@@ -1,48 +1,56 @@
 import React from "react";
 import "./AboutUs.css";
+import FAQ from "./FAQ";
+import TextAnimation from "./TextAnimation";
+import ContactUs from "./ContactUs";
+import Profiles from "./Profiles";
+import Footer from "../../Footer/Footer";
+import curve from "../../../assets/curve.svg";
+import aitu from "../../../assets/aitu.jpg";
+import aitu2 from "../../../assets/aitu2.jpg";
+import aitu3 from "../../../assets/aitu3.jpg";
+import aitu4 from "../../../assets/aitu4.jpg";
 
 const AboutUs = () => {
+  const images = [aitu2, aitu4, aitu3, aitu];
   return (
-    <div className="aboutus-container">
-      <div className="aboutus-content">
-        <div className="aboutus-header">
-          <h1>About Us</h1>
+    <>
+      <div className="aboutus-wrap">
+        <div className="aboutus-top">
+          <TextAnimation />
+          <div className="curve-img"></div>
         </div>
-        <div className="aboutus-body">
-          <img
-            src="path/to/your/image.jpg"
-            alt="About Us"
-            className="aboutus-image"
-          />
-          <div className="aboutus-text">
-            <p>
-              We are a group of three students from Astana IT University,
-              majoring in Software Engineering. Our team is passionate about
-              leveraging technology to solve real-world problems and making a
-              significant impact in the field of software development.
-            </p>
-            <p>
-              Our journey started with a shared vision of creating innovative
-              solutions that can transform the way people interact with
-              technology. From developing web applications to exploring the
-              realms of artificial intelligence, we are dedicated to pushing the
-              boundaries of what is possible.
-            </p>
-            <p>
-              Currently, we are focusing on projects that integrate AI into
-              education, particularly in enhancing the learning experience for
-              students in Kazakh language and other subjects. We believe that
-              through technology, we can make learning more engaging,
-              accessible, and effective for everyone.
-            </p>
-            <p>
-              Join us on this exciting journey as we continue to learn, grow,
-              and innovate in the world of software engineering.
-            </p>
+
+        <div className="imgbig-container">
+          <div className="image-grid">
+            {images.map((image, index) => (
+              <div className={`image-item image-item-${index + 1}`} key={index}>
+                <img src={image} alt={`Image ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+          <div className="img-text-container">
+            <h1>
+              Through the Power of University. <br />{" "}
+              <p className="img-text-p">
+                We are from Astana IT University, aspiring developers that are
+                seeking educational fulfillment in KZ.
+              </p>
+            </h1>
+
+            <button>
+              {" "}
+              <a href="https://astanait.edu.kz/">Try our uni website :) </a>
+            </button>
           </div>
         </div>
+        <Profiles />
+        <FAQ />
+
+        <ContactUs />
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

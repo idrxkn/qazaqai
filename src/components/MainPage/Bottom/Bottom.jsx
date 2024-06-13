@@ -1,8 +1,8 @@
 import React from "react";
 import "./Bottom.css";
-import kazakh from "../../../assets/kz.png";
-import russian from "../../../assets/ru.webp";
-import english from "../../../assets/en.png";
+import kazakh from "../../../assets/kz.jpg";
+import russian from "../../../assets/russia.jpg";
+import english from "../../../assets/britain.jpg";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";

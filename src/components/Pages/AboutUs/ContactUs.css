@@ -1,0 +1,95 @@
+/* ContactUs.css */
+.form-container {
+  width: 1140px;
+  padding: 60px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  margin-bottom: 100px;
+}
+
+.form-container h1 {
+  font-family: "NeueMachina-light";
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+.form-container p {
+  font-family: "Helvetica-light";
+  margin-bottom: 30px;
+  color: #666;
+}
+
+.form-container form {
+  font-family: "Helvetica-regular";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  border-color: #292727;
+  outline: none;
+}
+
+.form-container textarea {
+  height: 150px;
+  resize: none;
+}
+
+.form-container button {
+  font-family: "NeueMachina-light";
+  padding: 15px 30px;
+  background-color: #e5f89a;
+  color: #292727;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #292727;
+  color: #e5f89a;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .form-container h1 {
+    font-size: 1.5em;
+  }
+
+  .form-container p {
+    font-size: 0.9em;
+  }
+}

@@ -1,7 +1,7 @@
 .profile-page {
   display: flex;
   justify-content: center;
-  height: 550px;
+  min-height: 550px;
   background-color: #f0f2f5;
   margin-top: 80px;
   margin-bottom: 100px;
@@ -19,11 +19,11 @@
   display: flex;
   margin-bottom: 30px;
 }
-.profile-info {
+.profile-inf {
   font-family: "NeueMachina-light";
   margin-top: 22px;
 }
-.profile-info h1 {
+.profile-inf h1 {
   margin-bottom: 15px;
 }
 
@@ -34,7 +34,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 50px;
+  margin-top: 20px;
 }
+
 .profile-pic {
   width: 150px;
   height: 150px;
@@ -46,6 +49,9 @@
   align-items: center;
 }
 .fa-graduation-cap {
+  font-size: 52px;
+}
+.fa-chalkboard-user {
   font-size: 52px;
 }
 .logout {
@@ -63,4 +69,26 @@
 }
 .logout:hover {
   opacity: 0.7;
+}
+.referral {
+  display: flex;
+  gap: 20px;
+}
+.qr-button {
+  width: 200px;
+  height: 40px;
+  margin-top: -15px;
+  border-radius: 20px;
+  border: 0;
+  font-family: "Helvetica-light";
+  background-color: #e5f89a;
+  color: #292727;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.qr-button:hover {
+  background-color: #292727;
+  color: #e5f89a;
+}
+.referral-wrap canvas {
 }

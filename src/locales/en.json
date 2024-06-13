@@ -97,5 +97,24 @@
     "insights": "Insights",
     "contact": "Contact",
     "rights": "© 2024 Tüs in. All Rights Reserved."
+  },
+  "chat": {
+    "new": "New Chat",
+    "home": "Home",
+    "placeholder": "Hey, send a message"
+  },
+  "edm": {
+    "title": "Educational Materials",
+    "updmat": "Upload new materials",
+    "public": "Public",
+    "private": "Private",
+    "view": "View",
+    "download": "Download",
+    "drg": "Drag & drop or",
+    "browse": "browse",
+    "category": "Category",
+    "upd": "Upload",
+    "back": "Back to materials",
+    "fl":"File selected:"
   }
 }

@@ -5,7 +5,7 @@
   gap: 20px;
   position: fixed;
   z-index: 100;
-  max-width: 1140px;
+  width: 1140px;
   transition: background-color 0.3s ease;
 }
 .navigation.scrolled {
@@ -43,6 +43,9 @@ body.dark .logo {
   background-color: #292727;
   transform: scale(0);
   transition: all 0.2s;
+}
+body.dark .nav-item::after {
+  background-color: #f3f5f7;
 }
 .nav-item:hover::after {
   transform: scale(0.9);
