@@ -18,9 +18,16 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  background-color: #e5f89a;
 }
 
 .message-username {
   font-family: "NeueMachina-light";
   font-weight: bold;
+}
+.fs-c {
+  font-size: 18px !important;
+  margin: 0 auto;
+  margin-left: 9px;
+  margin-top: 9px;
 }

@@ -6,20 +6,31 @@
   margin-bottom: 100px;
 }
 .edu-title {
-  font-family: "NeueMachina-light";
+  color: #ffffff;
+  font-family: "Monolog";
   margin-bottom: 30px;
+}
+.please-signin {
+  font-family: "Monolog";
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin-top: 300px;
 }
 .link-spacing {
   margin: 0 5px; /* Adjust the spacing as needed */
   padding: 10px;
-  color: #292727;
-  background-color: #e5f89a;
+  color: #fff;
+  background-color: #c19c53;
+  border: 1px solid #c19c53;
   border-radius: 10px;
   transition: all 0.2s;
 }
 .link-spacing:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 
 .materials-grid {
@@ -50,7 +61,7 @@
 }
 .overlay {
   position: absolute;
-  background-color: #e5f89a;
+  background-color: #c19c53;
   width: 350px;
   height: 100px;
   top: 0;
@@ -75,34 +86,34 @@
 .view {
   padding: 5px 14px;
   border-radius: 18px;
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .view:hover {
-  background-color: #e5f89a;
-  border: 1px solid #292727;
-  color: #292727;
+  background-color: #c19c53;
+  border: 1px solid #080f17;
+  color: #080f17;
 }
 .download {
   padding: 5px 14px;
   border-radius: 18px;
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .download:hover {
-  background-color: #e5f89a;
-  border: 1px solid #292727;
-  color: #292727;
+  background-color: #c19c53;
+  border: 1px solid #080f17;
+  color: #080f17;
 }
 .pdf-viewer-container {
   margin-top: 20px;
 }
 .bottom-icons {
-  color: #292727;
+  color: #080f17;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -113,7 +124,7 @@
   right: -20px;
   font-size: 120px;
   bottom: -10px;
-  color: #292727;
+  color: #080f17;
   position: absolute;
 }
 .fa-star {
@@ -127,8 +138,8 @@
   width: 200px;
   height: 45px;
   border: 0;
-  background-color: #e5f89a;
-  color: #292727;
+  background-color: #c19c53;
+  color: #080f17;
   font-family: "Helvetica-light";
   cursor: pointer;
   border-radius: 20px;
@@ -137,8 +148,8 @@
   transition: all 0.3s ease;
 }
 .upload-btn:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 
 .materialss {
@@ -156,15 +167,15 @@
   height: 30px;
   cursor: pointer;
   background-color: #fff;
-  border: 1px solid #292727;
+  border: 1px solid #080f17;
   border-top: none;
   border-radius: 0px 0px 10px 10px;
   transition: all 0.3s;
   top: 0;
 }
 .access-btn:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 .public-btn {
   position: absolute;
@@ -176,19 +187,19 @@
 
 .public-btn.active,
 .private-btn.active {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 .drag-drop-area {
   width: 100%;
   height: 300px; /* Increased height */
   padding: 20px;
-  border: 2px dashed #292727;
+  border: 2px dashed #080f17;
   border-radius: 20px;
   text-align: center;
   margin-bottom: 20px;
   font-family: "Helvetica-light";
-  color: #292727;
+  color: #080f17;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -198,11 +209,11 @@
 }
 
 .drag-drop-area:hover {
-  background-color: #e5f89a;
+  background-color: #c19c53;
 }
 
 .drag-drop-area span {
-  color: #292727;
+  color: #080f17;
   text-decoration: underline;
 }
 .drag-p {
@@ -221,7 +232,7 @@
 
 .ctg-btn {
   padding: 10px;
-  border: 1px solid #292727;
+  border: 1px solid #080f17;
   border-radius: 10px;
   font-family: "Helvetica-light";
   font-size: 16px;
@@ -230,7 +241,7 @@
 
 .access-select {
   padding: 10px;
-  border: 1px solid #292727;
+  border: 1px solid #080f17;
   border-radius: 10px;
   font-family: "Helvetica-light";
   font-size: 16px;
@@ -246,8 +257,8 @@
   padding: 10px 20px;
   border: none;
   border-radius: 20px;
-  background-color: #e5f89a;
-  color: #292727;
+  background-color: #c19c53;
+  color: #080f17;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Helvetica-light";
@@ -255,8 +266,8 @@
 }
 
 .upload-last-btn:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 .back-to-mat {
   background-color: #b43e3e;
@@ -278,4 +289,30 @@
 .error-message {
   color: #b43e3e;
   font-family: "Helvetica-light";
+}
+.upload-section {
+  margin: 20px 0;
+}
+
+.upload-btn {
+  background-color: #080f17;
+  color: #c19c53;
+  font-size: 16px;
+  font-family: "Helvetica-light";
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.upload-btn:hover {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+.upload-btn svg {
+  margin-right: 10px;
+  font-size: 18px;
 }

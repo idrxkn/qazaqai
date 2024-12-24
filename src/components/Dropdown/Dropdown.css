@@ -5,17 +5,13 @@
 
 .dropdown-toggle {
   background-color: transparent;
-  border: 1px solid #292727;
+  border: 1px solid #ffffff;
   border-radius: 18px;
   font-family: "Helvetica-light";
-  color: #292727;
+  color: #ffffff;
   cursor: pointer;
   width: 50px;
   height: 36px;
-}
-body.dark .dropdown-toggle {
-  border: 1px solid #f3f5f7;
-  color: #f3f5f7;
 }
 
 .dropdown-arrow {
@@ -27,8 +23,10 @@ body.dark .dropdown-toggle {
   top: 100%;
   left: 0;
   background-color: transparent;
-  border: 1px solid #292727;
+  border: 1px solid #ffffff;
   border-radius: 18px;
+  font-family: "Helvetica-light";
+  color: #ffffff;
   margin-top: 6px;
   font-size: 14px;
   padding: 0;

@@ -1,13 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./MainPageEls.css";
-import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 const TestingMP = () => {
-  const { t } = useTranslation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -63,10 +61,12 @@ const TestingMP = () => {
       </motion.div>
       <div className="els-text">
         <motion.h2 className="els-title" custom={0} variants={textVariants}>
-          {t("mainPageTesting.title")}
+          Интерактивті тестілеу
         </motion.h2>
         <motion.p className="els-content" custom={1} variants={textVariants}>
-          {t("mainPageTesting.text")}
+          Біліміңізді бағалау және жетілдіру үшін біздің кең ауқымды тесттер
+          базасына қол жеткізіңіз. Жылдам кері байланыс алыңыз және
+          үлгеріміңізді қадағалаңыз.
         </motion.p>
         <Link to="/testing">
           {" "}
@@ -75,7 +75,7 @@ const TestingMP = () => {
             custom={2}
             variants={textVariants}
           >
-            {t("mainPageTesting.button")}
+            Тестілеуді бастау
           </motion.button>
         </Link>
       </div>

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // import dependency
+import { fetchUserData } from "../../api";
 import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
-import rightImage from "../../assets/rightImage.png";
+import rightImage from "../../assets/greeting-right.png";
 
 const BASE_URL = "http://localhost:10000/";
 
@@ -17,8 +17,7 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState(null);
-  const { setIsAuthenticated, setDecodedTokenRole, decodedTokenRole } =
-    useAuth();
+  const { setIsAuthenticated, userRole, setUserRole } = useAuth(); // Correct function name
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,21 +27,37 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(`${BASE_URL}api/auth/signin`, formData);
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      setError(null);
-      const decodedToken = jwtDecode(token);
-      console.log(decodedToken);
-      setDecodedTokenRole(decodedToken.role);
-      console.log(decodedToken.role);
-      setIsAuthenticated(true);
-      navigate("/"); // Redirect to main page
+
+      // Ensure token exists in the response
+      if (response.data && response.data.token) {
+        const token = response.data.token;
+        console.log("Received Token:", token);
+
+        // Store token in localStorage
+        localStorage.setItem("token", token);
+
+        // Decode the token safely
+        try {
+          const decodedToken = jwtDecode(token);
+          console.log("Decoded Token:", decodedToken);
+        } catch (decodeError) {
+          console.error("Error decoding token:", decodeError);
+        }
+
+        // Update auth state
+        setError(null); // Clear error
+        setIsAuthenticated(true);
+
+        // Navigate to the main page
+        navigate("/");
+      } else {
+        throw new Error("Token missing from response.");
+      }
     } catch (err) {
       const errorData = err.response?.data;
+
       if (errorData) {
-        // Check if there's a general message
-        let errorMessage = errorData.message || "An error occurred";
-        // Check if there are specific field errors
+        let errorMessage = errorData.message || "Қате туындады";
         if (errorData.errors) {
           const fieldErrors = Object.entries(errorData.errors)
             .map(([field, messages]) => `${field}: ${messages.join(" ")}`)
@@ -51,10 +66,22 @@ const Login = () => {
         }
         setError(errorMessage);
       } else {
-        setError("An error occurred");
+        setError("Қате туындады");
       }
     }
   };
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const data = await fetchUserData();
+        setUserRole(data.Role);
+      } catch (error) {
+        console.error("Error fetching profile data:", error);
+      }
+    };
+    getUserData();
+  }, [setUserRole]);
 
   return (
     <>
@@ -94,7 +121,7 @@ const Login = () => {
           </form>
           {error && <p className="error-message">{error}</p>}
         </div>
-        <div className="login-image">
+        <div className="greeting-right">
           <img src={rightImage} alt="Decorative" />
         </div>
       </div>

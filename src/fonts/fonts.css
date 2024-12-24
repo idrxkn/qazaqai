@@ -10,6 +10,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Helvetica-regular-obl";
+  src: url("./helvetica/helvetica_oblique.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
   font-family: "Helvetica-bold";
   src: url("./helvetica/helvetica_bold.otf") format("opentype");
   font-weight: 700;

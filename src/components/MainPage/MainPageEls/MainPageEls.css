@@ -13,7 +13,7 @@
 .els-icons > svg:first-child {
   position: absolute;
   top: 0;
-  color: #e5f89a;
+  color: #c19c53;
   z-index: -100;
 }
 
@@ -21,9 +21,10 @@
   margin-left: 300px;
   width: 600px;
   height: 290px;
-  background-color: #fff;
+  background-color: #080f17;
   border-radius: 20px;
-  color: #272727;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 body.dark .els-text {
   background-color: #121212;
@@ -56,17 +57,18 @@ body.lang-ru .els-title {
   padding: 10px 20px;
   font-family: "Helvetica-light";
   font-size: 14px;
-  color: #e5f89a;
-  background-color: #272727;
-  border: none;
+  color: #080f17;
+  background-color: #c19c53;
+  border: 1px solid #c19c53;
   border-radius: 18px;
   cursor: pointer;
   margin-left: 40px;
   transition: all 0.2s ease;
 }
 .els-button:hover {
-  background-color: #e5f89a;
-  color: #272727;
+  background-color: #080f17;
+  color: #c19c53;
+  border: 1px solid #c19c53;
 }
 body.dark .els-button {
   background-color: #e5f89a;

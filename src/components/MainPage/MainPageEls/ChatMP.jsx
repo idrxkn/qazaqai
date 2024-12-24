@@ -1,13 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./MainPageEls.css";
-import { useTranslation } from "react-i18next";
+
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 const ChatMP = () => {
-  const { t } = useTranslation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -63,10 +62,13 @@ const ChatMP = () => {
       </motion.div>
       <div className="els-text">
         <motion.h2 className="els-title" custom={0} variants={textVariants}>
-          {t("mainPageChat.title")}
+          Виртуалды мұғаліммен танысу
         </motion.h2>
         <motion.p className="els-content" custom={1} variants={textVariants}>
-          {t("mainPageChat.text")}
+          Біздің жасанды интеллектпен жұмыс істейтін виртуалды мұғаліміміз
+          сіздің барлық білім беру сұрақтарыңызға жауап беру үшін осында. Бұл
+          күрделі математикалық есеп немесе тарихи факт болсын, біз сізді
+          қамтыдық.
         </motion.p>
         <Link to="/chat">
           <motion.button
@@ -74,7 +76,7 @@ const ChatMP = () => {
             custom={2}
             variants={textVariants}
           >
-            {t("mainPageChat.button")}
+            Чатқа кіру
           </motion.button>
         </Link>
       </div>

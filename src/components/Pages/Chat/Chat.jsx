@@ -33,12 +33,7 @@ const Chat = () => {
     setLoading(true);
 
     const currentLanguage = i18n.language;
-    const apiUrl =
-      currentLanguage === "en"
-        ? "http://127.0.0.1:7001/query"
-        : currentLanguage === "ru"
-        ? "http://127.0.0.1:7002/query"
-        : "http://127.0.0.1:7000/query";
+    const apiUrl = "http://localhost:10000/api/model/get-answer";
     try {
       const response = await axios.post(
         apiUrl,
@@ -46,14 +41,12 @@ const Chat = () => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      typeWriterEffect(response.data.answer);
+      // Call typeWriterEffect with both answer and context:
+      typeWriterEffect(response.data.model_answer, response.data.context);
     } catch (error) {
       typeWriterEffect(
-        currentLanguage === "en"
-          ? `Could not retrieve data for ${inputData.question}. Please try something new.`
-          : currentLanguage === "ru"
-          ? `Не удалось получить данные для ${inputData.question}. Пожалуйста, попробуйте что-нибудь другое.`
-          : `${inputData.question}} үшін деректер табылмады. Басқа нәрсені жазып көріңіз.`
+        `Сіздің сұрауыңыз "${inputData.question}" бойынша деректер табылмады. Басқа нәрсені жазып көріңіз.`,
+        null
       );
       console.error("API Error:", error);
     } finally {
@@ -62,7 +55,7 @@ const Chat = () => {
     setInputData({ question: "" });
   };
 
-  const typeWriterEffect = (text) => {
+  const typeWriterEffect = (text, context) => {
     let i = -1;
     setCurrentBotMessage("");
 
@@ -71,10 +64,13 @@ const Chat = () => {
       i++;
       if (i >= text.length) {
         clearInterval(intervalId);
+
+        // Once typing is done, add the teacher message with context to messages
         setMessages((prevMessages) => [
           ...prevMessages,
-          { type: "teacher bot", text },
+          { type: "teacher bot", text, context },
         ]);
+
         setCurrentBotMessage("");
       }
     }, 30);
@@ -84,21 +80,21 @@ const Chat = () => {
     if (e.key === "Enter") await handleSubmit();
   };
 
-  if (!isAuthenticated) {
-    return (
-      <>
-        <Header />
-        <p className="please-signin">
-          Please{" "}
-          <Link to="/login" className="link-spacing">
-            {" "}
-            sign in{" "}
-          </Link>{" "}
-          to access the Virtual Teacher chat.
-        </p>
-      </>
-    );
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <>
+  //       <Header />
+  //       <p className="please-signin">
+  //         Өтініш, чатқа кіру үшін{" "}
+  //         <Link to="/login" className="link-spacing">
+  //           {" "}
+  //           тіркеліңіз{" "}
+  //         </Link>{" "}
+  //       </p>
+  //     </>
+  //   );
+  // }
+
   return (
     <>
       <div className="chatbot">
@@ -143,7 +139,16 @@ const Chat = () => {
                     <img src={teacherIcon} alt="" className="teacher-img" />
                   </div>
                 )}
-                <p className="txt">{message.text}</p>
+                <div className="chat-txt">
+                  <p className="txt">{message.text}</p>
+                  {/* If there's context, show an accordion below the message */}
+                  {message.type === "teacher bot" && message.context && (
+                    <details className="context-accordion">
+                      <summary>Контекстті көру</summary>
+                      <div className="context-content">{message.context}</div>
+                    </details>
+                  )}
+                </div>
               </div>
             ))}
             {currentBotMessage && (
@@ -159,7 +164,7 @@ const Chat = () => {
                 <div className="teacher-icon">
                   <img src={teacherIcon} alt="" className="teacher-img" />
                 </div>
-                <p className="txt">Generating answer...</p>
+                <p className="txt">Жауап дайындалуда...</p>
               </div>
             )}
             <div ref={messageEnd} />
@@ -182,7 +187,7 @@ const Chat = () => {
               </button>
             </div>
             <p className="danger-txt">
-              Tüs in AI can make mistakes, please check important information.{" "}
+              QazaqAI қателесуі әбден мүмкін, маңызды ақпаратты тексеріңіз.
             </p>
           </div>
         </div>

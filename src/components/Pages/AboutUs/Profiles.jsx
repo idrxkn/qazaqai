@@ -1,44 +1,14 @@
 import React from "react";
 import "./Profiles.css";
-import dk from "../../../assets/dark.jpg";
-import ta from "../../../assets/ta.jpg";
-import yb from "../../../assets/yb.jpg";
-import arai from "../../../assets/arai.jpg";
+import kz from "../../../assets/kundz.png";
 const profiles = [
   {
-    href: "https://www.instagram.com/idrxkn/",
-    name: "Darkhan Bekuzak",
-    title: "Frontend dev | UX/UI dev",
-    age: "20 years old",
+    href: "https://www.linkedin.com/in/%D0%BA%D1%83%D0%BD%D0%B4%D1%8B%D0%B7-%D0%BC%D0%B0%D0%BA%D1%81%D1%83%D1%82%D0%BE%D0%B2%D0%B0-628746152",
+    name: "Максутова Кундыз Мухтаровна",
+
     experience:
-      "React JS, Figma, Branding enthusiast. The role involved leading the design and implementation of user interfaces, enhancing user experience, and managing the overall project to ensure the platform was both functional and visually engaging while meeting the project's technical and educational objectives.s",
-    src: dk,
-  },
-  {
-    href: "https://www.instagram.com/tikosch/",
-    name: "Tairzhan Kasenov",
-    title: "ML dev | Backend dev",
-    age: "20 years old",
-    experience:
-      "Python, .NET, Played a crucial role in integrating advanced machine learning models to enhance the platform's capabilities and was responsible for developing and managing the backend infrastructure that supports the complex data processing and machine learning tasks.",
-    src: ta,
-  },
-  {
-    href: "https://www.instagram.com/xdyeara/",
-    name: "Yerbol Irgaliyev",
-    title: "Backend dev | ML dev",
-    age: "20 years old",
-    experience:
-      ".NET middle dev. Was instrumental in the architecture and implementation of backend services that support the platform's functionality, including data management and server-side logic. Additionally, Yerbol contributed to the integration and optimization of machine learning algorithms that enhance the platform's educational capabilities.",
-    src: yb,
-  },
-  {
-    href: "https://www.instagram.com/arailym_tleubayeva/",
-    name: "Arailym Tleubayeva",
-    title: "Supervisor. Senior lecturer at AITU",
-    age: "28 years old",
-    experience: `Directed the overall project, from initial concept through to execution, ensuring that project milestones were met and aligned with the educational goals.Played a key role in addressing technical and conceptual challenges, fostering an innovative approach to creating a platform.  Developed and implemented strategic plans that guided the research, design, and development phases.`,
-    src: arai,
+      "Диссертациның тақырыбы: «Технологии обработки знаний в области информатики на казахском языке»",
+    src: kz,
   },
 ];
 const Profiles = () => {
@@ -49,18 +19,65 @@ const Profiles = () => {
           <div key={index} className="profile-card">
             <div className="profile-image">
               <img src={profile.src} alt={profile.name} />
+            </div>
+            <div className="profile-info">
               <div className="overlay-img">
                 <h2>{profile.name}</h2>
                 <h3>{profile.title}</h3>
               </div>
-            </div>
-            <div className="profile-info">
               <p>
-                <strong>Age:</strong> {profile.age}
-              </p>
-
-              <p>
-                <strong>Contribution:</strong> {profile.experience}
+                {profile.experience}
+                <br />
+                Ақпараттық коммуникациялық технологиялар
+                <br />
+                <br />
+                Нұр-Сұлтан қ.
+                <br />
+                тел. +7 702 511 85 90
+                <br />
+                Е-mail: kundyzym@bk.ru
+                <br />
+                <br />
+                <b>Басылымдар және презентациялар:</b>
+                <ul>
+                  <ol>
+                    1.Приближенно – аналитическое и численное решение
+                    термонапряженного состояния стержня переменного сечения
+                    Ө.А.Байқоңыров атындағы Жезқазған университетінің ХАБАРШЫСЫ
+                    №1, 2013 ІSSN 1680-9262{" "}
+                  </ol>
+                  <ol>
+                    2. Электронды оқыту – колледждің білім беру жүйесінде
+                    Алматы: №3(05) 2014 Колледж: кәсіби білім беру
+                  </ol>
+                  <ol>
+                    3. Электрондық құжат айналымды ұйымдастыру Алматы: №1(09)
+                    2015 Колледж: кәсіби білім беру
+                  </ol>
+                  <ol>
+                    4. Информатика пәнінен электронды оқулық жасау және
+                    пайдалану технологиясы Алматы: №1(09) 2015 Колледж: кәсіби
+                    білім беру
+                  </ol>
+                  <ol>
+                    5.Ақпараттық-коммуникациялық технологияларды оқу үрдісінде
+                    қолдану ІІ Халықаралық ғылыми-тәжірибелік конференция
+                  </ol>
+                  <ol>
+                    6. ICT ONolNE LEARNING жобасы «ЗАМАНАУИ ИНЖЕНЕРЛІК
+                    ИННОВАЦИЯЛАР МЕН ТЕХНОЛОГИЯЛАР» атты онлайн халықаралық
+                    ғылыми- тәжірибелік конференция
+                  </ol>
+                  <ol>
+                    7. Өндірістегі ақпараттық қауіпсіздіктің ерекшеліктері
+                    «ИННОВАЦИЯЛАР ЖӘНЕ ҚАЗІРГІ ЗАМАНҒЫ ҒЫЛЫМДЫ ДАМЫТУ
+                    МӘСЕЛЕЛЕРІ» Халықаралық ғылыми-тәжірибелік конференциясы{" "}
+                  </ol>
+                  <ol>
+                    8. Государственная программа «Цифровой Казахстан -2020»
+                    Общество. №2(13) 2019 ІSSN 2310-9319 г.Чебоксары
+                  </ol>
+                </ul>
               </p>
             </div>
           </div>

@@ -1,12 +1,16 @@
+// /src/components/Message.js
+
 import React from "react";
 import "./Message.css";
-import placeholderImage from "../../../assets/schoolboy.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Message = ({ message }) => {
   return (
     <div className="message-container">
       <div className="message-header">
-        <img src={placeholderImage} alt="User" className="message-avatar" />
+        <div className="message-avatar">
+          <FontAwesomeIcon icon="fa-solid fa-graduation-cap" className="fs-c" />
+        </div>{" "}
         <span className="message-username">{message.username}</span>
       </div>
       <p>{message.content}</p>

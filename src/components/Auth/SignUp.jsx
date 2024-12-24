@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Modal from "./Modal"; // Adjust path if necessary
 
 import "./SignUp.css";
-import rightImage from "../../assets/rightImage.png"; // Adjust path accordingly
+
+import rightImage from "../../assets/greeting-right.png";
 const BASE_URL = "http://localhost:10000/";
+
 const SignUp = () => {
   const { t } = useTranslation();
   const [showReferral, setShowReferral] = useState(false);
@@ -17,6 +20,8 @@ const SignUp = () => {
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = () => {
     setShowReferral(!showReferral);
@@ -32,6 +37,7 @@ const SignUp = () => {
       const response = await axios.post(`${BASE_URL}api/auth/signup`, formData);
       setSuccess(true);
       setError(null);
+      setShowPopup(true);
       console.log("User successfully created");
     } catch (err) {
       const errorData = err.response?.data;
@@ -52,6 +58,16 @@ const SignUp = () => {
       setSuccess(false);
     }
   };
+
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+        navigate("/");
+      }, 3000); // Show the popup for 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [showPopup, navigate]);
 
   return (
     <>
@@ -132,10 +148,13 @@ const SignUp = () => {
             <p className="success-message">{t("register.success")}</p>
           )}
         </div>
-        <div className="register-image">
+        <div className="greeting-right">
           <img src={rightImage} alt="Decorative" />
         </div>
       </div>
+      <Modal show={showPopup} onClose={() => setShowPopup(false)}>
+        <p>Сәтті аяқталды!</p>
+      </Modal>
     </>
   );
 };

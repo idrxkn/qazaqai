@@ -1,6 +1,8 @@
+// /src/components/Topic.js
+
 import React, { useState, useEffect } from "react";
 import Message from "./Message";
-import { fetchUserData } from "../../../api"; // Ensure correct import
+import { fetchUserData } from "../../../api";
 import "./Topic.css";
 
 const Topic = ({ topic }) => {
@@ -17,6 +19,7 @@ const Topic = ({ topic }) => {
         console.error("Failed to fetch user data", error);
       }
     };
+
     getUserData();
   }, []);
 
@@ -27,8 +30,16 @@ const Topic = ({ topic }) => {
       content: newMessageContent,
       username: username,
     };
-    setMessages([...messages, newMessage]);
+    const updatedMessages = [...messages, newMessage];
+    setMessages(updatedMessages);
     setNewMessageContent("");
+
+    const updatedTopic = { ...topic, messages: updatedMessages };
+    const storedTopics = JSON.parse(localStorage.getItem("topics"));
+    const updatedTopics = storedTopics.map((t) =>
+      t.id === topic.id ? updatedTopic : t
+    );
+    localStorage.setItem("topics", JSON.stringify(updatedTopics));
   };
 
   return (

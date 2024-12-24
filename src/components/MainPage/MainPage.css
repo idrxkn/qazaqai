@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Beau+Rivage&display=swap");
 
 .main-page {
-  color: #292727;
+  color: #ffffff;
 }
 
 .centered-text-wrap {
@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: 230px;
 }
 .centered-text {
   position: relative;

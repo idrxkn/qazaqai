@@ -1,12 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./MainPageEls.css";
-import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 const EdMaterials = () => {
-  const { t } = useTranslation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -62,10 +60,12 @@ const EdMaterials = () => {
       </motion.div>
       <div className="els-text">
         <motion.h2 className="els-title" custom={0} variants={textVariants}>
-          {t("mainPageEd.title")}
+          Кешенді оқу материалдары
         </motion.h2>
         <motion.p className="els-content" custom={1} variants={textVariants}>
-          {t("mainPageEd.text")}
+          ҰБТ-ға дайындық материалдары мен кітаптарын, 5-сыныптың Алгребрасынан
+          11-ші сыныптың Қазақстан тарихына дейінгі мектеп оқулықтарының,
+          ресурстардың үлкен кітапханасын зерттеңіз!
         </motion.p>
         <Link to="/educational-materials">
           {" "}
@@ -74,7 +74,7 @@ const EdMaterials = () => {
             custom={2}
             variants={textVariants}
           >
-            {t("mainPageEd.button")}
+            Материалдарға өту
           </motion.button>
         </Link>
       </div>

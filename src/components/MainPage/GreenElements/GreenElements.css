@@ -4,12 +4,12 @@
 
 .top-left {
   left: -6px;
-  top: 340px;
+  top: 1120px;
 }
 
 .bottom-right {
   right: 0;
-  top: 617.5px;
+  top: 1317.5px;
   transform: scaleX(-1) !important;
   -webkit-transform: scaleX(-1) !important;
 }

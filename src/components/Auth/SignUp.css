@@ -4,7 +4,8 @@
   align-items: center;
   height: 100vh;
   padding: 0 50px;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: #080f17;
 }
 .home-button {
   margin-left: 50px;
@@ -14,8 +15,8 @@
   position: absolute;
   border-radius: 16px;
   border: none;
-  background-color: #292727;
-  color: #f3f5f7;
+  background-color: #c19c53;
+  color: #080f17;
   cursor: pointer;
 }
 
@@ -26,7 +27,7 @@
 
 .register-form h1 {
   font-size: 48px;
-  font-family: "NeueMachina-light", sans-serif;
+  font-family: "Monolog-light";
   margin-bottom: 20px;
 }
 
@@ -53,12 +54,11 @@
   width: 100%;
   padding: 10px;
   font-size: 18px;
-  color: #fff;
-  background-color: #000;
+  color: #080f17;
+  background-color: #c19c53;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: "Helvetica-light";
 }
 
 .social-login {

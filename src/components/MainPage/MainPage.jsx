@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./MainPage.css";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import GreenElements from "./GreenElements/GreenElements";
+import Greeting from "./Greeting/Greeting";
 import SliderComponent from "./Slider/Slider";
 import EdMaterials from "./MainPageEls/EdMaterials";
 import TestingMP from "./MainPageEls/TestingMP";
 import ChatMP from "./MainPageEls/ChatMP";
-import ForumMP from "./MainPageEls/ForumMP";
 import AboutUsMP from "./MainPageEls/AboutUsMP";
 import Bottom from "./Bottom/Bottom";
 import Footer from "../Footer/Footer";
@@ -36,76 +35,76 @@ const textVariants = {
   }),
 };
 
-const MainPage = ({}) => {
-  const { t, i18n } = useTranslation();
-  const [isReady, setIsReady] = useState(false);
+const MainPage = () => {
+  const controls = useAnimation();
+  const textRef = useRef(null);
 
+  // Intersection Observer setup
   useEffect(() => {
-    const handleLanguageChange = () => {
-      setIsReady(true);
-    };
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            controls.start("visible");
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
-    i18n.on("languageChanged", handleLanguageChange);
-
-    // Initially set the ready state
-    setIsReady(true);
+    if (textRef.current) {
+      observer.observe(textRef.current);
+    }
 
     return () => {
-      i18n.off("languageChanged", handleLanguageChange);
+      if (textRef.current) {
+        observer.unobserve(textRef.current);
+      }
     };
-  }, [i18n]);
+  }, [controls]);
 
   return (
-    isReady && (
-      <div className="main-page">
-        <GreenElements />
-        <motion.div
-          className="centered-text-wrap"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="centered-text">
-            <motion.h1 className="rev" custom={0} variants={textVariants}>
-              {t("mainPage.revolutionize")}
-            </motion.h1>
-            <div className="yourlear-wrap">
-              <motion.h2
-                className="yourlear"
-                custom={1}
-                variants={textVariants}
-              >
-                {t("mainPage.your")}
-              </motion.h2>
-              <motion.h1
-                className="yourlear"
-                custom={2}
-                variants={textVariants}
-              >
-                {t("mainPage.learning")}
-              </motion.h1>
-            </div>
-            <motion.h2 className="with" custom={3} variants={textVariants}>
-              {t("mainPage.with")}
+    <div className="main-page">
+      <GreenElements />
+      <Greeting />
+      <motion.div
+        className="centered-text-wrap"
+        ref={textRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
+      >
+        <div className="centered-text">
+          <motion.h1 className="rev" custom={0} variants={textVariants}>
+            ЖАСАНДЫ
+          </motion.h1>
+          <div className="yourlear-wrap">
+            <motion.h2 className="yourlear" custom={1} variants={textVariants}>
+              ИНТЕЛЛЕКТ
             </motion.h2>
-            <motion.h1 className="ai" custom={4} variants={textVariants}>
-              {t("mainPage.aiDriven")}
+            <motion.h1 className="yourlear" custom={2} variants={textVariants}>
+              АРҚЫЛЫ
             </motion.h1>
-            <motion.h2 className="edu" custom={5} variants={textVariants}>
-              {t("mainPage.education")}
-            </motion.h2>
           </div>
-        </motion.div>
-        <SliderComponent />
-        <EdMaterials />
-        <TestingMP />
-        <ChatMP />
-        <ForumMP />
-        <AboutUsMP />
-        <Bottom />
-        <Footer />
-      </div>
-    )
+          <motion.h2 className="with" custom={3} variants={textVariants}>
+            ОҚУЫҢДЫ
+          </motion.h2>
+          <motion.h1 className="ai" custom={4} variants={textVariants}>
+            ТОЛЫҚТАЙ
+          </motion.h1>
+          <motion.h2 className="edu" custom={5} variants={textVariants}>
+            ӨЗГЕРТ
+          </motion.h2>
+        </div>
+      </motion.div>
+      <SliderComponent />
+      <EdMaterials />
+      <TestingMP />
+      <ChatMP />
+      <AboutUsMP />
+      <Bottom />
+      <Footer />
+    </div>
   );
 };
 

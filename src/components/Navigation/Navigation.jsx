@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navigation.css";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import Dropdown from "../Dropdown/Dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -15,9 +16,8 @@ const Navigation = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
-  const [language, setLanguage] = useState(() => {
-    return localStorage.getItem("language") || "en";
-  });
+  const [language, setLanguage] = useState("kz");
+
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
@@ -55,10 +55,10 @@ const Navigation = () => {
           {t("nav.testing")}
         </NavLink>
         <NavLink to="/chat" className="nav-item">
-          {t("nav.virtualTeacher")}
+          ЖИ Бот
         </NavLink>
-        <NavLink to="/forum" className="nav-item">
-          {t("nav.forum")}
+        <NavLink to="/chat-asker" className="nav-item">
+          Тест алушы ЖИ Бот
         </NavLink>
         <NavLink to="/about-us-help" className="nav-item">
           {t("nav.aboutUsHelp")}
@@ -66,7 +66,9 @@ const Navigation = () => {
       </div>
       {isAuthenticated ? (
         <Link to="/myprofile">
-          <button className="profile-button">My Profile</button>
+          <button className="profile-button">
+            <FontAwesomeIcon icon="fa-solid fa-user" />  Жеке профиль
+          </button>
         </Link>
       ) : (
         <div className="auth-buttons">
@@ -79,13 +81,12 @@ const Navigation = () => {
         </div>
       )}
 
-      <Dropdown
+      {/* <Dropdown
         options={["EN", "KZ", "RU"]}
         defaultOption={language.toUpperCase()}
         selectedLanguage={language}
         onChange={handleLanguageChange}
-      />
-      <ToggleSwitch isOn={isDarkMode} handleToggle={handleToggle} />
+      /> */}
     </nav>
   );
 };

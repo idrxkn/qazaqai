@@ -1,0 +1,156 @@
+.create-test-container {
+  width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  color: #ffffff;
+  position: relative;
+}
+
+.create-test-container h1 {
+  color: #c19c53;
+  margin-bottom: 5px;
+  font-family: "Monolog";
+}
+
+.create-test-container p {
+  font-size: 20px;
+  font-family: "Helvetica-light";
+}
+
+.back-btn,
+.add-btn,
+.submit-btn {
+  background-color: #080f17;
+  font-family: "Monolog-light";
+  color: #fff;
+  border: 2px solid #c19c53;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: 0.2s all ease;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.submit-btn {
+  background-color: #c19c53;
+
+  color: #080f17;
+
+  border: 2px solid #c19c53;
+  position: absolute;
+  right: 17px;
+}
+.back-btn {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 2px solid #c19c53;
+}
+.add-btn:hover {
+  background-color: #c19c53;
+  color: #080f17;
+}
+.back-btn:hover,
+.submit-btn:hover {
+  color: #c19c53;
+  border: 2px solid #c19c53;
+  background-color: #080f17;
+}
+.delete-btn {
+  background-color: #db6b6b;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: 0.2s all ease;
+}
+
+.delete-btn:hover {
+  opacity: 0.7;
+}
+
+.form-section,
+.question-card {
+  background-color: #fff;
+  color: #080f17;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.question-card h3 {
+  font-family: "Monolog";
+  color: #c19c53;
+  margin-bottom: 10px;
+  margin-left: 2px;
+}
+
+.label-create-test {
+  font-family: "Helvetica-regular";
+  color: #080f17;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.input-create-test {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  outline: none;
+  border: 1px solid #c19c53;
+  border-radius: 5px;
+}
+.input-create-test::placeholder {
+  font-family: "Helvetica-light";
+  font-size: 14px;
+}
+.options-container {
+  display: flex;
+  gap: 10px;
+  font-family: "Helvetica-regular";
+}
+.option {
+  flex: 1;
+}
+.right-answer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Default styling for radio input */
+.right-answer input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #c19c53;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Styling for the checked state */
+.right-answer input[type="radio"]:checked {
+  background-color: #c19c53;
+}
+
+/* Styling the label */
+.right-answer label {
+  font-family: "Helvetica-light";
+  font-size: 16px;
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+/* Optional: Adding hover effect */
+.right-answer input[type="radio"]:hover {
+  border-color: #c19c53;
+  box-shadow: 0 0 5px rgba(193, 156, 83, 0.5);
+}

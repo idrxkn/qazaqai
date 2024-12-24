@@ -1,3 +1,5 @@
+// /src/components/Forum.js
+
 import React, { useState, useEffect } from "react";
 import Topic from "./Topic";
 import "./Forum.css";
@@ -19,7 +21,16 @@ const Forum = () => {
         console.error("Failed to fetch user data", error);
       }
     };
+
+    const loadTopics = () => {
+      const storedTopics = localStorage.getItem("topics");
+      if (storedTopics) {
+        setTopics(JSON.parse(storedTopics));
+      }
+    };
+
     getUserData();
+    loadTopics();
   }, []);
 
   const handleCreateTopic = (e) => {
@@ -31,7 +42,9 @@ const Forum = () => {
       creator: username,
       messages: [],
     };
-    setTopics([...topics, newTopic]);
+    const updatedTopics = [...topics, newTopic];
+    setTopics(updatedTopics);
+    localStorage.setItem("topics", JSON.stringify(updatedTopics));
     setNewTopicTitle("");
     setNewTopicContent("");
   };

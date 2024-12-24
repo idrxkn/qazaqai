@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./components/Header/Header";
 import EducationalMaterials from "./components/Pages/EducationalMaterials/EducationalMaterials";
 import Testing from "./components/Pages/Testing/Testing";
+import CreateTest from "./components/Pages/Testing/CreateTest";
+import ChatAsker from "./components/Pages/ChatAsker/ChatAsker";
 import Chat from "./components/Pages/Chat/Chat";
 import Forum from "./components/Pages/Forum/Forum";
 import AboutUs from "./components/Pages/AboutUs/AboutUs";
@@ -18,6 +20,7 @@ import MyProfile from "./components/MyProfile/MyProfile";
 import Footer from "./components/Footer/Footer";
 import { Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+
 import "./App.css";
 import "./fonts/fonts.css";
 import "./i18n";
@@ -50,18 +53,11 @@ function App() {
                       />
 
                       <Route path="/testing" element={<Testing />} />
+                      <Route path="/create-test" element={<CreateTest />} />
                       <Route path="/forum" element={<Forum />} />
                       <Route path="/about-us-help" element={<AboutUs />} />
-                      <Route
-                        path="/myprofile"
-                        element={
-                          isAuthenticated ? (
-                            <MyProfile />
-                          ) : (
-                            <Navigate to="/login" />
-                          )
-                        }
-                      />
+                      <Route path="/myprofile" element={<MyProfile />} />
+                      <Route path="/chat-asker" element={<ChatAsker />} />
                     </Routes>
                   </>
                 }

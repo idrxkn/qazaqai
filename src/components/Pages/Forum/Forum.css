@@ -71,11 +71,4 @@
 .messages-list {
   margin-top: 10px;
 }
-.please-signin {
-  font-family: "NeueMachina-light";
-  font-size: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 300px;
-}
+

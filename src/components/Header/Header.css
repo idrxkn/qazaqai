@@ -4,14 +4,14 @@
   align-items: center;
   margin: 0 auto;
   width: 100%;
-  font-family: "Helvetica-light";
+  font-family: "Helvetica-bold";
   transition: all 0.3s ease;
   height: 100px;
   z-index: 1000;
 }
 .header.scrolled {
   position: fixed;
-  background-color: white;
+  background-color: #060b10;
   height: 80px;
   top: 0;
 }

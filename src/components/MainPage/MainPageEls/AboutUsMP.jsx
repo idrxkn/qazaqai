@@ -1,13 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./MainPageEls.css";
-import { useTranslation } from "react-i18next";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 const AboutUsMP = () => {
-  const { t } = useTranslation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -63,10 +61,12 @@ const AboutUsMP = () => {
       </motion.div>
       <div className="els-text">
         <motion.h2 className="els-title" custom={0} variants={textVariants}>
-          {t("mainPageAbout.title")}
+          Біз туралы көбірек білгіңіз келе ме?
         </motion.h2>
         <motion.p className="els-content" custom={1} variants={textVariants}>
-          {t("mainPageAbout.text")}
+          Біздің мақсатымыз, көзқарасымыз туралы біліңіз. Қазақстандағы білім
+          беруді озық AI технологиясы арқылы қалай өзгертіп жатқанымызды
+          біліңіз.
         </motion.p>
         <Link to="/about-us-help">
           <motion.button
@@ -74,7 +74,7 @@ const AboutUsMP = () => {
             custom={2}
             variants={textVariants}
           >
-            {t("mainPageAbout.button")}
+            Толығырақ
           </motion.button>
         </Link>
       </div>

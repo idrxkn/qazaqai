@@ -8,7 +8,8 @@ const TextAnimation = () => {
   const [charIndex, setCharIndex] = useState(0);
   const [startTyping, setStartTyping] = useState(false);
 
-  const words = ["for education", "schools", "for Kazakhstan"];
+  // Updated words to Kazakh phrases that are understandable in context
+  const words = ["БІЛІМ ЖОЛЫНДА", "ОҚУ ИГІЛІГІНЕ", "ҚАЗАҚСТАНҒА"];
   const typingSpeed = 100;
   const deletingSpeed = 100;
   const pauseDuration = 1000;
@@ -42,7 +43,7 @@ const TextAnimation = () => {
       );
       return () => clearTimeout(timeout);
     }
-  }, [charIndex, isDeleting, wordIndex, startTyping]);
+  }, [charIndex, isDeleting, wordIndex, startTyping, words]);
 
   useEffect(() => {
     const initialDelay = setTimeout(() => {
@@ -58,11 +59,13 @@ const TextAnimation = () => {
 
   return (
     <div className="container">
+      {/* "We" -> "Біз" */}
       <h1 id="we" className="hidden">
-        We
+        БІЗ
       </h1>
+      {/* "serve" -> "қызмет етеміз" */}
       <h1 id="serve" className="hidden">
-        serve
+        ҚЫЗМЕТ ЕТЕМІЗ
       </h1>
       <div id="text-container">
         <h1 id="dynamic-text">{displayedText}</h1>

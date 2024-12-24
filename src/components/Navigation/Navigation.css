@@ -18,20 +18,17 @@
   background-image: url("../../assets/logo.svg");
 }
 .logo {
-  height: 39px;
-  width: 93px; /* Adjust width as needed */
+  height: 32px;
+  width: 150px; /* Adjust width as needed */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: -5px;
-}
-body.dark .logo {
-  background: url("../../assets/logo-white.svg");
+  /* margin-top: -5px; */
 }
 
 .nav-item {
   text-decoration: none;
-  color: #292727;
+  color: #ffffff;
   font-size: 16px;
 }
 .nav-item::after {
@@ -40,13 +37,11 @@ body.dark .logo {
   margin-top: 2px;
   width: 100%;
   height: 1px;
-  background-color: #292727;
+  background-color: #fff;
   transform: scale(0);
   transition: all 0.2s;
 }
-body.dark .nav-item::after {
-  background-color: #f3f5f7;
-}
+
 .nav-item:hover::after {
   transform: scale(0.9);
 }
@@ -64,21 +59,20 @@ body.dark .nav-item {
   opacity: 1;
 }
 .profile-button {
-  background-color: #e5f89a;
-  color: #292727;
+  background-color: #c19c53;
+  color: #080f17;
   /* Button 3 */
   box-sizing: border-box;
-  width: 107px;
-  height: 36px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 18px;
+  border-radius: 5px;
   font-family: "Helvetica-light";
   cursor: pointer;
   transition: all 0.2s;
 }
 .profile-button:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
 .auth-buttons {
   display: flex;
@@ -89,6 +83,7 @@ body.dark .nav-item {
 .signup-button {
   cursor: pointer;
   font-family: "Helvetica-light";
+  font-size: 14px;
   text-decoration: none; /* Remove underline */
 }
 .login-button:hover,
@@ -98,8 +93,8 @@ body.dark .nav-item {
 
 .login-button {
   background-color: transparent;
-  border: 1px solid #292727;
-  color: #292727;
+  border: 1px solid #ffffff;
+  color: #ffffff;
   width: 107px;
   height: 36px;
   border-radius: 18px;
@@ -112,8 +107,8 @@ body.dark .login-button {
 }
 
 .signup-button {
-  background-color: #e5f89a;
-  color: #292727;
+  background-color: #c19c53;
+  color: #080f17;
   /* Button 3 */
 
   box-sizing: border-box;

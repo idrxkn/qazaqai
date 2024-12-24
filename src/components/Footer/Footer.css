@@ -1,6 +1,6 @@
 .footer {
-  background-color: #292727;
-  color: #f3f5f7;
+  background-color: #c19c53;
+  color: #080f17;
   text-align: center;
   display: flex;
   flex-flow: column;
@@ -13,7 +13,7 @@
 }
 
 .footer-content h1 {
-  margin-top: 100px;
+  margin-top: 50px;
   font-family: "Akira-black";
   font-size: 32px;
   margin-bottom: 30px;
@@ -40,9 +40,9 @@ body.lang-ru .footer-content h1 {
 }
 
 .footer-button {
-  background-color: #e5f89a;
+  background-color: #080f17;
   border: none;
-  color: #292727;
+  color: #c19c53;
   padding: 10px 20px;
   margin: 0 10px;
   font-size: 14px;
@@ -51,11 +51,8 @@ body.lang-ru .footer-content h1 {
   transition: all 0.3s;
   border-radius: 18px;
 }
-
 .footer-button:hover {
-  background-color: #292727;
-  color: #e5f89a;
-  border: 0.5px solid #e5f89a;
+  opacity: 0.7;
 }
 
 .footer-bottom {
@@ -87,11 +84,11 @@ body.lang-ru .footer-content h1 {
   color: #d2ff60;
 }
 
-.footer-bottom p {
-  font-family: "Helvetica-light";
+.footer-bottom {
+  font-family: "Helvetica-light" !important;
   font-size: 14px;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .logo-el {
   padding: 10px;

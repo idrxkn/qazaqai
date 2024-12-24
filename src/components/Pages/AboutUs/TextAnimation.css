@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "Akira-black";
-  font-size: 42px;
-  line-height: 80px;
-  color: #292727;
+  font-family: "Druk";
+  font-size: 28px;
+  max-width: 1000px;
+  line-height: 55px;
+  color: #fff;
 }
 body.dark .container {
   color: #e5f89a;

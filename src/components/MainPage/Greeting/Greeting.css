@@ -1,0 +1,48 @@
+.greeting {
+  display: flex;
+  max-width: 1140px;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.greeting-title {
+  font-family: "Monolog";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 96px;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+.greeting-subtitle {
+  font-family: "Helvetica-light";
+  max-width: 565px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 100%;
+  /* or 16px */
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+.greeting-subtitle span {
+  font-family: "Helvetica-regular-obl";
+  text-decoration: underline;
+}
+.greeting-right {
+  margin-top: -30px;
+}
+.greeting-right img {
+  animation: rotate 30s linear infinite;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.greetingb {
+  margin-top: 150px;
+}

@@ -74,9 +74,10 @@ body.lang-kz .interest-title {
 .join {
   font-family: "Akira";
   font-size: 32px;
-  background-color: #292727;
+  background-color: #c19c53;
   padding: 10px;
-  color: #e5f89a;
+  color: #080f17;
+  border: 1px solid #c19c53;
   border-radius: 10px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -90,9 +91,8 @@ body.lang-ru .join {
 }
 
 .join:hover {
-  background-color: #e5f89a;
-
-  color: #292727;
+  background-color: #080f17;
+  color: #c19c53;
 }
 
 .fast {

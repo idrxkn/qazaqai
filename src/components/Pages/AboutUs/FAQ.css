@@ -2,7 +2,8 @@
   max-width: 650px;
   margin: 0 auto;
   padding: 50px;
-  background-color: #fff;
+  background-color: #C19C53;
+  color: #080F17;
   text-align: center;
   margin-top: 50px;
   margin-bottom: 100px;
@@ -20,7 +21,7 @@
 }
 
 .faq-item {
-  background-color: #fff;
+  background-color: #C19C53;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;

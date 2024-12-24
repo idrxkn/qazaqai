@@ -1,94 +1,386 @@
+/* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+
+  color: #333;
+}
+
 .profile-page {
   display: flex;
   justify-content: center;
-  min-height: 550px;
-  background-color: #f0f2f5;
-  margin-top: 80px;
-  margin-bottom: 100px;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .profile-wrap {
-  width: 900px;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-.profile-header {
-  display: flex;
-  margin-bottom: 30px;
-}
-.profile-inf {
-  font-family: "NeueMachina-light";
-  margin-top: 22px;
-}
-.profile-inf h1 {
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+
+  padding: 20px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-.profile-details {
-  font-size: 20px;
-  font-family: "NeueMachina-light";
-  margin-left: 20px;
+.profile-wrap:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section */
+.profile-header {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 50px;
-  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .profile-pic {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
+  background-color: #c19c53;
   border-radius: 50%;
-  margin-right: 30px;
-  background-color: #e5f89a;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 50px;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.fa-graduation-cap {
-  font-size: 52px;
+
+.profile-inf {
+  margin-left: 20px;
 }
-.fa-chalkboard-user {
-  font-size: 52px;
+
+.profile-inf h1 {
+  font-size: 24px;
+  color: #2e3a59;
+  font-weight: 700;
+  margin: 0;
 }
-.logout {
-  position: absolute;
-  display: block;
-  border-radius: 9px;
-  border: none;
-  background-color: #b43e3e;
+
+.roles {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6c757d;
+  margin-top: 8px;
+}
+
+/* Details Section */
+.profile-details {
+  margin-top: 20px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.profile-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-details p button {
+  margin-left: 10px;
+}
+
+.edit-btn {
+  padding: 6px 12px;
+  background-color: #c19c53;
   color: #fff;
-  margin: 0 auto;
-  width: 200px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  height: 30px;
-  bottom: 30px;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
-.logout:hover {
-  opacity: 0.7;
+
+.edit-btn:hover {
+  background-color: #080f17;
 }
+
+/* Forms */
+.usr-form {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  width: 300px;
+  margin-right: 10px;
+}
+
+.sv-btn,
+.cn-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+}
+
+.sv-btn {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.sv-btn:hover {
+  opacity: 0.8;
+}
+
+.cn-btn {
+  background-color: #e53935;
+  color: #fff;
+}
+
+.cn-btn:hover {
+  opacity: 0.8;
+}
+
+/* Referral Section */
 .referral {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
 }
+
 .qr-button {
-  width: 200px;
-  height: 40px;
-  margin-top: -15px;
-  border-radius: 20px;
-  border: 0;
-  font-family: "Helvetica-light";
-  background-color: #e5f89a;
-  color: #292727;
-  transition: all 0.3s;
+  background-color: #c19c53;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+
 .qr-button:hover {
-  background-color: #292727;
-  color: #e5f89a;
+  background-color: #080f17;
+  color: #c19c53;
 }
-.referral-wrap canvas {
+
+/* Test Results Section */
+.test-results-section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.test-results-section ul {
+  padding: 0;
+  list-style: none;
+}
+
+.test-results-section li {
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Comment Form */
+.comment-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.logout {
+  display: block;
+
+  width: 100%;
+  margin-top: 20px;
+  max-width: 220px;
+  padding: 12px 15px;
+  background-color: #b43e3e;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.logout:hover {
+  background-color: #8a2c2c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logout:active {
+  background-color: #6a2020;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.comment-input {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.comment-submit-btn {
+  padding: 8px 16px;
+  background-color: #c19c53;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-submit-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+/* Comment Section Container */
+.comment-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Comment Input Field */
+.comment-input {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Highlight Input on Focus */
+.comment-input:focus {
+  border-color: #c19c53;
+  box-shadow: 0 0 4px rgba(193, 156, 83, 0.5);
+}
+
+/* Submit Button */
+.comment-submit-btn {
+  padding: 10px 20px;
+  background-color: #c19c53;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Submit Button Hover and Active Effects */
+.comment-submit-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+  transform: translateY(-2px);
+}
+
+.comment-submit-btn:active {
+  background-color: #6a2020;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Comment Section Header */
+.comments-section h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #080f17;
+}
+
+/* Existing Comments List */
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comments-section ul li {
+  padding: 10px 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+/* Individual Comment Content */
+.comments-section ul li p {
+  margin: 0;
+  color: #080f17;
+  font-family: "Helvetica-light";
+}
+
+.comments-section ul li strong {
+  color: #c19c53;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 480px) {
+  .comment-form {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .comment-input,
+  .comment-submit-btn {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-wrap {
+    padding: 20px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-inf h1 {
+    font-size: 20px;
+  }
+
+  .usr-form {
+    width: 100%;
+  }
+
+  .edit-btn,
+  .sv-btn,
+  .cn-btn,
+  .qr-button {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .comment-input {
+    font-size: 12px;
+  }
 }

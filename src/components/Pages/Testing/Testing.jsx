@@ -1,282 +1,316 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../../context/AuthContext";
 import { Link } from "react-router-dom";
-import "./Testing.css"; // Import the CSS file
+import axios from "axios";
+import "./Testing.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Footer from "../../Footer/Footer";
-import eng1 from "./eng1";
-import eng2 from "./eng2";
-import eng3 from "./eng3";
-import rus1 from "./rus1";
-import rus2 from "./rus2";
-import rus3 from "./rus3";
-import kaz1 from "./kaz1";
-import kaz2 from "./kaz2";
-import kaz3 from "./kaz3";
-import { useTranslation } from "react-i18next";
+import { useAuth } from "../../../context/AuthContext";
 
 const Testing = () => {
-  const { isAuthenticated } = useAuth();
-  const { i18n } = useTranslation();
-  const [testIndex, setTestIndex] = useState(0);
-  const [showTest, setShowTest] = useState(false);
-  const [showCorrectionTest, setShowCorrectionTest] = useState(false);
+  const [customTests, setCustomTests] = useState([]);
+  const [selectedTest, setSelectedTest] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [showTest, setShowTest] = useState(false);
   const [showScore, setShowScore] = useState(false);
-  const [correctionTestTitle, setCorrectionTestTitle] = useState("");
-  const [questions, setQuestions] = useState([]);
+  const [committedAnswers, setCommittedAnswers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [answerSaved, setAnswerSaved] = useState(false);
+  const { userRole } = useAuth();
 
   useEffect(() => {
-    if (showTest) {
-      if (showCorrectionTest) {
-        const correctionQuestions = getCorrectionTestQuestions();
-        if (correctionQuestions.length === 0) {
-          alert("No correction questions found.");
-        }
-        setQuestions(correctionQuestions);
+    const fetchTests = async () => {
+      try {
+        const response = await axios.get("http://localhost:10000/api/tests");
+        setCustomTests(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch tests:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchTests();
+  }, []);
+
+  const startTest = async (testId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:10000/api/tests/${testId}`
+      );
+      setSelectedTest(response.data);
+      setShowTest(true);
+      setCurrentQuestion(0);
+      setScore(0);
+      setShowScore(false);
+      setCommittedAnswers([]);
+      setAnswerSaved(false);
+    } catch (error) {
+      console.error("Failed to fetch test:", error);
+      alert("Тесті жүктеу кезінде қате орын алды.");
+    }
+  };
+
+  const handleAnswerOptionClick = (index) => {
+    const isCorrect =
+      index === selectedTest.questions[currentQuestion]?.correctIndex;
+
+    setCommittedAnswers((prev) => {
+      const updatedAnswers = [...prev];
+      updatedAnswers[currentQuestion] = {
+        question: selectedTest.questions[currentQuestion]?.question || "",
+        subtopic:
+          selectedTest.questions[currentQuestion]?.subtopic || "Тақырыпша жоқ",
+        isCorrect,
+      };
+      return updatedAnswers;
+    });
+
+    if (isCorrect) {
+      setScore((prevScore) => prevScore + 1);
+    }
+
+    setAnswerSaved(true);
+    setTimeout(() => setAnswerSaved(false), 1500);
+
+    setTimeout(() => {
+      if (currentQuestion + 1 < selectedTest.questions.length) {
+        setCurrentQuestion((prev) => prev + 1);
+        setAnswerSaved(false);
       } else {
-        const allQuestions = getQuestions();
-        setQuestions(allQuestions[testIndex]);
+        setShowScore(true);
+        saveResults();
       }
-    }
-  }, [showTest, showCorrectionTest, testIndex, i18n.language]);
+    }, 1000);
+  };
 
-  const getQuestions = () => {
-    const currentLanguage = i18n.language;
-    if (currentLanguage === "en") {
-      return [eng1, eng2, eng3];
-    } else if (currentLanguage === "ru") {
-      return [rus1, rus2, rus3];
-    } else {
-      return [kaz1, kaz2, kaz3];
+  const handleBackQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prev) => prev - 1);
+      setAnswerSaved(false);
     }
   };
 
-  const getCorrectionTestQuestions = () => {
-    const currentLanguage = i18n.language;
-    const incorrectKey = `incorrectAnswers_${currentLanguage}_${testIndex}`;
-    const correctionQuestions =
-      JSON.parse(localStorage.getItem(incorrectKey)) || [];
-    console.log("Correction questions retrieved:", correctionQuestions); // Debug log
-    return correctionQuestions;
-  };
-
-  const handleAnswerOptionClick = (option) => {
-    const correctAnswer = questions[currentQuestion].answers.find(
-      (answer) => answer.correct === "true"
-    ).text;
-    if (option === correctAnswer) {
-      setScore(score + 1);
-    } else {
-      saveIncorrectAnswer(questions[currentQuestion]);
-    }
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion);
-      setSelectedOption("");
-    } else {
+  const handleNextQuestion = () => {
+    if (currentQuestion < selectedTest.questions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
+      setAnswerSaved(false);
+    } else if (currentQuestion === selectedTest.questions.length - 1) {
       setShowScore(true);
-      if (showCorrectionTest) {
-        clearCorrectionTestQuestions();
-      }
+      saveResults();
     }
   };
 
-  const saveIncorrectAnswer = (question) => {
-    const currentLanguage = i18n.language;
-    const incorrectKey = `incorrectAnswers_${currentLanguage}_${testIndex}`;
-    let incorrectAnswers = JSON.parse(localStorage.getItem(incorrectKey)) || [];
-    incorrectAnswers.push(question);
-    localStorage.setItem(incorrectKey, JSON.stringify(incorrectAnswers));
-  };
-
-  const clearCorrectionTestQuestions = () => {
-    const currentLanguage = i18n.language;
-    const incorrectKey = `incorrectAnswers_${currentLanguage}_${testIndex}`;
-    localStorage.removeItem(incorrectKey);
-    console.log(`Cleared correction questions for ${incorrectKey}`);
-  };
-
-  const handleBackButtonClick = () => {
-    setShowTest(false);
-    setShowCorrectionTest(false);
-    setCurrentQuestion(0);
-    setScore(0);
-    setSelectedOption("");
-    setShowScore(false);
-    setQuestions([]);
-  };
-
-  const optionLabels = ["A", "B", "C", "D", "E"];
-
-  const hasIncorrectAnswers = () => {
-    const currentLanguage = i18n.language;
-    for (let i = 0; i < 3; i++) {
-      const incorrectKey = `incorrectAnswers_${currentLanguage}_${i}`;
-      if (localStorage.getItem(incorrectKey)) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  const handleCorrectionTestClick = (index, title) => {
-    setTestIndex(index);
-    setCorrectionTestTitle(title);
-    setShowCorrectionTest(true);
-    setShowTest(true);
-  };
-
-  if (!isAuthenticated) {
-    return (
-      <p className="please-signin">
-        Please{" "}
-        <Link to="/login" className="link-spacing">
-          {" "}
-          sign in{" "}
-        </Link>{" "}
-        to access the testing.
-      </p>
+  const saveResults = async () => {
+    const wrongAnswers = committedAnswers.filter(
+      (ans) => ans && !ans.isCorrect
     );
-  }
+    const resultData = {
+      testName: selectedTest.testName,
+      testTopic: selectedTest.testTopic,
+      totalQuestions: selectedTest.questions.length,
+      rightAnswersCount: score,
+      wrongAnswersCount: wrongAnswers.length,
+      subTopics: wrongAnswers.map((ans) => ans.subtopic),
+    };
+
+    const token = localStorage.getItem("token");
+    try {
+      await axios.post("http://localhost:10000/api/test-results", resultData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("Results saved successfully.");
+    } catch (error) {
+      console.error("Failed to save results:", error);
+      alert("Нәтижелерді сақтау кезінде қате орын алды.");
+    }
+  };
+
+  const handleBackToList = () => {
+    setShowTest(false);
+    setSelectedTest(null);
+  };
+
+  const deleteTest = async (testId, e) => {
+    e.stopPropagation();
+    const token = localStorage.getItem("token");
+
+    if (!window.confirm("Сіз бұл тестті жоюға сенімдісіз бе?")) {
+      return;
+    }
+
+    try {
+      await axios.delete(`http://localhost:10000/api/tests/${testId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setCustomTests((prevTests) =>
+        prevTests.filter((test) => test.id !== testId)
+      );
+      alert("Тест сәтті жойылды!");
+    } catch (error) {
+      console.error("Failed to delete test:", error);
+      alert("Тесті жою кезінде қате орын алды.");
+    }
+  };
 
   return (
-    <>
-      <div className="test-container">
-        <h1 className="test-title">Test lists:</h1>
+    <div className="test-container">
+      {!showTest ? (
+        <>
+          <h1 className="test-title">Тест тізімі:</h1>
+          <div className="testing-btn">
+            {userRole === "Teacher" ? (
+              <Link to="/create-test">
+                <button className="create-test-btn">
+                  <FontAwesomeIcon icon="fa-solid fa-plus" /> Жаңа тест құру
+                </button>
+              </Link>
+            ) : (
+              ""
+            )}
+            <Link to="/chat-asker">
+              <button className="create-test-btn">
+                <FontAwesomeIcon icon="fa-solid fa-robot" /> Жасанды
+                интеллекттің тестін өту
+              </button>
+            </Link>
+          </div>
 
-        {!showTest ? (
-          <>
+          {loading ? (
+            <p>Жүктелуде...</p>
+          ) : (
             <div className="test-grid">
-              <div
-                className="cardTest"
-                onClick={() => {
-                  setTestIndex(0);
-                  setShowTest(true);
-                  setShowCorrectionTest(false);
-                }}
-              >
-                <div className="overlay-test"></div>
-                <div className="cardTest-content">
-                  <h3>Informatics Test</h3>
-                  <p>Click to start the test</p>
-                </div>
-                <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
-              </div>
-              <div
-                className="cardTest"
-                onClick={() => {
-                  setTestIndex(1);
-                  setShowTest(true);
-                  setShowCorrectionTest(false);
-                }}
-              >
-                <div className="overlay-test"></div>
-                <div className="cardTest-content">
-                  <h3>Algorithms test</h3>
-                  <p>Click to start the test</p>
-                </div>
-                <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
-              </div>
-              <div
-                className="cardTest"
-                onClick={() => {
-                  setTestIndex(2);
-                  setShowTest(true);
-                  setShowCorrectionTest(false);
-                }}
-              >
-                <div className="overlay-test"></div>
-                <div className="cardTest-content">
-                  <h3>Programming practice test</h3>
-                  <p>Click to start the test</p>
-                </div>
-                <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
-              </div>
-              {hasIncorrectAnswers() && (
-                <div
-                  className="cardTest"
-                  onClick={() =>
-                    handleCorrectionTestClick(testIndex, "Correction Test")
-                  }
-                >
-                  <div className="overlay-test"></div>
-                  <div className="cardTest-content">
-                    <h3>Correction Test</h3>
-                    <p>Click to start the correction test</p>
+              {customTests.length === 0 ? (
+                <p style={{ fontFamily: "Monolog" }}>
+                  Қазіргі уақытта тесттер жоқ.
+                </p>
+              ) : (
+                customTests.map((test) => (
+                  <div className="cardTest-two">
+                    <div
+                      key={test.id}
+                      className="cardTest"
+                      onClick={() => startTest(test.id)}
+                    >
+                      <div className="overlay-test"></div>
+                      <div className="cardTest-content">
+                        <h3>{test.testName}</h3>
+                        <p>Тақырыбы: {test.testTopic}</p>
+                        <p>{test.questions.length} сұрақ(тар)</p>
+                      </div>
+                      <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
+                    </div>
+                    {userRole === "Teacher" && (
+                      <button
+                        className="delete-test-btn"
+                        onClick={(e) => deleteTest(test.id, e)}
+                      >
+                        Тестті жою
+                      </button>
+                    )}
                   </div>
-                  <FontAwesomeIcon icon="fa-solid fa-person-circle-question" />
-                </div>
+                ))
               )}
             </div>
-          </>
-        ) : (
-          <>
-            <h1>
-              {showCorrectionTest
-                ? correctionTestTitle
-                : [
-                    "Informatics Test",
-                    "Algorithms Test",
-                    "Programming practice test",
-                  ][testIndex]}
-            </h1>
-            {showScore ? (
-              <div className="score-section">
-                <p>
-                  You scored {score} out of {questions.length}
-                </p>
-                <button className="back-btn" onClick={handleBackButtonClick}>
-                  Back
+          )}
+        </>
+      ) : (
+        <>
+          {showScore ? (
+            <div className="score-section">
+              <p>
+                Сіздің нәтижеңіз: {score} / {selectedTest.questions.length}
+              </p>
+              <button className="back-btn" onClick={handleBackToList}>
+                <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />{" "}
+                Тесттер тізіміне оралу
+              </button>
+            </div>
+          ) : (
+            <div className="question-section">
+              <h1>{selectedTest.testName}</h1>
+              <p className="test-topic">
+                Тесттің тақырыбы: {selectedTest.testTopic}
+              </p>
+              <p className="question-number">
+                Сұрақ {currentQuestion + 1} / {selectedTest.questions.length}
+              </p>
+              {answerSaved && (
+                <div className="answer-saved-message-block">
+                  <p className="answer-saved-message">Жауап сақталды!</p>
+                </div>
+              )}
+              <div className="progress-bar">
+                <div
+                  className="progress"
+                  style={{
+                    width: `${
+                      ((currentQuestion + 1) / selectedTest.questions.length) *
+                      100
+                    }%`,
+                  }}
+                ></div>
+              </div>
+              {selectedTest.questions[currentQuestion] ? (
+                <>
+                  <div className="question-text">
+                    {selectedTest.questions[currentQuestion].question}
+                  </div>
+                  <div className="answer-section">
+                    {selectedTest.questions[currentQuestion].options.map(
+                      (option, index) => (
+                        <button
+                          key={index}
+                          className="option-button"
+                          onClick={() => handleAnswerOptionClick(index)}
+                        >
+                          {["А", "В", "С", "D"][index]}. {option}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </>
+              ) : (
+                <p>Сұрақты жүктеу кезінде қате орын алды.</p>
+              )}
+              <div className="navigation-buttons">
+                <button
+                  className="back-btn"
+                  onClick={handleBackQuestion}
+                  disabled={currentQuestion === 0}
+                >
+                  <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> Артқа
+                </button>
+                <button className="back-btn" onClick={handleNextQuestion}>
+                  Келесі <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
                 </button>
               </div>
-            ) : (
-              <>
-                <div className="question-section">
-                  <div className="question-count">
-                    <span>Question {currentQuestion + 1}</span>/
-                    {questions.length}
+              <div className="navigation-blocks">
+                {selectedTest.questions.map((_, index) => (
+                  <div
+                    key={index}
+                    className={`navigation-block ${
+                      index === currentQuestion
+                        ? "current-question"
+                        : committedAnswers[index]
+                        ? "answered-question"
+                        : ""
+                    }`}
+                    onClick={() => setCurrentQuestion(index)}
+                  >
+                    {index + 1}
                   </div>
-                  <div className="question-text">
-                    {questions[currentQuestion]?.question || ""}
-                  </div>
-                  <div className="progress-bar">
-                    <div
-                      className="progress"
-                      style={{
-                        width: `${
-                          ((currentQuestion + 1) / (questions.length || 1)) *
-                          100
-                        }%`,
-                      }}
-                    ></div>
-                  </div>
-                </div>
-                <div className="answer-section">
-                  {questions[currentQuestion]?.answers?.map((option, index) => (
-                    <button
-                      key={index}
-                      className={`option-button ${
-                        selectedOption === option.text ? "selected" : ""
-                      }`}
-                      onClick={() => {
-                        setSelectedOption(option.text);
-                        handleAnswerOptionClick(option.text);
-                      }}
-                    >
-                      {optionLabels[index]}. {option.text}
-                    </button>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
-      <Footer />
-    </>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+    </div>
   );
 };
 
