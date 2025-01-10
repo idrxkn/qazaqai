@@ -74,6 +74,17 @@ a {
 .question-section {
   margin-bottom: 20px;
 }
+.delete-test-btn {
+  font-family: "Monolog";
+  padding: 12px 15px;
+  background-color: #b43e3e;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 .question-count {
   margin-bottom: 10px;
@@ -293,6 +304,7 @@ a {
 .question-section p {
   font-family: "Helvetica-light";
 }
+
 .question-text {
   margin-top: 30px;
   font-family: "Helvetica-bold";
