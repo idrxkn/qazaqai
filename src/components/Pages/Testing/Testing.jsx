@@ -117,12 +117,16 @@ const Testing = () => {
 
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://0.0.0.0:8080/api/test-results", resultData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "https://qaz-b-production.up.railway.app/api/test-results",
+        resultData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Results saved successfully.");
     } catch (error) {
       console.error("Failed to save results:", error);
@@ -144,11 +148,14 @@ const Testing = () => {
     }
 
     try {
-      await axios.delete(`http://0.0.0.0:8080/api/tests/${testId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://qaz-b-production.up.railway.app/api/tests/${testId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setCustomTests((prevTests) =>
         prevTests.filter((test) => test.id !== testId)
       );
