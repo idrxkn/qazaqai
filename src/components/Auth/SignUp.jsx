@@ -7,7 +7,6 @@ import Modal from "./Modal"; // Adjust path if necessary
 import "./SignUp.css";
 
 import rightImage from "../../assets/greeting-right.png";
-
 const BASE_URL = "https://qaz-b-production.up.railway.app/";
 
 const SignUp = () => {
@@ -35,29 +34,26 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Transform the payload to match the backend schema
-      const transformedData = {
-        Username: formData.username, // Match backend expected key
-        Email: formData.email, // Match backend expected key
-        Password: formData.password, // Match backend expected key
-        Referral: showReferral ? formData.referral : null, // Match backend expected key
-      };
-
-      const response = await axios.post(
-        `${BASE_URL}api/auth/signup`,
-        transformedData
-      );
-
+      const response = await axios.post(`${BASE_URL}api/auth/signup`, formData);
       setSuccess(true);
       setError(null);
       setShowPopup(true);
-      console.log("User successfully created:", response.data);
+      console.log("User successfully created");
     } catch (err) {
       const errorData = err.response?.data;
-      if (errorData?.detail) {
-        setError(errorData.detail); // Display backend error message
+      if (errorData) {
+        // Check if there's a general message
+        let errorMessage = errorData;
+        // Check if there are specific field errors
+        if (errorData.errors) {
+          const fieldErrors = Object.entries(errorData.errors)
+            .map(([field, messages]) => `${field}: ${messages.join(" ")}`)
+            .join(" ");
+          errorMessage = `${errorMessage} ${fieldErrors}`;
+        }
+        setError(errorMessage);
       } else {
-        setError("An unknown error occurred.");
+        setError(errorData);
       }
       setSuccess(false);
     }
