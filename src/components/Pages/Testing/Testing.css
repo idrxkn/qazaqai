@@ -85,6 +85,9 @@ a {
   font-weight: bold;
   cursor: pointer;
 }
+.delete-test-btn:hover {
+  opacity: 0.7;
+}
 
 .question-count {
   margin-bottom: 10px;
