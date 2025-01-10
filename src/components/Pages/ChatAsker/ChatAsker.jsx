@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from "react";
+import { useAuth } from "../../../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./ChatAsker.css";
 import logo from "../../../assets/logo.svg";
 import teacherIcon from "../../../assets/teachersx.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ChatAsker = () => {
@@ -14,6 +16,7 @@ const ChatAsker = () => {
   const [testFinished, setTestFinished] = useState(false); // Test completion state
   const [messages, setMessages] = useState([]);
   const [inputData, setInputData] = useState({ answer: "" });
+  const { isAuthenticated } = useAuth();
   const [currentQuestionId, setCurrentQuestionId] = useState(null); // Current question ID
   const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] =
     useState(true); // Guard for unanswered question
@@ -57,7 +60,7 @@ const ChatAsker = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:10000/api/model/ask-random-question"
+        "http://0.0.0.0:8080/api/model/ask-random-question"
       );
       const { id, question } = response.data;
       setCurrentQuestionId(id);
@@ -87,7 +90,7 @@ const ChatAsker = () => {
         return;
       }
       await axios.post(
-        "http://localhost:10000/api/model/evaluate",
+        "http://0.0.0.0:8080/api/model/evaluate",
         {
           question_id: currentQuestionId,
           user_answer: inputData.answer,
@@ -136,7 +139,19 @@ const ChatAsker = () => {
   const finishTest = () => {
     setTestFinished(true); // Mark the test as finished
   };
-
+  if (!isAuthenticated) {
+    return (
+      <>
+        <p className="please-signin">
+          Өтініш, чатқа кіру үшін{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            тіркеліңіз{" "}
+          </Link>{" "}
+        </p>
+      </>
+    );
+  }
   return (
     <div className="asker-container">
       <AnimatePresence onExitComplete={handleIntroductionExitComplete}>

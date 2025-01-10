@@ -16,11 +16,11 @@ const Testing = () => {
   const [loading, setLoading] = useState(true);
   const [answerSaved, setAnswerSaved] = useState(false);
   const { userRole } = useAuth();
-
+  const { isAuthenticated } = useAuth();
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        const response = await axios.get("http://localhost:10000/api/tests");
+        const response = await axios.get("http://0.0.0.0:8080/api/tests");
         setCustomTests(response.data);
         setLoading(false);
       } catch (error) {
@@ -35,7 +35,7 @@ const Testing = () => {
   const startTest = async (testId) => {
     try {
       const response = await axios.get(
-        `http://localhost:10000/api/tests/${testId}`
+        `http://0.0.0.0:8080/api/tests/${testId}`
       );
       setSelectedTest(response.data);
       setShowTest(true);
@@ -115,7 +115,7 @@ const Testing = () => {
 
     const token = localStorage.getItem("token");
     try {
-      await axios.post("http://localhost:10000/api/test-results", resultData, {
+      await axios.post("http://0.0.0.0:8080/api/test-results", resultData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -142,7 +142,7 @@ const Testing = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:10000/api/tests/${testId}`, {
+      await axios.delete(`http://0.0.0.0:8080/api/tests/${testId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -156,7 +156,19 @@ const Testing = () => {
       alert("Тесті жою кезінде қате орын алды.");
     }
   };
-
+  if (!isAuthenticated) {
+    return (
+      <>
+        <p className="please-signin">
+          Өтініш, тестілеуге кіру үшін{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            тіркеліңіз{" "}
+          </Link>{" "}
+        </p>
+      </>
+    );
+  }
   return (
     <div className="test-container">
       {!showTest ? (

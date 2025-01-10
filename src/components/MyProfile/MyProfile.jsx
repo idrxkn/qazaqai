@@ -54,7 +54,7 @@ const MyProfile = () => {
       const token = localStorage.getItem("token");
       const updatedData = { [editField]: formData[editField] };
 
-      const response = await fetch("http://localhost:10000/api/profile", {
+      const response = await fetch("http://0.0.0.0:8080/api/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const MyProfile = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:10000/api/students/${studentId}/comments`,
+        `http://0.0.0.0:8080/students/${studentId}/comments`,
         {
           method: "POST",
           headers: {

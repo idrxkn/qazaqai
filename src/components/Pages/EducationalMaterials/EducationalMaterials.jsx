@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./EducationalMaterials.css";
+import { useAuth } from "../../../context/AuthContext";
 import informatics5 from "../../../books/informatics_5.pdf";
 import informatics2_5 from "../../../books/informatics2_5.pdf";
 import informatics6 from "../../../books/informatics_6.pdf";
@@ -8,6 +9,7 @@ import informatics8 from "../../../books/informatics_8.pdf";
 import informatics9 from "../../../books/informatics_9.pdf";
 import informatics10 from "../../../books/informatics_10.pdf";
 import informatics11 from "../../../books/informatics_11.pdf";
+import { Link } from "react-router-dom";
 
 import Footer from "../../Footer/Footer";
 import { useTranslation } from "react-i18next";
@@ -20,6 +22,7 @@ import {
 
 const EducationalMaterials = () => {
   const { t } = useTranslation();
+  const { isAuthenticated } = useAuth();
 
   // Static list of educational materials
   const [materials, setMaterials] = useState([
@@ -66,7 +69,19 @@ const EducationalMaterials = () => {
       setMaterials((prevMaterials) => [...prevMaterials, newMaterial]);
     }
   };
-
+  if (!isAuthenticated) {
+    return (
+      <>
+        <p className="please-signin">
+          Өтініш, оқулықтарға кіру үшін{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            тіркеліңіз{" "}
+          </Link>{" "}
+        </p>
+      </>
+    );
+  }
   return (
     <>
       <div className="materials-container">

@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
 import rightImage from "../../assets/greeting-right.png";
 
-const BASE_URL = "http://localhost:10000/";
+const BASE_URL = "http://0.0.0.0:8080";
 
 const Login = () => {
   const { t } = useTranslation();

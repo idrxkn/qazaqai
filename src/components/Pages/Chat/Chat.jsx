@@ -33,7 +33,7 @@ const Chat = () => {
     setLoading(true);
 
     const currentLanguage = i18n.language;
-    const apiUrl = "http://localhost:10000/api/model/get-answer";
+    const apiUrl = "http://0.0.0.0:8080/api/model/get-answer";
     try {
       const response = await axios.post(
         apiUrl,
@@ -80,20 +80,20 @@ const Chat = () => {
     if (e.key === "Enter") await handleSubmit();
   };
 
-  // if (!isAuthenticated) {
-  //   return (
-  //     <>
-  //       <Header />
-  //       <p className="please-signin">
-  //         Өтініш, чатқа кіру үшін{" "}
-  //         <Link to="/login" className="link-spacing">
-  //           {" "}
-  //           тіркеліңіз{" "}
-  //         </Link>{" "}
-  //       </p>
-  //     </>
-  //   );
-  // }
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Header />
+        <p className="please-signin">
+          Өтініш, чатқа кіру үшін{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            тіркеліңіз{" "}
+          </Link>{" "}
+        </p>
+      </>
+    );
+  }
 
   return (
     <>
