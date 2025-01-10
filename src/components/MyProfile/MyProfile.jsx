@@ -54,14 +54,17 @@ const MyProfile = () => {
       const token = localStorage.getItem("token");
       const updatedData = { [editField]: formData[editField] };
 
-      const response = await fetch("http://0.0.0.0:8080/api/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatedData),
-      });
+      const response = await fetch(
+        "https://qaz-b-production.up.railway.app/api/profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
 
       if (response.ok) {
         setUserData((prevState) => ({
@@ -84,7 +87,7 @@ const MyProfile = () => {
 
     try {
       const response = await fetch(
-        `http://0.0.0.0:8080/students/${studentId}/comments`,
+        `https://qaz-b-production.up.railway.app/students/${studentId}/comments`,
         {
           method: "POST",
           headers: {

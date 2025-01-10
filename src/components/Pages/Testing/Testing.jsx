@@ -20,7 +20,9 @@ const Testing = () => {
   useEffect(() => {
     const fetchTests = async () => {
       try {
-        const response = await axios.get("http://0.0.0.0:8080/api/tests");
+        const response = await axios.get(
+          "https://qaz-b-production.up.railway.app/api/tests"
+        );
         setCustomTests(response.data);
         setLoading(false);
       } catch (error) {
@@ -35,7 +37,7 @@ const Testing = () => {
   const startTest = async (testId) => {
     try {
       const response = await axios.get(
-        `http://0.0.0.0:8080/api/tests/${testId}`
+        `https://qaz-b-production.up.railway.app/api/tests/${testId}`
       );
       setSelectedTest(response.data);
       setShowTest(true);

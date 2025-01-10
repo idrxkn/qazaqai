@@ -33,7 +33,8 @@ const Chat = () => {
     setLoading(true);
 
     const currentLanguage = i18n.language;
-    const apiUrl = "http://0.0.0.0:8080/api/model/get-answer";
+    const apiUrl =
+      "https://qaz-b-production.up.railway.app/api/model/get-answer";
     try {
       const response = await axios.post(
         apiUrl,

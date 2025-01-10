@@ -66,7 +66,7 @@ const CreateTest = () => {
     try {
       const token = localStorage.getItem("token"); // Retrieve token from local storage
       const response = await axios.post(
-        "http://0.0.0.0:8080/api/tests",
+        "https://qaz-b-production.up.railway.app/api/tests",
         newTest,
         {
           headers: {

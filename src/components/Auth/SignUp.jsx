@@ -7,7 +7,7 @@ import Modal from "./Modal"; // Adjust path if necessary
 import "./SignUp.css";
 
 import rightImage from "../../assets/greeting-right.png";
-const BASE_URL = "http://0.0.0.0:8080";
+const BASE_URL = "https://qaz-b-production.up.railway.app/";
 
 const SignUp = () => {
   const { t } = useTranslation();

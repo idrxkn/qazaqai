@@ -60,7 +60,7 @@ const ChatAsker = () => {
 
     try {
       const response = await axios.get(
-        "http://0.0.0.0:8080/api/model/ask-random-question"
+        "https://qaz-b-production.up.railway.app/api/model/ask-random-question"
       );
       const { id, question } = response.data;
       setCurrentQuestionId(id);
@@ -90,7 +90,7 @@ const ChatAsker = () => {
         return;
       }
       await axios.post(
-        "http://0.0.0.0:8080/api/model/evaluate",
+        "https://qaz-b-production.up.railway.app/api/model/evaluate",
         {
           question_id: currentQuestionId,
           user_answer: inputData.answer,
