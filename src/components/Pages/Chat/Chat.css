@@ -281,10 +281,6 @@
   font-size: 12px;
 }
 
-
-
-
-
 /* Sidebar */
 body.dark .sidebar {
   border-right: 0.5px solid #d0d0d0;
@@ -305,6 +301,9 @@ body.dark .new-chat {
 body.dark .new-chat:hover {
   background-color: #080f17;
   color: #c19c53;
+}
+body.dark .context-content {
+  color: #080f17;
 }
 
 /* Query List */

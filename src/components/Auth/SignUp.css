@@ -1,3 +1,4 @@
+/* Default (Dark Mode) */
 .register-page {
   display: flex;
   justify-content: space-between;
@@ -7,6 +8,14 @@
   color: #ffffff;
   background-color: #080f17;
 }
+
+/* Light Mode */
+body.dark .register-page {
+  background-color: #fafcff;
+  color: #080f17;
+}
+
+/* Home Button */
 .home-button {
   margin-left: 50px;
   margin-top: 50px;
@@ -20,6 +29,12 @@
   cursor: pointer;
 }
 
+/* Light Mode Home Button */
+body.dark .home-button {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
 .register-form {
   margin-top: 80px;
   width: 40%;
@@ -29,6 +44,11 @@
   font-size: 48px;
   font-family: "Monolog-light";
   margin-bottom: 20px;
+}
+
+/* Light Mode Form Header */
+body.dark .register-form h1 {
+  color: #080f17;
 }
 
 .input-group {
@@ -42,14 +62,25 @@
   margin-bottom: 5px;
 }
 
+/* Light Mode Inputs */
 .input-group input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #fff;
+  color: #080f17;
 }
 
+/* Light Mode Adjustments */
+body.dark .input-group input {
+  border: 1px solid #c19c53;
+  background-color: #fafcff;
+  color: #080f17;
+}
+
+/* Submit Button */
 .submit-button {
   width: 100%;
   padding: 10px;
@@ -61,6 +92,19 @@
   cursor: pointer;
 }
 
+/* Light Mode Submit Button */
+body.dark .submit-button {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+/* Button Hover */
+.submit-button:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Social Login */
 .social-login {
   margin-top: 20px;
 }
@@ -71,6 +115,7 @@
   font-family: "Helvetica-light";
 }
 
+/* Light Mode Social Buttons */
 .google-button {
   width: 100%;
   padding: 10px;
@@ -80,30 +125,60 @@
   cursor: pointer;
   margin-bottom: 10px;
   font-family: "Helvetica-light";
+  background-color: #ffffff;
+  color: #080f17;
 }
 
-.google-button {
-  background-color: #fff;
-  color: #000;
+/* Light Mode Adjustments */
+body.dark .google-button {
+  background-color: #fafcff;
+  color: #080f17;
+  border: 1px solid #c19c53;
 }
+
+/* Register Image */
 .register-image img {
   width: 500.81px;
   height: 810px;
 }
+
+/* Light Mode Image */
+body.dark .register-image img {
+  filter: brightness(0.9);
+}
+
+/* Checkbox Group */
 .checkbox-group {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
+
+/* Checkbox */
 .isStudentCheckbox {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+
+/* Light Mode Checkbox */
+body.dark .isStudentCheckbox {
+  background-color: #fafcff;
+  border: 1px solid #c19c53;
+}
+
+/* Student Label */
 .isStudent {
   font-family: "Helvetica-light";
   margin-left: 5px;
 }
+
+/* Light Mode Student Label */
+body.dark .isStudent {
+  color: #080f17;
+}
+
+/* Error Message */
 .error-message {
   font-family: "Helvetica-light";
   color: #b43e3e;

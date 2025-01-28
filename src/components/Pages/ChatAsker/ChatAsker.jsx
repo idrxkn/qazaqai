@@ -51,9 +51,9 @@ const ChatAsker = () => {
   };
 
   const fetchRandomQuestion = async () => {
-    if (isProcessing) return;
+    if (isProcessing || testFinished) return;
 
-    setIsProcessing(true); // Prevent multiple calls
+    setIsProcessing(true);
 
     try {
       const response = await axios.get(
@@ -73,14 +73,14 @@ const ChatAsker = () => {
   };
 
   const handleAnswerSubmit = async () => {
-    if (inputData.answer.trim() === "" || isProcessing) return;
+    if (inputData.answer.trim() === "" || isProcessing || testFinished) return;
 
     setMessages((prevMessages) => [
       ...prevMessages,
       { type: "user", text: inputData.answer },
     ]);
 
-    setIsProcessing(true); // Prevent multiple submissions
+    setIsProcessing(true);
 
     try {
       const token = localStorage.getItem("token");
@@ -121,10 +121,7 @@ const ChatAsker = () => {
 
   const handleIntroductionExitComplete = () => {
     setMessages([
-      {
-        type: "system",
-        text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын.",
-      },
+      { type: "system", text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын." },
     ]);
     setShowChat(true);
     setTimeout(fetchRandomQuestion, 500);
@@ -137,6 +134,10 @@ const ChatAsker = () => {
     setShowChat(false);
     setShowIntroduction(true);
     localStorage.removeItem("introShown");
+  };
+
+  const finishTest = () => {
+    setTestFinished(true);
   };
 
   if (!isAuthenticated) {
@@ -202,13 +203,7 @@ const ChatAsker = () => {
 
       <AnimatePresence>
         {showChat && !testFinished && (
-          <motion.div
-            className="ask-chat"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div className="ask-chat" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} transition={{ duration: 0.5 }}>
             <div className="ask-chat-header">
               <img src={logo} alt="Logo" className="ask-chat-logo" />
               <h3>Сұрақ-Жауап Сеансы</h3>
@@ -216,40 +211,17 @@ const ChatAsker = () => {
                 🗑 Чатты тазарту
               </button>
             </div>
-            <div className="ask-chat-body">
-              <div className="ask-chat-messages">
-                {messages.map((message, index) => (
-                  <motion.div
-                    key={index}
-                    className={`ask-chat-message ${message.type}`}
-                    initial={{
-                      opacity: 0,
-                      x: message.type === "system" ? -50 : 50,
-                    }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4 }}
-                  >
-                    <p>
-                      <strong>{message.type === "system" ? "Q:" : "A:"}</strong>{" "}
-                      {message.text}
-                    </p>
-                  </motion.div>
-                ))}
-                <div ref={messageEnd} />
-              </div>
-              <div className="ask-chat-input">
-                <input
-                  type="text"
-                  placeholder="Жауабыңызды жазыңыз..."
-                  value={inputData.answer}
-                  onChange={(e) => setInputData({ answer: e.target.value })}
-                  onKeyDown={handleEnter}
-                />
-                <button onClick={handleAnswerSubmit}>
-                  <FontAwesomeIcon icon="fa-solid fa-arrow-up" />
-                </button>
-              </div>
+            <div className="ask-chat-footer">
+              <button className="finish-test-btn" onClick={finishTest}>
+                Тестті бітіру
+              </button>
             </div>
+          </motion.div>
+        )}
+
+        {testFinished && (
+          <motion.div className="test-finish-message" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.4 }}>
+            <h2>Сіздің жауаптарыңыз бағаланып, сәтті сақталды.</h2>
           </motion.div>
         )}
       </AnimatePresence>

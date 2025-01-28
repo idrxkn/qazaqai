@@ -403,7 +403,7 @@ const MyProfile = () => {
                             💯 Ұқсастық ұпайы:{" "}
                             {result.similarity_score
                               ? `${result.similarity_score}%`
-                              : "Бағаланған жоқ"}
+                              : "0%"}
                           </p>
                         </li>
                       ))}

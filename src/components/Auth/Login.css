@@ -1,3 +1,4 @@
+/* Default (Dark Mode) */
 .login-page {
   display: flex;
   justify-content: space-between;
@@ -6,6 +7,12 @@
   padding: 0 50px;
   color: #ffffff;
   background-color: #080f17;
+}
+
+/* Light Mode */
+body.dark .login-page {
+  background-color: #fafcff;
+  color: #080f17;
 }
 
 .login-form {
@@ -18,10 +25,20 @@
   margin-bottom: 10px;
 }
 
+/* Light Mode Text Colors */
+body.dark .login-form h1 {
+  color: #080f17;
+}
+
 .login-form p {
   font-family: "Helvetica-light";
   font-size: 16px;
   margin-bottom: 20px;
+}
+
+/* Light Mode Text */
+body.dark .login-form p {
+  color: #080f17;
 }
 
 .input-group {
@@ -34,14 +51,25 @@
   margin-bottom: 5px;
 }
 
+/* Light Mode Inputs */
 .input-group input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #fff;
+  color: #080f17;
 }
 
+/* Adjust border colors for light mode */
+body.dark .input-group input {
+  border: 1px solid #c19c53;
+  background-color: #fafcff;
+  color: #080f17;
+}
+
+/* Submit Button */
 .submit-button {
   width: 100%;
   padding: 10px;
@@ -53,6 +81,13 @@
   cursor: pointer;
 }
 
+/* Light Mode Button Hover */
+.submit-button:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Social Login */
 .social-login {
   margin-top: 20px;
 }
@@ -62,6 +97,7 @@
   margin-bottom: 10px;
 }
 
+/* Light Mode Social Buttons */
 .google-button,
 .facebook-button {
   width: 100%;
@@ -71,23 +107,29 @@
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
+  background-color: #ffffff;
+  color: #080f17;
 }
 
-.google-button {
-  background-color: #fff;
-  color: #000;
-}
-
-.facebook-button {
-  background-color: #fff;
-  color: #000;
+/* Light Mode Buttons */
+body.dark .google-button,
+body.dark .facebook-button {
+  background-color: #fafcff;
+  color: #080f17;
+  border: 1px solid #c19c53;
 }
 
 .login-image {
   width: 50%;
 }
 
+/* Light Mode Image */
 .login-image img {
   width: 100%;
   height: auto;
+  filter: brightness(1);
+}
+
+body.dark .login-image img {
+  filter: brightness(0.9);
 }
