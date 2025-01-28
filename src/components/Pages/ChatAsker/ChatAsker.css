@@ -254,3 +254,118 @@
   height: 40px;
   border-radius: 50%;
 }
+
+body.dark .asker-container {
+  color: #080F17;
+}
+
+/* Introduction Screen */
+body.dark .introduction-screen {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #080F17;
+}
+
+/* Introduction Image */
+body.dark .intro-img {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid #C19C53;
+}
+
+/* Intro Text */
+body.dark .intro-text {
+  color: #080F17;
+}
+
+/* Start Test Button */
+body.dark .start-test-btn {
+  background-color: #C19C53;
+  color: #080F17;
+}
+
+body.dark .start-test-btn:hover {
+  background-color: #080F17;
+  color: #C19C53;
+}
+
+/* Asker Chat */
+body.dark .ask-chat {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Header */
+body.dark .ask-chat-header {
+  background: #C19C53;
+  color: #080F17;
+}
+
+/* Chat Messages */
+body.dark .ask-chat-messages {
+  background: transparent;
+}
+
+body.dark .ask-chat-message {
+  background: #C19C53;
+  color: #080F17;
+}
+
+/* System Messages */
+body.dark .ask-chat-message.system {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #080F17;
+}
+
+/* User Messages */
+body.dark .ask-chat-message.user {
+  background: #C19C53;
+  color: #080F17;
+}
+
+/* Chat Input */
+body.dark .ask-chat-input {
+  background: rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.dark .ask-chat-input input {
+  color: #080F17;
+}
+
+body.dark .ask-chat-input input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Chat Send Button */
+body.dark .ask-chat-input button {
+  background: #C19C53;
+  color: #080F17;
+}
+
+body.dark .ask-chat-input button:hover {
+  background: #080F17;
+  color: #C19C53;
+}
+
+/* Test Finish Message */
+body.dark .test-finish-message {
+  background: rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  color: #080F17;
+}
+
+body.dark .test-finish-message h2 {
+  color: #080F17;
+}
+
+/* Finish Test Button */
+body.dark .finish-test-btn {
+  background-color: #C19C53;
+  color: #080F17;
+}
+
+body.dark .finish-test-btn:hover {
+  background-color: #080F17;
+  color: #C19C53;
+}

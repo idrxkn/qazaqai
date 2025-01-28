@@ -38,35 +38,48 @@ const Profiles = () => {
                 Е-mail: kundyzym@bk.ru
                 <br />
                 <br />
-                <b>Басылымдар және презентациялар:</b>
+                <b>Список опубликованных статей:</b>
                 <ul>
                   <ol>
-                    1.Приближенно – аналитическое и численное решение
-                    термонапряженного состояния стержня переменного сечения
-                    Ө.А.Байқоңыров атындағы Жезқазған университетінің ХАБАРШЫСЫ
-                    №1, 2013 ІSSN 1680-9262{" "}
+                    <b>I. Scopus</b> <br /> Kundyz Maksutova, Rozamgul Niyazova,
+                    Amangul Talgat, Aizhan Anetova, Manas Yergesh. Synthesis of
+                    Concepts and Applications of Information Intelligent Systems
+                    and Knowledge Bases in Computer Science: A Systematic
+                    Literature Review. Ingénierie des Systèmes d’Information
+                    (Процентиль 44%) Vol. 29, No. 2, April, 2024, pp.591-598.
+                    https://doi.org/10.18280/isi.290220
+                  </ol>
+                  <br />
+                  <ol>
+                    <b>II. Кксон журналы</b> <br /> 2. K. Maksutova, N.
+                    Saparkhojayev, Dusmat Zhamangarin. Development of an
+                    ontological model of deep learning neural networks.
                   </ol>
                   <ol>
-                    2. Электронды оқыту – колледждің білім беру жүйесінде
-                    Алматы: №3(05) 2014 Колледж: кәсіби білім беру
+                    3. K. Maxutova, N. Saparkhojayev , D. Zhamangarin, V.
+                    Golenkov , R. Niyazova Knowledge processing technologies in
+                    the area of computer science «ВЕСТНИК ВКТУ» № 3, 2024.
                   </ol>
                   <ol>
-                    3. Электрондық құжат айналымды ұйымдастыру Алматы: №1(09)
-                    2015 Колледж: кәсіби білім беру
+                    4. Maksutova, K., Tleubayeva, A., Niyazova, R., &
+                    Shaikhanova, A. (2023). Protégé ontology in computer
+                    science. Журнал Вестник НИА РК, No 4.
                   </ol>
                   <ol>
-                    4. Информатика пәнінен электронды оқулық жасау және
-                    пайдалану технологиясы Алматы: №1(09) 2015 Колледж: кәсіби
-                    білім беру
+                    5. K. Maxutova, R. Niyazova. Ontological Approach to the
+                    Formation of Subject-Oriented Knowledge Bases in Computer
+                    Science. Журнал Вестник - Труды университета (Ожидается
+                    публикации)
                   </ol>
+                  <br />
                   <ol>
-                    5.Ақпараттық-коммуникациялық технологияларды оқу үрдісінде
-                    қолдану ІІ Халықаралық ғылыми-тәжірибелік конференция
-                  </ol>
-                  <ol>
-                    6. ICT ONolNE LEARNING жобасы «ЗАМАНАУИ ИНЖЕНЕРЛІК
-                    ИННОВАЦИЯЛАР МЕН ТЕХНОЛОГИЯЛАР» атты онлайн халықаралық
-                    ғылыми- тәжірибелік конференция
+                    <b>III. Международной научно-практической конференции</b>{" "}
+                    <br /> 6. Максутова К.М., Талғат А., Тохаева А.О., Ергеш
+                    М.Ж. (Астана, Казахстан) Информатика және Онтология, Cборник
+                    материалов международного научно-методического журнала
+                    «Global science and innovations 2022: Central asia» научно-
+                    практический журнал, № 4(18). ДЕКАБРЬ 2022, СЕРИЯ
+                    «ТЕХНИЧЕСКИЕ НАУКИ»
                   </ol>
                   <ol>
                     7. Өндірістегі ақпараттық қауіпсіздіктің ерекшеліктері

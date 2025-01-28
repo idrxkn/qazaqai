@@ -154,3 +154,97 @@
   border-color: #c19c53;
   box-shadow: 0 0 5px rgba(193, 156, 83, 0.5);
 }
+/* Create Test Container */
+body.dark .create-test-container {
+  color: #080f17;
+}
+
+/* Heading */
+body.dark .create-test-container h1 {
+  color: #c19c53;
+}
+
+/* Paragraph */
+body.dark .create-test-container p {
+  color: #080f17;
+}
+
+/* Buttons */
+body.dark .back-btn,
+body.dark .add-btn,
+body.dark .submit-btn {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 2px solid #c19c53;
+}
+
+body.dark .submit-btn {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 2px solid #c19c53;
+}
+
+body.dark .back-btn:hover,
+body.dark .submit-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Delete Button */
+body.dark .delete-btn {
+  background-color: #b43e3e;
+  color: #ffffff;
+}
+
+body.dark .delete-btn:hover {
+  background-color: #ffffff;
+  color: #b43e3e;
+}
+
+/* Form Sections */
+body.dark .form-section,
+body.dark .question-card {
+  background-color: #fafcff;
+  color: #080f17;
+  border-radius: 10px;
+}
+
+/* Question Card Title */
+body.dark .question-card h3 {
+  color: #c19c53;
+}
+
+/* Labels */
+body.dark .label-create-test {
+  color: #080f17;
+}
+
+/* Inputs */
+body.dark .input-create-test {
+  background-color: #fafcff;
+  color: #080f17;
+  border: 1px solid #c19c53;
+}
+
+body.dark .input-create-test::placeholder {
+  color: #080f17;
+}
+
+/* Right Answer Radio Button */
+body.dark .right-answer input[type="radio"] {
+  border: 1px solid #c19c53;
+}
+
+body.dark .right-answer input[type="radio"]:checked {
+  background-color: #c19c53;
+}
+
+body.dark .right-answer label {
+  color: #080f17;
+}
+
+/* Hover Effect for Radio Button */
+body.dark .right-answer input[type="radio"]:hover {
+  border-color: #c19c53;
+  box-shadow: 0 0 5px rgba(193, 156, 83, 0.5);
+}

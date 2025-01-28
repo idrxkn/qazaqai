@@ -71,10 +71,40 @@ body.lang-ru .els-title {
   border: 1px solid #c19c53;
 }
 body.dark .els-button {
-  background-color: #e5f89a;
-  color: #272727;
+  background-color: #c19c53;
+  color: #ffffff;
 }
 body.dark .els-button:hover {
-  color: #e5f89a;
+  color: #c19c53;
   background-color: #272727;
+}
+
+/* Element Container */
+body.dark .els-text {
+  background-color: #fafcff; /* Light mode background */
+  color: #080f17; /* Dark text for contrast */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+body.dark .els-title {
+  color: #080f17;
+}
+
+/* Content */
+body.dark .els-content {
+  color: #080f17;
+}
+
+/* Button */
+body.dark .els-button {
+  background-color: #c19c53;
+  color: #272727;
+  border: 1px solid #c19c53;
+}
+
+body.dark .els-button:hover {
+  background-color: #272727;
+  color: #c19c53;
+  border: 1px solid #c19c53;
 }

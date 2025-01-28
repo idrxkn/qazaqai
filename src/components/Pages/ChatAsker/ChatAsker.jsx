@@ -13,16 +13,14 @@ const ChatAsker = () => {
   const [introText, setIntroText] = useState("");
   const [typingFinished, setTypingFinished] = useState(false);
   const [showChat, setShowChat] = useState(false);
-  const [testFinished, setTestFinished] = useState(false); // Test completion state
+  const [testFinished, setTestFinished] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputData, setInputData] = useState({ answer: "" });
   const { isAuthenticated } = useAuth();
-  const [currentQuestionId, setCurrentQuestionId] = useState(null); // Current question ID
-  const [isCurrentQuestionAnswered, setIsCurrentQuestionAnswered] =
-    useState(true); // Guard for unanswered question
+  const [currentQuestionId, setCurrentQuestionId] = useState(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const messageEnd = useRef(null);
-
   const fullIntroMessage =
     "Сәәлем, бұл бұрынсоңды болмаған уникалды чат! Енді сен маған емес, мен саған сұрақ қойып, жауаптарыңды бағалайтын боламын.";
 
@@ -31,7 +29,7 @@ const ChatAsker = () => {
     if (introShown) {
       setShowIntroduction(false);
       setShowChat(true);
-      fetchRandomQuestion(); // Fetch the first question
+      if (messages.length === 0) fetchRandomQuestion();
     } else {
       let index = 0;
       const timer = setInterval(() => {
@@ -48,15 +46,14 @@ const ChatAsker = () => {
 
   const startTest = () => {
     setShowIntroduction(false);
-    localStorage.setItem("introShown", "true"); // Mark introduction as shown
-    fetchRandomQuestion(); // Fetch the first question
+    localStorage.setItem("introShown", "true");
+    fetchRandomQuestion();
   };
 
   const fetchRandomQuestion = async () => {
-    if (!isCurrentQuestionAnswered) {
-      console.log("You must answer the current question before proceeding.");
-      return; // Prevent fetching a new question
-    }
+    if (isProcessing) return;
+
+    setIsProcessing(true); // Prevent multiple calls
 
     try {
       const response = await axios.get(
@@ -66,22 +63,24 @@ const ChatAsker = () => {
       setCurrentQuestionId(id);
       setMessages((prevMessages) => [
         ...prevMessages,
-        {
-          type: "system",
-          text: question,
-        },
+        { type: "system", text: question },
       ]);
-      setIsCurrentQuestionAnswered(false); // Mark the new question as unanswered
     } catch (error) {
       console.error("Failed to fetch random question:", error);
+    } finally {
+      setIsProcessing(false);
     }
   };
 
   const handleAnswerSubmit = async () => {
-    if (inputData.answer.trim() === "") return;
+    if (inputData.answer.trim() === "" || isProcessing) return;
 
-    const userMessage = { type: "user", text: inputData.answer };
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { type: "user", text: inputData.answer },
+    ]);
+
+    setIsProcessing(true); // Prevent multiple submissions
 
     try {
       const token = localStorage.getItem("token");
@@ -89,27 +88,25 @@ const ChatAsker = () => {
         console.error("Token is missing. Please log in again.");
         return;
       }
+
       await axios.post(
         "https://qaz-b-production.up.railway.app/api/model/evaluate",
-        {
-          question_id: currentQuestionId,
-          user_answer: inputData.answer,
-        },
+        { question_id: currentQuestionId, user_answer: inputData.answer },
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Attach the token here
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      setIsCurrentQuestionAnswered(true); // Mark the question as answered
-      fetchRandomQuestion(); // Fetch the next question
+      setInputData({ answer: "" });
+      fetchRandomQuestion();
     } catch (error) {
       console.error("Failed to submit the answer:", error);
+    } finally {
+      setIsProcessing(false);
     }
-
-    setInputData({ answer: "" });
   };
 
   const handleEnter = (e) => {
@@ -118,7 +115,7 @@ const ChatAsker = () => {
 
   useEffect(() => {
     if (messageEnd.current) {
-      messageEnd.current.scrollIntoView({ behavior: "auto" });
+      messageEnd.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
@@ -126,32 +123,34 @@ const ChatAsker = () => {
     setMessages([
       {
         type: "system",
-        text: "Қош келдіңіз! Мен сізге сұрақтар қоямын, сіз жауап бересіз, және мен сіздің жауаптарыңызды бағалайтын боламын.",
+        text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын.",
       },
     ]);
     setShowChat(true);
-
-    setTimeout(() => {
-      fetchRandomQuestion(); // Fetch the first question when the chat starts
-    }, 500);
+    setTimeout(fetchRandomQuestion, 500);
   };
 
-  const finishTest = () => {
-    setTestFinished(true); // Mark the test as finished
+  const clearChat = () => {
+    setMessages([]);
+    setCurrentQuestionId(null);
+    setTestFinished(false);
+    setShowChat(false);
+    setShowIntroduction(true);
+    localStorage.removeItem("introShown");
   };
+
   if (!isAuthenticated) {
     return (
-      <>
-        <p className="please-signin">
-          Өтініш, чатқа кіру үшін{" "}
-          <Link to="/login" className="link-spacing">
-            {" "}
-            тіркеліңіз{" "}
-          </Link>{" "}
-        </p>
-      </>
+      <p className="please-signin">
+        Өтініш, чатқа кіру үшін{" "}
+        <Link to="/login" className="link-spacing">
+          {" "}
+          тіркеліңіз{" "}
+        </Link>
+      </p>
     );
   }
+
   return (
     <div className="asker-container">
       <AnimatePresence onExitComplete={handleIntroductionExitComplete}>
@@ -213,34 +212,29 @@ const ChatAsker = () => {
             <div className="ask-chat-header">
               <img src={logo} alt="Logo" className="ask-chat-logo" />
               <h3>Сұрақ-Жауап Сеансы</h3>
+              <button className="clear-chat-btn" onClick={clearChat}>
+                🗑 Чатты тазарту
+              </button>
             </div>
             <div className="ask-chat-body">
               <div className="ask-chat-messages">
-                {messages.map((message, index) => {
-                  const isSystem = message.type === "system";
-                  return (
-                    <motion.div
-                      key={index}
-                      className={`ask-chat-message ${message.type}`}
-                      initial={{ opacity: 0, x: isSystem ? -50 : 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      {isSystem && (
-                        <div className="teacher-icon-ask">
-                          <img
-                            src={teacherIcon}
-                            alt=""
-                            className="teacher-img-ask"
-                          />
-                        </div>
-                      )}
-                      <p>
-                        <strong>{isSystem ? "Q:" : "A:"}</strong> {message.text}
-                      </p>
-                    </motion.div>
-                  );
-                })}
+                {messages.map((message, index) => (
+                  <motion.div
+                    key={index}
+                    className={`ask-chat-message ${message.type}`}
+                    initial={{
+                      opacity: 0,
+                      x: message.type === "system" ? -50 : 50,
+                    }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <p>
+                      <strong>{message.type === "system" ? "Q:" : "A:"}</strong>{" "}
+                      {message.text}
+                    </p>
+                  </motion.div>
+                ))}
                 <div ref={messageEnd} />
               </div>
               <div className="ask-chat-input">
@@ -248,9 +242,7 @@ const ChatAsker = () => {
                   type="text"
                   placeholder="Жауабыңызды жазыңыз..."
                   value={inputData.answer}
-                  onChange={(e) =>
-                    setInputData({ ...inputData, answer: e.target.value })
-                  }
+                  onChange={(e) => setInputData({ answer: e.target.value })}
                   onKeyDown={handleEnter}
                 />
                 <button onClick={handleAnswerSubmit}>
@@ -258,23 +250,6 @@ const ChatAsker = () => {
                 </button>
               </div>
             </div>
-            <div className="ask-chat-footer">
-              <button className="finish-test-btn" onClick={finishTest}>
-                Тестті бітіру
-              </button>
-            </div>
-          </motion.div>
-        )}
-
-        {testFinished && (
-          <motion.div
-            className="test-finish-message"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4 }}
-          >
-            <h2>Сіздің жауаптарыңыз бағаланып, сәтті сақталды.</h2>
           </motion.div>
         )}
       </AnimatePresence>

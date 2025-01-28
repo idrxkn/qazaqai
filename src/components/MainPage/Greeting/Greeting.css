@@ -44,5 +44,29 @@
   }
 }
 .greetingb {
-  margin-top: 150px;
+  margin-top: 100px;
+}
+/* Light Mode Background */
+body.dark {
+  background-color: #fafcff;
+  color: #080f17;
+}
+
+/* Greeting Section */
+body.dark .greeting-title {
+  color: #080f17;
+}
+
+body.dark .greeting-subtitle {
+  color: #080f17;
+}
+
+/* Underlined Span */
+body.dark .greeting-subtitle span {
+  color: #080f17;
+}
+
+/* Greeting Image (Rotating) */
+body.dark .greeting-right img {
+  filter: invert(0); /* Ensure proper contrast */
 }

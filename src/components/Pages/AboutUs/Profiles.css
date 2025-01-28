@@ -16,6 +16,7 @@
   color: #fff;
 }
 .profile-info {
+  margin-top: -20px;
   font-family: "Helvetica-light";
 }
 .profile-info ul {
@@ -23,4 +24,35 @@
 }
 .profile-info b {
   font-family: "Helvetica-bold";
+}
+
+body.dark .profile-card {
+  color: #080f17;
+}
+
+/* Profile Image */
+body.dark .profile-image img {
+  filter: brightness(1); /* Ensures image remains visible */
+}
+
+/* Overlay Text */
+body.dark .overlay-img h2 {
+  color: #080f17;
+}
+
+/* Profile Info */
+body.dark .profile-info {
+  color: #080f17;
+}
+
+/* Profile Info List */
+body.dark .profile-info ul {
+  font-size: 14px;
+  color: #080f17;
+}
+
+/* Profile Info Bold Text */
+body.dark .profile-info b {
+  font-family: "Helvetica-bold";
+  color: #080f17;
 }

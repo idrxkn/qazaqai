@@ -32,7 +32,6 @@ const Chat = () => {
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setLoading(true);
 
-    const currentLanguage = i18n.language;
     const apiUrl =
       "https://qaz-b-production.up.railway.app/api/model/get-answer";
     try {
@@ -42,7 +41,6 @@ const Chat = () => {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      // Call typeWriterEffect with both answer and context:
       typeWriterEffect(response.data.model_answer, response.data.context);
     } catch (error) {
       typeWriterEffect(
@@ -65,13 +63,10 @@ const Chat = () => {
       i++;
       if (i >= text.length) {
         clearInterval(intervalId);
-
-        // Once typing is done, add the teacher message with context to messages
         setMessages((prevMessages) => [
           ...prevMessages,
           { type: "teacher bot", text, context },
         ]);
-
         setCurrentBotMessage("");
       }
     }, 30);
@@ -79,6 +74,11 @@ const Chat = () => {
 
   const handleEnter = async (e) => {
     if (e.key === "Enter") await handleSubmit();
+  };
+
+  const clearChat = () => {
+    setMessages([]);
+    setCurrentBotMessage("");
   };
 
   if (!isAuthenticated) {
@@ -90,7 +90,7 @@ const Chat = () => {
           <Link to="/login" className="link-spacing">
             {" "}
             тіркеліңіз{" "}
-          </Link>{" "}
+          </Link>
         </p>
       </>
     );
@@ -105,11 +105,8 @@ const Chat = () => {
               <div className="upper-side-header-logo">
                 <img src={logo} alt="" />
               </div>
-              <button
-                className="new-chat"
-                onClick={() => window.location.reload()}
-              >
-                <FontAwesomeIcon icon="fa-solid fa-plus" /> {t("chat.new")}
+              <button className="new-chat" onClick={clearChat}>
+                <FontAwesomeIcon icon="fa-solid fa-trash" /> Чатты тазарту
               </button>
             </div>
             <div className="upper-side-bottom">
@@ -142,7 +139,6 @@ const Chat = () => {
                 )}
                 <div className="chat-txt">
                   <p className="txt">{message.text}</p>
-                  {/* If there's context, show an accordion below the message */}
                   {message.type === "teacher bot" && message.context && (
                     <details className="context-accordion">
                       <summary>Контекстті көру</summary>

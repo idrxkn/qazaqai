@@ -9,7 +9,7 @@
   border-radius: 20px;
   overflow: hidden;
   z-index: -2;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 body.dark .card {
   background: #121212;
@@ -59,4 +59,26 @@ body.lang-ru .card-title {
   z-index: -1;
   width: 119.09px;
   height: 41.75px;
+}
+
+/* Light Mode Card */
+body.dark .card {
+  background: #fafcff; /* Light mode background */
+  color: #080f17; /* Dark text for contrast */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Title */
+body.dark .card-title {
+  color: #080f17;
+}
+
+/* Card Paragraph */
+body.dark .card p {
+  color: #080f17;
+}
+
+/* Slide Icon */
+body.dark .slide-icon {
+  color: #c19c53; /* Keeping gold color the same */
 }

@@ -67,7 +67,7 @@ const Navigation = () => {
       {isAuthenticated ? (
         <Link to="/myprofile">
           <button className="profile-button">
-            <FontAwesomeIcon icon="fa-solid fa-user" />  Жеке профиль
+            <FontAwesomeIcon icon="fa-solid fa-user" /> Жеке профиль
           </button>
         </Link>
       ) : (
@@ -87,6 +87,7 @@ const Navigation = () => {
         selectedLanguage={language}
         onChange={handleLanguageChange}
       /> */}
+      <ToggleSwitch isOn={isDarkMode} handleToggle={handleToggle} />
     </nav>
   );
 };

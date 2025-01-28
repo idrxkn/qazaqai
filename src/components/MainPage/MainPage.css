@@ -92,3 +92,43 @@ body.lang-kz .edu {
   font-family: "Monolog-light";
   left: 0;
 }
+/* Light Mode Background */
+body.dark {
+  background-color: #fafcff;
+  color: #080F17;
+}
+
+/* Main Page */
+body.dark .main-page {
+  color: #080F17; /* Dark text for light mode */
+}
+
+/* Centered Text */
+body.dark .centered-text {
+  color: #080F17; /* Dark text for light mode */
+}
+
+/* Rev - Big Main Title */
+body.dark .rev {
+  color: #080F17;
+}
+
+/* Your Learning (yourlear-wrap) */
+body.dark .yourlear {
+  color: #080F17;
+}
+
+/* 'With' text */
+body.dark .with {
+  color: #080F17;
+}
+
+/* AI text */
+body.dark .ai {
+  color: #080F17;
+}
+
+/* Edu text */
+body.dark .edu {
+  color: #080F17;
+}

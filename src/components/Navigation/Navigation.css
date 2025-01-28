@@ -12,7 +12,7 @@
 }
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 26px;
 }
 .logo {
   background-image: url("../../assets/logo.svg");
@@ -127,4 +127,35 @@ body.dark .login-button {
 .theme-checkbox {
   width: 40px;
   height: 20px;
+}
+/* Light mode navigation */
+body.dark .navigation {
+  background-color: #fafcff; /* Light background */
+}
+
+/* Light mode nav items */
+body.dark .nav-item {
+  color: #080F17; /* Dark text for contrast */
+}
+
+/* Light mode nav item hover */
+body.dark .nav-item:hover::after {
+  background-color: #080F17; /* Dark underline */
+}
+
+/* Light mode profile button */
+body.dark .profile-button {
+  background-color: #080F17;
+  color: #fafcff;
+}
+
+body.dark .profile-button:hover {
+  background-color: #c19c53;
+  color: #fafcff;
+}
+
+/* Light mode login button */
+body.dark .login-button {
+  border: 1px solid #080F17;
+  color: #080F17;
 }

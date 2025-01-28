@@ -312,3 +312,143 @@ a {
   margin-top: 30px;
   font-family: "Helvetica-bold";
 }
+
+/* Test Page */
+body.dark .test-container {
+  color: #080f17;
+}
+
+/* Test Title */
+body.dark .test-title {
+  color: #080f17;
+}
+
+/* Test Cards */
+body.dark .cardTest {
+  background-color: #fafcff;
+  color: #080f17;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Overlay */
+body.dark .overlay-test {
+  background-color: #c19c53;
+}
+
+/* Buttons */
+body.dark .home-btn-test {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .home-btn-test:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Delete Test Button */
+body.dark .delete-test-btn {
+  background-color: #b43e3e;
+  color: #ffffff;
+}
+
+body.dark .delete-test-btn:hover {
+  background-color: #ffffff;
+  color: #b43e3e;
+}
+
+/* Navigation Blocks */
+body.dark .navigation-block {
+  background-color: #fafcff;
+  color: #080f17;
+}
+
+body.dark .navigation-block.current-question {
+  background-color: #c19c53;
+  color: #ffffff;
+}
+
+body.dark .navigation-block.answered-question {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+body.dark .navigation-block:hover {
+  background-color: #e0e0e0;
+}
+
+/* Option Buttons */
+body.dark .option-button {
+  background-color: #fafcff;
+  border: 1px solid #d0d0d0;
+  color: #080f17;
+}
+
+body.dark .option-button:hover {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .option-button.selected {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+/* Progress Bar */
+body.dark .progress-bar {
+  background-color: #d0d0d0;
+}
+
+body.dark .progress {
+  background-color: #c19c53;
+}
+
+/* Score Section */
+body.dark .score-section {
+  color: #080f17;
+}
+
+/* Back Button */
+body.dark .back-btn {
+  background-color: #b43e3e;
+  color: #ffffff;
+}
+
+body.dark .back-btn:hover {
+  background-color: #ffffff;
+  border: 1px solid #b43e3e;
+  color: #b43e3e;
+}
+
+/* Create Test Button */
+body.dark .create-test-btn {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 2px solid #c19c53;
+}
+
+body.dark .create-test-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Answer Review */
+body.dark .correct-answer {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+body.dark .incorrect-answer {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Answer Saved Message */
+body.dark .answer-saved-message-block {
+  background-color: #c19c53;
+}
+
+body.dark .answer-saved-message {
+  color: #080f17;
+}

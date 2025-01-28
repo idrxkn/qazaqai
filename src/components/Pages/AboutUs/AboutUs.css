@@ -8,22 +8,23 @@
   color: #292727;
 }
 .aboutus-top {
+  text-align: center;
   display: flex;
+  justify-content: center;
   height: 400px;
 }
 
 .curve-img {
-  width: 184.1px;
-  height: 183.96px;
+  width: 150.1px;
+  height: 150.96px;
   background: url(../../../assets/curve.svg);
+  background-size: cover;
   position: absolute;
   right: 0;
   top: 35px;
   animation: curving 15s linear infinite;
 }
-body.dark .curve-img {
-  background: url(../../../assets/curve-green.svg);
-}
+
 @keyframes curving {
   0% {
     transform: rotate(0deg);

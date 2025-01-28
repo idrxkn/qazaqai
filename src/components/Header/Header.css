@@ -15,6 +15,7 @@
   height: 80px;
   top: 0;
 }
+/* Light mode header when scrolled */
 body.dark .header.scrolled {
-  background-color: #121212;
+  background-color: #fafcff;
 }

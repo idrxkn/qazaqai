@@ -280,3 +280,113 @@
   color: #fff;
   font-size: 12px;
 }
+
+
+
+
+
+/* Sidebar */
+body.dark .sidebar {
+  border-right: 0.5px solid #d0d0d0;
+}
+
+/* Header Logo */
+body.dark .upper-side-header-logo img {
+  filter: brightness(0); /* Ensures the logo is visible in light mode */
+}
+
+/* New Chat Button */
+body.dark .new-chat {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 1px solid #c19c53;
+}
+
+body.dark .new-chat:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Query List */
+body.dark .query {
+  background-color: #fafcff;
+  color: #080f17;
+  border: 0.5px solid #d0d0d0;
+}
+
+body.dark .query:hover {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+/* Home Button */
+body.dark .home-btn {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .home-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Chat Section */
+body.dark .chats {
+  background-color: #fafcff;
+}
+
+/* Chat Message - User */
+body.dark .chat.user {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+/* Chat Message - Bot */
+body.dark .chat.bot {
+  background: #fafcff;
+  color: #080f17;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Input */
+body.dark .chat-input {
+  background-color: #fafcff;
+  border: 1.5px solid rgba(0, 0, 0, 0.2);
+}
+
+body.dark .chat-input input {
+  color: #080f17;
+  background-color: #fafcff;
+}
+
+/* Chat Send Button */
+body.dark .chat-input-submit {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .chat-input-submit:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Context Accordion */
+body.dark .context-accordion {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #080f17;
+}
+
+body.dark .context-accordion summary {
+  color: #c19c53;
+}
+
+/* Chat Bottom Section */
+body.dark .chat-bottom {
+  background: #fafcff;
+}
+
+/* Message Danger Text */
+body.dark .danger-txt {
+  color: #080f17;
+}

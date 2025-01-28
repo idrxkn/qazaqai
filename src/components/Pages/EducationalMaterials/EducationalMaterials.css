@@ -316,3 +316,147 @@
   margin-right: 10px;
   font-size: 18px;
 }
+
+body.dark .materialss {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark .edu-title {
+  color: #080f17;
+}
+
+body.dark .please-signin {
+  color: #080f17;
+}
+
+/* Sign-in Link Button */
+body.dark .link-spacing {
+  background-color: #c19c53;
+  color: #080f17;
+  border: 1px solid #c19c53;
+}
+
+body.dark .link-spacing:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* CardEdu */
+body.dark .cardEdu {
+  background-color: #fafcff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .cardEdu-content {
+  color: #080f17;
+}
+
+/* Overlay */
+body.dark .overlay {
+  background-color: #c19c53;
+}
+
+/* Buttons */
+body.dark .view,
+body.dark .download {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .view:hover,
+body.dark .download:hover {
+  background-color: #080f17;
+  color: #c19c53;
+  border: 1px solid #c19c53;
+}
+
+/* Bottom Icons */
+body.dark .bottom-icons,
+body.dark .fa-school,
+body.dark .fa-star {
+  color: #080f17;
+}
+
+/* Upload Button */
+body.dark .upload-btn {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .upload-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Materials Section */
+body.dark .materialss {
+  background-color: #fafcff;
+}
+
+/* Access Buttons */
+body.dark .access-btn {
+  background-color: #fafcff;
+  border: 1px solid #d0d0d0;
+}
+
+body.dark .access-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Public & Private Buttons */
+body.dark .public-btn.active,
+body.dark .private-btn.active {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Drag & Drop Area */
+body.dark .drag-drop-area {
+  border: 2px dashed #080f17;
+  background-color: #fafcff;
+}
+
+body.dark .drag-drop-area:hover {
+  background-color: #c19c53;
+}
+
+body.dark .drag-drop-area span {
+  color: #080f17;
+}
+
+/* Upload Form */
+body.dark .ctg-btn,
+body.dark .access-select {
+  border: 1px solid #d0d0d0;
+  color: #080f17;
+  background-color: #fafcff;
+}
+
+/* Upload Last Button */
+body.dark .upload-last-btn {
+  background-color: #c19c53;
+  color: #080f17;
+}
+
+body.dark .upload-last-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
+/* Error Message */
+body.dark .error-message {
+  color: #b43e3e;
+}
+
+/* Back to Materials Button */
+body.dark .back-to-mat {
+  background-color: #b43e3e;
+  color: #fff;
+}
+
+body.dark .back-to-mat:hover {
+  background-color: #fff;
+  color: #b43e3e;
+}
