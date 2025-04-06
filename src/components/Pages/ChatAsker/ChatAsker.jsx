@@ -21,6 +21,7 @@ const ChatAsker = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   const messageEnd = useRef(null);
+
   const fullIntroMessage =
     "Сәәлем, бұл бұрынсоңды болмаған уникалды чат! Енді сен маған емес, мен саған сұрақ қойып, жауаптарыңды бағалайтын боламын.";
 
@@ -29,8 +30,12 @@ const ChatAsker = () => {
     if (introShown) {
       setShowIntroduction(false);
       setShowChat(true);
-      if (messages.length === 0) fetchRandomQuestion();
+      // If there are no messages yet, fetch the first question
+      if (messages.length === 0) {
+        fetchRandomQuestion();
+      }
     } else {
+      // "Type out" the introduction text
       let index = 0;
       const timer = setInterval(() => {
         setIntroText((prev) => prev + fullIntroMessage.charAt(index));
@@ -42,7 +47,7 @@ const ChatAsker = () => {
       }, 50);
       return () => clearInterval(timer);
     }
-  }, []);
+  }, [messages.length]);
 
   const startTest = () => {
     setShowIntroduction(false);
@@ -54,17 +59,13 @@ const ChatAsker = () => {
     if (isProcessing || testFinished) return;
 
     setIsProcessing(true);
-
     try {
       const response = await axios.get(
         "https://qazaqai-api-production.up.railway.app/api/model/ask-random-question"
       );
       const { id, question } = response.data;
       setCurrentQuestionId(id);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { type: "system", text: question },
-      ]);
+      setMessages((prev) => [...prev, { type: "system", text: question }]);
     } catch (error) {
       console.error("Failed to fetch random question:", error);
     } finally {
@@ -75,11 +76,8 @@ const ChatAsker = () => {
   const handleAnswerSubmit = async () => {
     if (inputData.answer.trim() === "" || isProcessing || testFinished) return;
 
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { type: "user", text: inputData.answer },
-    ]);
-
+    // Add user answer to messages
+    setMessages((prev) => [...prev, { type: "user", text: inputData.answer }]);
     setIsProcessing(true);
 
     try {
@@ -89,6 +87,7 @@ const ChatAsker = () => {
         return;
       }
 
+      // Send answer to backend
       await axios.post(
         "https://qazaqai-api-production.up.railway.app/api/model/evaluate",
         { question_id: currentQuestionId, user_answer: inputData.answer },
@@ -101,6 +100,7 @@ const ChatAsker = () => {
       );
 
       setInputData({ answer: "" });
+      // Fetch the next question only after the answer is submitted
       fetchRandomQuestion();
     } catch (error) {
       console.error("Failed to submit the answer:", error);
@@ -113,12 +113,14 @@ const ChatAsker = () => {
     if (e.key === "Enter") handleAnswerSubmit();
   };
 
+  // Scroll to bottom whenever messages change
   useEffect(() => {
     if (messageEnd.current) {
       messageEnd.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
+  // After introduction finishes animating out
   const handleIntroductionExitComplete = () => {
     setMessages([
       {
@@ -127,6 +129,7 @@ const ChatAsker = () => {
       },
     ]);
     setShowChat(true);
+    // Slight delay before fetching next question
     setTimeout(fetchRandomQuestion, 500);
   };
 
@@ -143,13 +146,13 @@ const ChatAsker = () => {
     setTestFinished(true);
   };
 
+  // Require authentication
   if (!isAuthenticated) {
     return (
       <p className="please-signin">
         Өтініш, чатқа кіру үшін{" "}
         <Link to="/login" className="link-spacing">
-          {" "}
-          тіркеліңіз{" "}
+          тіркеліңіз
         </Link>
       </p>
     );
@@ -220,6 +223,35 @@ const ChatAsker = () => {
                 🗑 Чатты тазарту
               </button>
             </div>
+
+            {/* 
+              ADDING THE BODY SECTION 
+              for displaying questions & user answers
+            */}
+            <div className="ask-chat-body">
+              <div className="ask-chat-messages">
+                {messages.map((msg, idx) => (
+                  <div key={idx} className={`ask-chat-message ${msg.type}`}>
+                    {msg.text}
+                  </div>
+                ))}
+                <div ref={messageEnd} />
+              </div>
+              <div className="ask-chat-input">
+                <input
+                  type="text"
+                  placeholder="Жауабыңызды жазыңыз..."
+                  value={inputData.answer}
+                  onChange={(e) => setInputData({ answer: e.target.value })}
+                  onKeyDown={handleEnter}
+                />
+                <button onClick={handleAnswerSubmit}>
+                  <FontAwesomeIcon icon="fa-solid fa-arrow-up" />
+                </button>
+              </div>
+            </div>
+            {/* End ask-chat-body */}
+
             <div className="ask-chat-footer">
               <button className="finish-test-btn" onClick={finishTest}>
                 Тестті бітіру
