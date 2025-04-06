@@ -5,11 +5,12 @@
   color: #fff;
   font-family: "Helvetica", sans-serif;
   overflow: hidden;
-  padding-top: 30px; /* space for nav bar */
+  padding-top: 30px; /* Add this to account for the navigation bar at the top */
   box-sizing: border-box;
   margin-bottom: 200px;
 }
 
+/* INTRODUCTION SCREEN */
 .introduction-screen {
   text-align: center;
   max-width: 500px;
@@ -56,11 +57,13 @@
   transition: all 0.2s;
   outline: none;
 }
+
 .start-test-btn:hover {
   background-color: #080f17;
   color: #c19c53;
 }
 
+/* CHAT */
 .ask-chat {
   display: flex;
   flex-direction: column;
@@ -91,6 +94,7 @@
   height: auto;
 }
 
+/* BODY */
 .ask-chat-body {
   background: transparent;
   display: flex;
@@ -104,12 +108,15 @@
   padding: 20px;
   scroll-behavior: smooth;
 }
+
 .ask-chat-messages::-webkit-scrollbar {
   width: 0.4rem;
 }
+
 .ask-chat-messages::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }
+
 .ask-chat-messages::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
 }
@@ -126,9 +133,10 @@
   color: #080f17;
 }
 
+/* System (AI) message on left */
 .ask-chat-message.system {
   background: rgba(255, 255, 255, 0.1);
-  display: flex; /* to hold teacher icon and text side by side */
+  display: flex; /* Show teacher icon + text side by side */
   gap: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -136,6 +144,7 @@
   border-radius: 15px 15px 15px 0px;
 }
 
+/* User message on right */
 .ask-chat-message.user {
   margin-left: auto;
   border-radius: 15px 15px 0px 15px;
@@ -143,6 +152,7 @@
   color: #080f17;
 }
 
+/* Input row */
 .ask-chat-input {
   display: flex;
   align-items: center;
@@ -161,6 +171,7 @@
   padding: 10px;
   font-family: "Helvetica", sans-serif;
 }
+
 .ask-chat-input input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
@@ -180,6 +191,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .ask-chat-input button:hover {
   background: #080f17;
   color: #c19c53;
@@ -196,6 +208,7 @@
   border-radius: 50%;
 }
 
+/* Clear button */
 .clear-chat-btn {
   background: #c19c53;
   border: none;
@@ -213,6 +226,7 @@
   color: #c19c53;
 }
 
+/* Finish button pinned at bottom-right */
 .finish-test-btn {
   background-color: #c19c53;
   border: none;
@@ -223,18 +237,20 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  position: fixed; /* keeps it pinned in view */
+  position: fixed;
   bottom: 20px;
   right: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
 }
+
 .finish-test-btn:hover {
   background-color: #080f17;
   color: #c19c53;
   transform: scale(1.05);
 }
 
+/* Finished screen */
 .test-finish-message {
   display: flex;
   flex-direction: column;

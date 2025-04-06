@@ -9,58 +9,51 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ChatAsker = () => {
+  const { isAuthenticated } = useAuth();
+
+  // Intro & chat states
   const [showIntroduction, setShowIntroduction] = useState(true);
   const [introText, setIntroText] = useState("");
   const [typingFinished, setTypingFinished] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [testFinished, setTestFinished] = useState(false);
+
+  // Messages & input
   const [messages, setMessages] = useState([]);
   const [inputData, setInputData] = useState({ answer: "" });
-  const { isAuthenticated } = useAuth();
   const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // For auto-scrolling
   const messageEnd = useRef(null);
 
-  // Text that "types out" during the introduction
+  // Text that will be typed out in the intro
   const fullIntroMessage =
     "Сәәлем, бұл бұрынсоңды болмаған уникалды чат! Енді сен маған емес, мен саған сұрақ қойып, жауаптарыңды бағалайтын боламын.";
 
-  // On mount, check if intro has already been shown
+  // Always run the typing effect whenever the component mounts
   useEffect(() => {
-    const introShown = localStorage.getItem("introShown");
-    if (introShown) {
-      // If user has seen intro, go straight to chat
-      setShowIntroduction(false);
-      setShowChat(true);
-      // If no messages yet, fetch the first question
-      if (messages.length === 0) {
-        fetchRandomQuestion();
+    let index = 0;
+    const timer = setInterval(() => {
+      setIntroText((prev) => prev + fullIntroMessage.charAt(index));
+      index++;
+      if (index >= fullIntroMessage.length) {
+        clearInterval(timer);
+        setTypingFinished(true);
       }
-    } else {
-      // Otherwise, "type out" the introduction text
-      let index = 0;
-      const timer = setInterval(() => {
-        setIntroText((prev) => prev + fullIntroMessage.charAt(index));
-        index++;
-        if (index >= fullIntroMessage.length) {
-          clearInterval(timer);
-          setTypingFinished(true);
-        }
-      }, 50);
-      return () => clearInterval(timer);
-    }
-    // eslint-disable-next-line
+    }, 50);
+
+    return () => clearInterval(timer);
   }, []);
 
-  // Start test: hide intro, show chat, fetch question
+  // Start the test: hide intro, show chat, fetch first question
   const startTest = () => {
     setShowIntroduction(false);
-    localStorage.setItem("introShown", "true");
+    setShowChat(true);
     fetchRandomQuestion();
   };
 
-  // Fetch a new question from backend
+  // Fetch a random question from your backend
   const fetchRandomQuestion = async () => {
     if (isProcessing || testFinished) return;
     setIsProcessing(true);
@@ -79,11 +72,11 @@ const ChatAsker = () => {
     }
   };
 
-  // Submit user answer, then fetch next question
+  // Handle user answer submission, then fetch next question
   const handleAnswerSubmit = async () => {
     if (inputData.answer.trim() === "" || isProcessing || testFinished) return;
 
-    // Add user’s answer to the messages
+    // Add user’s message
     setMessages((prev) => [...prev, { type: "user", text: inputData.answer }]);
     setIsProcessing(true);
 
@@ -94,7 +87,6 @@ const ChatAsker = () => {
         return;
       }
 
-      // Send the user’s answer to the backend
       await axios.post(
         "https://qazaqai-api-production.up.railway.app/api/model/evaluate",
         { question_id: currentQuestionId, user_answer: inputData.answer },
@@ -106,7 +98,7 @@ const ChatAsker = () => {
         }
       );
 
-      // Clear the input and get next question
+      // Clear input, get next question
       setInputData({ answer: "" });
       fetchRandomQuestion();
     } catch (error) {
@@ -116,47 +108,36 @@ const ChatAsker = () => {
     }
   };
 
-  // If user presses Enter, submit answer
+  // Submit on Enter key
   const handleEnter = (e) => {
     if (e.key === "Enter") handleAnswerSubmit();
   };
 
-  // Auto-scroll to bottom of chat when messages update
+  // Auto-scroll to latest message
   useEffect(() => {
     if (messageEnd.current) {
       messageEnd.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
-  // Runs once the introduction has animated out
-  const handleIntroductionExitComplete = () => {
-    // Show a quick system welcome, then start chat
-    setMessages([
-      {
-        type: "system",
-        text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын.",
-      },
-    ]);
-    setShowChat(true);
-    setTimeout(fetchRandomQuestion, 500);
-  };
-
-  // Clear the chat and reset
+  // Clear everything and reset
   const clearChat = () => {
     setMessages([]);
     setCurrentQuestionId(null);
     setTestFinished(false);
     setShowChat(false);
     setShowIntroduction(true);
-    localStorage.removeItem("introShown");
+    setIntroText("");
+    setTypingFinished(false);
+    // We re-run the typing effect by unmounting/remounting or re-setting useEffect
   };
 
-  // Finish test
+  // End the Q&A session
   const finishTest = () => {
     setTestFinished(true);
   };
 
-  // Require authentication
+  // If user is not authenticated, show a “please sign in” message
   if (!isAuthenticated) {
     return (
       <p className="please-signin">
@@ -170,9 +151,9 @@ const ChatAsker = () => {
 
   return (
     <div className="asker-container">
-      {/* INTRO SCREEN */}
-      <AnimatePresence onExitComplete={handleIntroductionExitComplete}>
-        {showIntroduction && (
+      {/* The introduction: typed text + teacher icon + start button */}
+      <AnimatePresence>
+        {showIntroduction && !testFinished && (
           <motion.div
             className="introduction-screen"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -218,7 +199,7 @@ const ChatAsker = () => {
         )}
       </AnimatePresence>
 
-      {/* CHAT & FINISH VIEW */}
+      {/* The chat area (only after user clicks “Тестілеуді бастау”) */}
       <AnimatePresence>
         {showChat && !testFinished && (
           <motion.div
@@ -237,7 +218,7 @@ const ChatAsker = () => {
               </button>
             </div>
 
-            {/* BODY */}
+            {/* BODY: messages + input */}
             <div className="ask-chat-body">
               <div className="ask-chat-messages">
                 {messages.map((msg, idx) => {
@@ -250,7 +231,6 @@ const ChatAsker = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4 }}
                     >
-                      {/* Teacher icon for "system" messages */}
                       {isSystem && (
                         <div className="teacher-icon-ask">
                           <img
@@ -282,7 +262,7 @@ const ChatAsker = () => {
               </div>
             </div>
 
-            {/* FOOTER */}
+            {/* FOOTER: test finish button */}
             <div className="ask-chat-footer">
               <button className="finish-test-btn" onClick={finishTest}>
                 Тестті бітіру
@@ -291,7 +271,7 @@ const ChatAsker = () => {
           </motion.div>
         )}
 
-        {/* FINISHED STATE */}
+        {/* If the user finishes the test */}
         {testFinished && (
           <motion.div
             className="test-finish-message"
