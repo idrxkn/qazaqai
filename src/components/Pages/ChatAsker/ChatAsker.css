@@ -1,12 +1,11 @@
 .asker-container {
   width: 1440px;
-
   display: flex;
   justify-content: center;
   color: #fff;
   font-family: "Helvetica", sans-serif;
   overflow: hidden;
-  padding-top: 30px; /* Add this to account for the navigation bar at the top */
+  padding-top: 30px; /* space for nav bar */
   box-sizing: border-box;
   margin-bottom: 200px;
 }
@@ -27,6 +26,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .intro-img {
   width: 120px;
   height: 120px;
@@ -35,6 +35,7 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
 }
+
 .intro-text {
   margin-bottom: 30px;
   font-size: 18px;
@@ -64,12 +65,10 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-
   max-width: 1000px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
-
   margin: 0 20px;
 }
 
@@ -81,6 +80,7 @@
   align-items: center;
   gap: 10px;
 }
+
 .ask-chat-header h3 {
   font-size: 18px;
   font-weight: 500;
@@ -104,7 +104,6 @@
   padding: 20px;
   scroll-behavior: smooth;
 }
-
 .ask-chat-messages::-webkit-scrollbar {
   width: 0.4rem;
 }
@@ -129,7 +128,7 @@
 
 .ask-chat-message.system {
   background: rgba(255, 255, 255, 0.1);
-  display: flex;
+  display: flex; /* to hold teacher icon and text side by side */
   gap: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -165,45 +164,6 @@
 .ask-chat-input input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
-.test-finish-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 15px;
-  max-width: 600px;
-  color: #fff;
-  font-family: "Helvetica", sans-serif;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.test-finish-message h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.test-finish-message button {
-  background: #c19c53;
-  border: none;
-  padding: 10px 20px;
-  color: #080f17;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.test-finish-message button:hover {
-  background: #080f17;
-  color: #c19c53;
-}
 
 .ask-chat-input button {
   background: #c19c53;
@@ -225,6 +185,34 @@
   color: #c19c53;
 }
 
+.teacher-icon-ask {
+  display: flex;
+  align-items: center;
+}
+
+.teacher-img-ask {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.clear-chat-btn {
+  background: #c19c53;
+  border: none;
+  padding: 10px 20px;
+  color: #080f17;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.clear-chat-btn:hover {
+  background-color: #080f17;
+  color: #c19c53;
+}
+
 .finish-test-btn {
   background-color: #c19c53;
   border: none;
@@ -235,24 +223,39 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  position: fixed; /* Ensures it's always visible at the bottom */
-  bottom: 20px; /* Adjust spacing from the bottom */
-  right: 20px; /* Adjust spacing from the right */
+  position: fixed; /* keeps it pinned in view */
+  bottom: 20px;
+  right: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
 }
-
 .finish-test-btn:hover {
   background-color: #080f17;
-
   color: #c19c53;
-  transform: scale(1.05); /* Slightly enlarge on hover for effect */
+  transform: scale(1.05);
 }
 
-.teacher-img-ask {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.test-finish-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  max-width: 600px;
+  color: #fff;
+  font-family: "Helvetica", sans-serif;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.test-finish-message h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 body.dark .asker-container {

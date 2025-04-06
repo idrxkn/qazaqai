@@ -22,20 +22,23 @@ const ChatAsker = () => {
 
   const messageEnd = useRef(null);
 
+  // Text that "types out" during the introduction
   const fullIntroMessage =
     "Сәәлем, бұл бұрынсоңды болмаған уникалды чат! Енді сен маған емес, мен саған сұрақ қойып, жауаптарыңды бағалайтын боламын.";
 
+  // On mount, check if intro has already been shown
   useEffect(() => {
     const introShown = localStorage.getItem("introShown");
     if (introShown) {
+      // If user has seen intro, go straight to chat
       setShowIntroduction(false);
       setShowChat(true);
-      // If there are no messages yet, fetch the first question
+      // If no messages yet, fetch the first question
       if (messages.length === 0) {
         fetchRandomQuestion();
       }
     } else {
-      // "Type out" the introduction text
+      // Otherwise, "type out" the introduction text
       let index = 0;
       const timer = setInterval(() => {
         setIntroText((prev) => prev + fullIntroMessage.charAt(index));
@@ -47,18 +50,21 @@ const ChatAsker = () => {
       }, 50);
       return () => clearInterval(timer);
     }
-  }, [messages.length]);
+    // eslint-disable-next-line
+  }, []);
 
+  // Start test: hide intro, show chat, fetch question
   const startTest = () => {
     setShowIntroduction(false);
     localStorage.setItem("introShown", "true");
     fetchRandomQuestion();
   };
 
+  // Fetch a new question from backend
   const fetchRandomQuestion = async () => {
     if (isProcessing || testFinished) return;
-
     setIsProcessing(true);
+
     try {
       const response = await axios.get(
         "https://qazaqai-api-production.up.railway.app/api/model/ask-random-question"
@@ -73,10 +79,11 @@ const ChatAsker = () => {
     }
   };
 
+  // Submit user answer, then fetch next question
   const handleAnswerSubmit = async () => {
     if (inputData.answer.trim() === "" || isProcessing || testFinished) return;
 
-    // Add user answer to messages
+    // Add user’s answer to the messages
     setMessages((prev) => [...prev, { type: "user", text: inputData.answer }]);
     setIsProcessing(true);
 
@@ -87,7 +94,7 @@ const ChatAsker = () => {
         return;
       }
 
-      // Send answer to backend
+      // Send the user’s answer to the backend
       await axios.post(
         "https://qazaqai-api-production.up.railway.app/api/model/evaluate",
         { question_id: currentQuestionId, user_answer: inputData.answer },
@@ -99,8 +106,8 @@ const ChatAsker = () => {
         }
       );
 
+      // Clear the input and get next question
       setInputData({ answer: "" });
-      // Fetch the next question only after the answer is submitted
       fetchRandomQuestion();
     } catch (error) {
       console.error("Failed to submit the answer:", error);
@@ -109,19 +116,21 @@ const ChatAsker = () => {
     }
   };
 
+  // If user presses Enter, submit answer
   const handleEnter = (e) => {
     if (e.key === "Enter") handleAnswerSubmit();
   };
 
-  // Scroll to bottom whenever messages change
+  // Auto-scroll to bottom of chat when messages update
   useEffect(() => {
     if (messageEnd.current) {
       messageEnd.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
-  // After introduction finishes animating out
+  // Runs once the introduction has animated out
   const handleIntroductionExitComplete = () => {
+    // Show a quick system welcome, then start chat
     setMessages([
       {
         type: "system",
@@ -129,10 +138,10 @@ const ChatAsker = () => {
       },
     ]);
     setShowChat(true);
-    // Slight delay before fetching next question
     setTimeout(fetchRandomQuestion, 500);
   };
 
+  // Clear the chat and reset
   const clearChat = () => {
     setMessages([]);
     setCurrentQuestionId(null);
@@ -142,6 +151,7 @@ const ChatAsker = () => {
     localStorage.removeItem("introShown");
   };
 
+  // Finish test
   const finishTest = () => {
     setTestFinished(true);
   };
@@ -160,6 +170,7 @@ const ChatAsker = () => {
 
   return (
     <div className="asker-container">
+      {/* INTRO SCREEN */}
       <AnimatePresence onExitComplete={handleIntroductionExitComplete}>
         {showIntroduction && (
           <motion.div
@@ -207,6 +218,7 @@ const ChatAsker = () => {
         )}
       </AnimatePresence>
 
+      {/* CHAT & FINISH VIEW */}
       <AnimatePresence>
         {showChat && !testFinished && (
           <motion.div
@@ -216,6 +228,7 @@ const ChatAsker = () => {
             exit={{ opacity: 0, y: 50 }}
             transition={{ duration: 0.5 }}
           >
+            {/* HEADER */}
             <div className="ask-chat-header">
               <img src={logo} alt="Logo" className="ask-chat-logo" />
               <h3>Сұрақ-Жауап Сеансы</h3>
@@ -224,19 +237,37 @@ const ChatAsker = () => {
               </button>
             </div>
 
-            {/* 
-              ADDING THE BODY SECTION 
-              for displaying questions & user answers
-            */}
+            {/* BODY */}
             <div className="ask-chat-body">
               <div className="ask-chat-messages">
-                {messages.map((msg, idx) => (
-                  <div key={idx} className={`ask-chat-message ${msg.type}`}>
-                    {msg.text}
-                  </div>
-                ))}
+                {messages.map((msg, idx) => {
+                  const isSystem = msg.type === "system";
+                  return (
+                    <motion.div
+                      key={idx}
+                      className={`ask-chat-message ${msg.type}`}
+                      initial={{ opacity: 0, x: isSystem ? -50 : 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      {/* Teacher icon for "system" messages */}
+                      {isSystem && (
+                        <div className="teacher-icon-ask">
+                          <img
+                            src={teacherIcon}
+                            alt="Teacher"
+                            className="teacher-img-ask"
+                          />
+                        </div>
+                      )}
+                      <p>{msg.text}</p>
+                    </motion.div>
+                  );
+                })}
                 <div ref={messageEnd} />
               </div>
+
+              {/* INPUT FIELD */}
               <div className="ask-chat-input">
                 <input
                   type="text"
@@ -250,8 +281,8 @@ const ChatAsker = () => {
                 </button>
               </div>
             </div>
-            {/* End ask-chat-body */}
 
+            {/* FOOTER */}
             <div className="ask-chat-footer">
               <button className="finish-test-btn" onClick={finishTest}>
                 Тестті бітіру
@@ -260,6 +291,7 @@ const ChatAsker = () => {
           </motion.div>
         )}
 
+        {/* FINISHED STATE */}
         {testFinished && (
           <motion.div
             className="test-finish-message"
