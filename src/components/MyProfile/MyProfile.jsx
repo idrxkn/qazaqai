@@ -55,7 +55,7 @@ const MyProfile = () => {
       const updatedData = { [editField]: formData[editField] };
 
       const response = await fetch(
-        "https://qaz-b-production.up.railway.app/api/profile",
+        "https://qazaqai-api-production.up.railway.app/api/profile",
         {
           method: "PUT",
           headers: {
@@ -87,7 +87,7 @@ const MyProfile = () => {
 
     try {
       const response = await fetch(
-        `https://qaz-b-production.up.railway.app/students/${studentId}/comments`,
+        `https://qazaqai-api-production.up.railway.app/students/${studentId}/comments`,
         {
           method: "POST",
           headers: {

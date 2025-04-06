@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 import "./Login.css";
 import rightImage from "../../assets/greeting-right.png";
 
-const BASE_URL = "https://qaz-b-production.up.railway.app/";
+const BASE_URL = "https://qazaqai-api-production.up.railway.app/";
 
 const Login = () => {
   const { t } = useTranslation();

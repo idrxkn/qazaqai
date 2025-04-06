@@ -21,7 +21,7 @@ const Testing = () => {
     const fetchTests = async () => {
       try {
         const response = await axios.get(
-          "https://qaz-b-production.up.railway.app/api/tests"
+          "https://qazaqai-api-production.up.railway.app/api/tests"
         );
         setCustomTests(response.data);
         setLoading(false);
@@ -37,7 +37,7 @@ const Testing = () => {
   const startTest = async (testId) => {
     try {
       const response = await axios.get(
-        `https://qaz-b-production.up.railway.app/api/tests/${testId}`
+        `https://qazaqai-api-production.up.railway.app/api/tests/${testId}`
       );
       setSelectedTest(response.data);
       setShowTest(true);
@@ -118,7 +118,7 @@ const Testing = () => {
     const token = localStorage.getItem("token");
     try {
       await axios.post(
-        "https://qaz-b-production.up.railway.app/api/test-results",
+        "https://qazaqai-api-production.up.railway.app/api/test-results",
         resultData,
         {
           headers: {
@@ -149,7 +149,7 @@ const Testing = () => {
 
     try {
       await axios.delete(
-        `https://qaz-b-production.up.railway.app/api/tests/${testId}`,
+        `https://qazaqai-api-production.up.railway.app/api/tests/${testId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

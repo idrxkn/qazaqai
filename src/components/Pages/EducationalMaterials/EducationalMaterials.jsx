@@ -69,19 +69,19 @@ const EducationalMaterials = () => {
       setMaterials((prevMaterials) => [...prevMaterials, newMaterial]);
     }
   };
-  if (!isAuthenticated) {
-    return (
-      <>
-        <p className="please-signin">
-          Өтініш, оқулықтарға кіру үшін{" "}
-          <Link to="/login" className="link-spacing">
-            {" "}
-            тіркеліңіз{" "}
-          </Link>{" "}
-        </p>
-      </>
-    );
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <>
+  //       <p className="please-signin">
+  //         Өтініш, оқулықтарға кіру үшін{" "}
+  //         <Link to="/login" className="link-spacing">
+  //           {" "}
+  //           тіркеліңіз{" "}
+  //         </Link>{" "}
+  //       </p>
+  //     </>
+  //   );
+  // }
   return (
     <>
       <div className="materials-container">

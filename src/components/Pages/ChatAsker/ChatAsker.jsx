@@ -57,7 +57,7 @@ const ChatAsker = () => {
 
     try {
       const response = await axios.get(
-        "https://qaz-b-production.up.railway.app/api/model/ask-random-question"
+        "https://qazaqai-api-production.up.railway.app/api/model/ask-random-question"
       );
       const { id, question } = response.data;
       setCurrentQuestionId(id);
@@ -90,7 +90,7 @@ const ChatAsker = () => {
       }
 
       await axios.post(
-        "https://qaz-b-production.up.railway.app/api/model/evaluate",
+        "https://qazaqai-api-production.up.railway.app/api/model/evaluate",
         { question_id: currentQuestionId, user_answer: inputData.answer },
         {
           headers: {
@@ -121,7 +121,10 @@ const ChatAsker = () => {
 
   const handleIntroductionExitComplete = () => {
     setMessages([
-      { type: "system", text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын." },
+      {
+        type: "system",
+        text: "Қош келдіңіз! Сіз жауап бересіз, мен бағалаймын.",
+      },
     ]);
     setShowChat(true);
     setTimeout(fetchRandomQuestion, 500);
@@ -203,7 +206,13 @@ const ChatAsker = () => {
 
       <AnimatePresence>
         {showChat && !testFinished && (
-          <motion.div className="ask-chat" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 50 }} transition={{ duration: 0.5 }}>
+          <motion.div
+            className="ask-chat"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="ask-chat-header">
               <img src={logo} alt="Logo" className="ask-chat-logo" />
               <h3>Сұрақ-Жауап Сеансы</h3>
@@ -220,7 +229,13 @@ const ChatAsker = () => {
         )}
 
         {testFinished && (
-          <motion.div className="test-finish-message" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.4 }}>
+          <motion.div
+            className="test-finish-message"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.4 }}
+          >
             <h2>Сіздің жауаптарыңыз бағаланып, сәтті сақталды.</h2>
           </motion.div>
         )}
