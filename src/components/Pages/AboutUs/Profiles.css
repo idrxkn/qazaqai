@@ -48,7 +48,18 @@ body.dark .profile-info {
 /* Profile Info List */
 body.dark .profile-info ul {
   font-size: 14px;
+  list-style-type: none;
   color: #080f17;
+}
+.profile-info ul li a {
+  color: #3f51b5;
+  text-decoration: none;
+}
+.profile-info ul li a:hover {
+  text-decoration: underline;
+}
+body.dark .profile-info ul li a {
+  color: #5c6bc0;
 }
 
 /* Profile Info Bold Text */

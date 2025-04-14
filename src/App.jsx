@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./components/Header/Header";
 import EducationalMaterials from "./components/Pages/EducationalMaterials/EducationalMaterials";
 import Testing from "./components/Pages/Testing/Testing";
+import InformationOntology from "./components/Pages/InformationOntology/InformationOntology";
 import CreateTest from "./components/Pages/Testing/CreateTest";
 import ChatAsker from "./components/Pages/ChatAsker/ChatAsker";
 import Chat from "./components/Pages/Chat/Chat";
@@ -54,6 +55,10 @@ function App() {
 
                       <Route path="/testing" element={<Testing />} />
                       <Route path="/create-test" element={<CreateTest />} />
+                      <Route
+                        path="/infontology"
+                        element={<InformationOntology />}
+                      />
                       <Route path="/forum" element={<Forum />} />
                       <Route path="/about-us-help" element={<AboutUs />} />
                       <Route path="/myprofile" element={<MyProfile />} />

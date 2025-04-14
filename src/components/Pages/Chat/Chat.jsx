@@ -81,20 +81,20 @@ const Chat = () => {
     setCurrentBotMessage("");
   };
 
-  // if (!isAuthenticated) {
-  //   return (
-  //     <>
-  //       <Header />
-  //       <p className="please-signin">
-  //         Өтініш, чатқа кіру үшін{" "}
-  //         <Link to="/login" className="link-spacing">
-  //           {" "}
-  //           тіркеліңіз{" "}
-  //         </Link>
-  //       </p>
-  //     </>
-  //   );
-  // }
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Header />
+        <p className="please-signin">
+          Өтініш, чатқа кіру үшін{" "}
+          <Link to="/login" className="link-spacing">
+            {" "}
+            тіркеліңіз{" "}
+          </Link>
+        </p>
+      </>
+    );
+  }
 
   return (
     <>

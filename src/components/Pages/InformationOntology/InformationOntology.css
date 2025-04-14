@@ -1,0 +1,110 @@
+.ontology-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: "Segoe UI", "Monolog-light", sans-serif;
+}
+
+.ontology-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ontology-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+}
+.ontology-subtitle {
+  font-size: 20px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.ontology-link-container {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.ontology-external-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: #0077cc;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s;
+}
+.ontology-external-link:hover {
+  border-color: #0077cc;
+}
+
+.ontology-owl-section {
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+}
+body.dark .ontology-owl-section {
+  background: #2b2b2b;
+  color: #eee;
+}
+
+.ontology-owl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ontology-download-btn {
+  background-color: #c19c53;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.ontology-download-btn:hover {
+  opacity: 0.7;
+}
+
+.ontology-toggle-btn {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+body.dark .ontology-toggle-btn {
+  color: #eee;
+  border-color: #666;
+}
+
+.ontology-owl-code {
+  margin-top: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  line-height: 1.6;
+  font-family: "Courier New", Courier, monospace;
+  max-height: 500px;
+}
+
+body.dark .ontology-owl-code {
+  background-color: #3a3a3a;
+  color: #eee;
+}
+
+.ontology-description {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+body.dark .ontology-description {
+  color: #ccc;
+}

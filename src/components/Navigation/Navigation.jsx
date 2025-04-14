@@ -54,6 +54,9 @@ const Navigation = () => {
         <NavLink to="/testing" className="nav-item">
           {t("nav.testing")}
         </NavLink>
+        <NavLink to="/infontology" className="nav-item">
+         Информатика Онтологиясы
+        </NavLink>
         <NavLink to="/chat" className="nav-item">
           ЖИ Бот
         </NavLink>
