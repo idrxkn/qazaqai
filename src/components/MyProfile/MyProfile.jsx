@@ -356,33 +356,36 @@ const MyProfile = () => {
                               )}
                             </details>
                           </div>
-
-                          <div className="test-results-section">
-                            <details>
-                              <summary>Модель бойынша тест нәтижелері</summary>
-                              <ul className="student-test-results">
-                                {student.modelTestResults.map(
-                                  (result, index) => (
-                                    <li key={index}>
-                                      <strong>📋 Сұрақ:</strong>{" "}
-                                      {result.question}
-                                      <p>
-                                        📝 Сіздің жауабыңыз:{" "}
-                                        {result.user_answer}
-                                      </p>
-                                      <p>
-                                        💯 Ұқсастық ұпайы:{" "}
-                                        {result.similarity_score
-                                          ? `${result.similarity_score}%`
-                                          : "0%"}
-                                      </p>
-                                    </li>
-                                  )
-                                )}
-                              </ul>
-                            </details>
-                          </div>
-
+                          {student.modelTestResults &&
+                            student.modelTestResults.length > 0 && (
+                              <div className="test-results-section">
+                                <details>
+                                  <summary>
+                                    Модель бойынша тест нәтижелері
+                                  </summary>
+                                  <ul className="student-test-results">
+                                    {student.modelTestResults.map(
+                                      (result, idx) => (
+                                        <li key={idx}>
+                                          <strong>📋 Сұрақ:</strong>{" "}
+                                          {result.question}
+                                          <p>
+                                            📝 Сіздің жауабыңыз:{" "}
+                                            {result.user_answer}
+                                          </p>
+                                          <p>
+                                            💯 Ұқсастық ұпайы:{" "}
+                                            {result.similarity_score
+                                              ? `${result.similarity_score}%`
+                                              : "0%"}
+                                          </p>
+                                        </li>
+                                      )
+                                    )}
+                                  </ul>
+                                </details>
+                              </div>
+                            )}
                           {/* Comment form for teacher to add comments for this student */}
                           <form
                             onSubmit={(e) =>
