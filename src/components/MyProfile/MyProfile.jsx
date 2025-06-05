@@ -356,15 +356,15 @@ const MyProfile = () => {
                               )}
                             </details>
                           </div>
-                          {student.modelTestResults &&
-                            student.modelTestResults.length > 0 && (
+                          {student.ModelTestResults &&
+                            student.ModelTestResults.length > 0 && (
                               <div className="test-results-section">
                                 <details>
                                   <summary>
                                     Модель бойынша тест нәтижелері
                                   </summary>
                                   <ul className="student-test-results">
-                                    {student.modelTestResults.map(
+                                    {student.ModelTestResults.map(
                                       (result, idx) => (
                                         <li key={idx}>
                                           <strong>📋 Сұрақ:</strong>{" "}
