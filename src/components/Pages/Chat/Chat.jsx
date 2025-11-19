@@ -33,7 +33,7 @@ const Chat = () => {
     setLoading(true);
 
     const apiUrl =
-      "https://qazaqai-api-production.up.railway.app/api/model/get-answer";
+      "https://qazaqai-api-production-211e.up.railway.app/api/model/get-answer";
     try {
       const response = await axios.post(
         apiUrl,
