@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "https://qazaqai-api-production-211e.up.railway.app/";
+const BASE_URL = "https://qazaqai-api-production-6632.up.railway.app/";
 
 export const fetchUserData = async () => {
   try {
     const token = localStorage.getItem("token");
     const response = await fetch(
-      "https://qazaqai-api-production-211e.up.railway.app/api/profile",
+      "https://qazaqai-api-production-6632.up.railway.app/api/profile",
       {
         method: "GET",
         headers: {

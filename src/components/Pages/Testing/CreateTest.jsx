@@ -66,7 +66,7 @@ const CreateTest = () => {
     try {
       const token = localStorage.getItem("token"); // Retrieve token from local storage
       const response = await axios.post(
-        "https://qazaqai-api-production-211e.up.railway.app/api/tests",
+        "https://qazaqai-api-production-6632.up.railway.app/api/tests",
         newTest,
         {
           headers: {

@@ -60,7 +60,7 @@ const ChatAsker = () => {
 
     try {
       const response = await axios.get(
-        "https://qazaqai-api-production-211e.up.railway.app/api/model/ask-random-question"
+        "https://qazaqai-api-production-6632.up.railway.app/api/model/ask-random-question"
       );
       const { id, question } = response.data;
       setCurrentQuestionId(id);
@@ -88,7 +88,7 @@ const ChatAsker = () => {
       }
 
       await axios.post(
-        "https://qazaqai-api-production-211e.up.railway.app/api/model/evaluate",
+        "https://qazaqai-api-production-6632.up.railway.app/api/model/evaluate",
         { question_id: currentQuestionId, user_answer: inputData.answer },
         {
           headers: {
